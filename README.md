@@ -1,3 +1,13 @@
+NEXTJS CREATE
+
+![Next-js-14-Homepage](https://github.com/Silaenn/nextJs/assets/131638765/a139f3ab-4745-4516-b2b2-ecd30c111a9d)
+
+![About-Page-Next-js-14](https://github.com/Silaenn/nextJs/assets/131638765/fe61fb02-f5fc-4d8e-8123-c09c55852235)
+
+![Contact-Page-Next-js-14](https://github.com/Silaenn/nextJs/assets/131638765/0f618e49-8948-4161-bbf7-4d14398201e1)
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
