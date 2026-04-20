@@ -8,10 +8,10 @@ export const metadata = {
 
 const ContactPage = () => {
   return (
-    <div className="container-custom py-12">
+    <div className="container-custom py-12 overflow-hidden">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         {/* Image Section */}
-        <div className="relative h-[400px] lg:h-[600px] order-2 lg:order-1">
+        <div className="relative h-[400px] lg:h-[600px] order-2 lg:order-1 animate-imageReveal">
           <Image
             src="/contact.png"
             alt="Contact us"
@@ -22,7 +22,7 @@ const ContactPage = () => {
         </div>
 
         {/* Form Section */}
-        <div className="order-1 lg:order-2">
+        <div className="order-1 lg:order-2 animate-fadeInRight">
           <ContactForm />
         </div>
       </div>

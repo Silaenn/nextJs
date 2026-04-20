@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --bg: #0d0c22;
   --bgSoft: #2d2b42;
@@ -11,9 +15,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   background-color: var(--bg);
   color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overscroll-behavior: none;
 }
 
 a {
@@ -21,55 +32,151 @@ a {
   color: inherit;
 }
 
-.container {
-  width: 1536px;
-  margin: auto;
-  padding-left: 50px;
-  padding-right: 50px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@media (max-width: 1536px) {
-  .container {
-    width: 1366px;
-  }
-}
-@media (max-width: 1336px) {
-  .container {
-    width: 1280px;
-  }
-}
-@media (max-width: 1280px) {
-  .container {
-    width: 1024px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+::-webkit-scrollbar-track {
+  background: var(--bg);
 }
 
-@media (max-width: 1024px) {
-  .container {
-    width: 768px;
-  }
+::-webkit-scrollbar-thumb {
+  background: var(--bgSoft);
+  border-radius: 4px;
 }
 
-@media (max-width: 768px) {
-  .container {
-    width: 640px;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #3d3b52;
 }
 
-@media (max-width: 640px) {
-  .container {
-    width: 475px;
+/* Custom Utilities */
+@layer utilities {
+  .container-custom {
+    @apply max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12;
+  }
+  
+  .btn-primary {
+    @apply bg-primary hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 cursor-pointer border-none;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 cursor-pointer;
+  }
+  
+  .input-field {
+    @apply w-full bg-bgSoft border border-gray-600 rounded-lg px-4 py-3 text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+  }
+  
+  .card {
+    @apply bg-bgSoft rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-transparent;
   }
 }
 
-@media (max-width: 475px) {
-  .container {
-    width: 380px;
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes imageReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.1) rotate(2deg);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+.animate-imageReveal {
+  animation: imageReveal 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+/* Loading Spinner */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid var(--btn);
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

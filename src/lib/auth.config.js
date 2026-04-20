@@ -1,13 +1,18 @@
+// NextAuth configuration for API route
+// This file is used by the API route handler
+
 export const authConfig = {
   pages: {
     signIn: "/login",
+    error: "/login",
   },
   providers: [],
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.id = user._id?.toString() || user.id;
         token.isAdmin = user.isAdmin;
+        token.username = user.username;
       }
       return token;
     },
@@ -15,8 +20,8 @@ export const authConfig = {
       if (token) {
         session.user.id = token.id;
         session.user.isAdmin = token.isAdmin;
+        session.user.username = token.username;
       }
-
       return session;
     },
     authorized({ auth, request }) {
@@ -26,21 +31,15 @@ export const authConfig = {
       const isOnLoginPage = request.nextUrl?.pathname.startsWith("/login");
 
       // ONLY ADMIN CAN REACH THE ADMIN DASHBOARD
-
       if (isOnAdminPanel && !user?.isAdmin) {
         return false;
       }
 
-      // ONLY AUTHENTICATED USERS CAN REACH THE BLOG PAGE
-
-      if (isOnBlogPage && !user) {
-        return false;
-      }
-
       // ONLY UNAUTHENTICATED USERS CAN REACH THE LOGIN PAGE
-
       if (isOnLoginPage && user) {
-        return Response.redirect(new URL("/", request.nextUrl));
+        // Redirect Admin to Dashboard, others to Homepage
+        const destination = user.isAdmin ? "/admin" : "/";
+        return Response.redirect(new URL(destination, request.nextUrl));
       }
 
       return true;

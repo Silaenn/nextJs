@@ -4,12 +4,12 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
 import { User } from "./models";
 import bcrypt from "bcryptjs";
-import { authConfig } from "./auth.confiq";
+import { authConfig } from "./auth.config";
 
 const login = async (credentials) => {
   try {
-    connectToDb();
-    const user = await User.findOne({ username: credentials.username });
+    await connectToDb();
+    const user = await User.findOne({ username: credentials.username }).select("+password");
 
     if (!user) {
       throw new Error("Wrong credentials!");
@@ -24,9 +24,16 @@ const login = async (credentials) => {
       throw new Error("Wrong credentials!");
     }
 
+    // Update last login
+    try {
+      await user.updateLastLogin();
+    } catch (err) {
+      console.warn("Could not update last login:", err);
+    }
+
     return user;
   } catch (error) {
-    console.log(error);
+    console.error("❌ Login error:", error);
     throw new Error("Failed to login");
   }
 };
@@ -39,44 +46,47 @@ export const {
 } = NextAuth({
   ...authConfig,
   providers: [
-    GitHub({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
     CredentialsProvider({
       async authorize(credentials) {
         try {
           const user = await login(credentials);
           return user;
         } catch (error) {
+          console.error("❌ Credentials error:", error);
           return null;
         }
       },
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
-      if (account.provider === "github") {
-        connectToDb();
-        try {
-          const user = await User.findOne({ email: profile.email });
-
-          if (!user) {
-            const newUser = new User({
-              username: profile.name,
-              email: profile.email,
-              image: profile.image,
-            });
-
-            await newUser.save();
-          }
-        } catch (error) {
-          console.log(error);
-          return false;
-        }
+    async jwt({ token, user, account }) {
+      if (user) {
+        token.id = user._id?.toString() || user.id;
+        token.isAdmin = user.isAdmin;
+        token.username = user.username;
       }
-      return true;
+      
+      if (account) {
+        token.provider = account.provider;
+      }
+      
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.isAdmin = token.isAdmin;
+        session.user.username = token.username;
+        session.user.provider = token.provider;
+      }
+      return session;
     },
     ...authConfig.callbacks,
   },
+  pages: {
+    signIn: "/login",
+    error: "/login",
+  },
+  secret: process.env.AUTH_SECRET,
+  trustHost: true,
 });

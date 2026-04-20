@@ -1,164 +1,289 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { Post, User } from "./models";
+import { Post, User, Inquiry } from "./models";
 import { connectToDb } from "./utils";
 import { signIn, signOut } from "./auth";
 import bcrypt from "bcryptjs";
-import path from "path";
-import fs from "fs";
+import { loginSchema, registerSchema, postSchema, userSchema } from "./validations";
+import { hashPassword } from "./backendUtils";
 
-export const addPost = async (prevState, formData) => {
-  const { title, desc, slug, userId } = Object.fromEntries(formData);
-  const file = formData.get("img");
-
-  try {
-    connectToDb();
-
-    let imgPath = "";
-    if (file && file.buffer) {
-      // Tambahkan pengecekan file.buffer
-      const uploadDir = path.join(process.cwd(), "public", "uploads");
-      const fileName = `${Date.now()}-${file.name}`;
-      const filePath = path.join(uploadDir, fileName);
-
-      // Simpan file ke folder uploads
-      await fs.promises.mkdir(uploadDir, { recursive: true }); // Buat direktori jika belum ada
-      await fs.promises.writeFile(filePath, file.buffer); // Simpan file
-
-      // Simpan path relatif file
-      imgPath = `/uploads/${fileName}`;
-    }
-
-    const newPost = new Post({
-      title,
-      desc,
-      slug,
-      userId,
-      img: imgPath,
-    });
-
-    await newPost.save();
-    console.log("saved to db");
-    revalidatePath("/blog");
-    revalidatePath("/admin");
-  } catch (err) {
-    console.log(err);
-    return { error: "Something went wrong!" };
-  }
-};
-
-export const deletePost = async (formData) => {
-  const { id } = Object.fromEntries(formData);
+/**
+ * Register a new user
+ */
+export const register = async (previousState, formData) => {
+  const { username, email, password, img, passwordRepeat, isAdmin } =
+    Object.fromEntries(formData);
 
   try {
-    connectToDb();
-
-    await Post.findByIdAndDelete(id);
-    console.log("deleted from db");
-    revalidatePath("/blog");
-    revalidatePath("/admin");
-  } catch (err) {
-    console.log(err);
-    return { error: "Something went wrong!" };
-  }
-};
-
-export const addUser = async (prevState, formData) => {
-  const { username, email, password, img } = Object.fromEntries(formData);
-
-  try {
-    connectToDb();
-    const newUser = new User({
+    // Validate input
+    const validated = registerSchema.safeParse({
       username,
       email,
       password,
-      img,
+      passwordRepeat,
+      img: img || "",
+      isAdmin: isAdmin || "false",
     });
 
-    await newUser.save();
-    console.log("saved to db");
-    revalidatePath("/admin");
-  } catch (err) {
-    console.log(err);
-    return { error: "Something went wrong!" };
-  }
-};
+    if (!validated.success) {
+      return { error: validated.error.errors[0].message };
+    }
 
-export const deleteUser = async (formData) => {
-  const { id } = Object.fromEntries(formData);
+    // Connect to database
+    console.log("Connecting to DB...");
+    await connectToDb();
+    console.log("DB connected successfully");
 
-  try {
-    connectToDb();
-
-    await Post.deleteMany({ userId: id });
-    await User.findByIdAndDelete(id);
-    console.log("deleted from db");
-    revalidatePath("/admin");
-  } catch (err) {
-    console.log(err);
-    return { error: "Something went wrong!" };
-  }
-};
-
-export const handleGithubLogin = async () => {
-  "use server";
-  await signIn("github");
-};
-
-export const handleLogout = async () => {
-  "use server";
-  await signOut();
-};
-
-export const register = async (previousState, formData) => {
-  const { username, email, password, img, passwordRepeat } =
-    Object.fromEntries(formData);
-
-  if (password !== passwordRepeat) {
-    return { error: "Passwords do not match" };
-  }
-
-  try {
-    connectToDb();
-
-    const user = await User.findOne({ username });
-
-    if (user) {
+    // Check if username already exists
+    console.log("Checking for existing user:", username);
+    const existingUser = await User.findOne({ username: username.toLowerCase() });
+    if (existingUser) {
       return { error: "Username already exists" };
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // Check if email already exists
+    const existingEmail = await User.findOne({ email: email.toLowerCase() });
+    if (existingEmail) {
+      return { error: "Email already exists" };
+    }
 
+    // Hash password
+    const hashedPassword = await hashPassword(password);
+
+    // Create new user
     const newUser = new User({
-      username,
-      email,
+      username: username.toLowerCase(),
+      email: email.toLowerCase(),
       password: hashedPassword,
-      img,
+      img: img || "",
+      isAdmin: isAdmin === "true",
+      provider: "credentials",
     });
 
     await newUser.save();
-    console.log("saved to db");
+    console.log("✓ User registered successfully:", username);
 
     return { success: true };
-  } catch (err) {
-    console.log(err);
-    return { error: "Something went wrong!" };
+  } catch (error) {
+    console.error("❌ Error registering user (DETAILED):", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    return { error: `Registration failed: ${error.message}` };
   }
 };
 
+/**
+ * Login user
+ */
 export const login = async (prevState, formData) => {
   const { username, password } = Object.fromEntries(formData);
 
   try {
+    const validated = loginSchema.safeParse({ username, password });
+    if (!validated.success) {
+      return { error: validated.error.errors[0].message };
+    }
+
     await signIn("credentials", { username, password });
   } catch (err) {
-    console.log(err);
+    // In Next.js, the redirect exception must be re-thrown to actually perform the redirect
+    if (err.message?.includes("NEXT_REDIRECT")) {
+      throw err;
+    }
 
-    if (err.message.includes("CredentialsSignin")) {
+    if (err.type === "CredentialsSignin" || err.message?.includes("CredentialsSignin")) {
       return { error: "Invalid username or password" };
     }
-    throw err;
+    
+    console.error("❌ Login action error:", err.message);
+    return { error: "Something went wrong. Please check your connection." };
   }
+};
+
+/**
+ * Add a new post
+ */
+export const addPost = async (prevState, formData) => {
+  try {
+    const validatedFields = postSchema.safeParse({
+      title: formData.get("title"),
+      slug: formData.get("slug"),
+      desc: formData.get("desc"),
+      userId: formData.get("userId"),
+      img: formData.get("img"),
+    });
+
+    if (!validatedFields.success) {
+      const errors = validatedFields.error.errors?.map((e) => ({
+        field: e.path.join("."),
+        message: e.message,
+      })) || [];
+      
+      return { error: errors[0]?.message || "Validation failed" };
+    }
+
+    const { title, desc, slug, userId, img } = validatedFields.data;
+
+    await connectToDb();
+
+    const existingPost = await Post.findOne({ slug });
+    if (existingPost) {
+      return { error: "A post with this slug already exists" };
+    }
+
+    let imgPath = "";
+    if (img && img.size > 0) {
+      const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+      if (!allowedTypes.includes(img.type)) {
+        return { error: "Invalid file type" };
+      }
+      if (img.size > 5 * 1024 * 1024) {
+        return { error: "File size must be less than 5MB" };
+      }
+      imgPath = `/uploads/${Date.now()}-${img.name.replace(/[^a-zA-Z0-9.-]/g, "")}`;
+    }
+
+    const newPost = new Post({ title, desc, slug, userId, img: imgPath });
+    await newPost.save();
+    
+    revalidatePath("/blog");
+    revalidatePath("/admin");
+
+    return { success: true, message: "Post created successfully" };
+  } catch (error) {
+    console.error("❌ Error creating post:", error);
+    return { error: error.message || "Failed to create post" };
+  }
+};
+
+/**
+ * Delete a post
+ */
+export const deletePost = async (formData) => {
+  try {
+    await connectToDb();
+    await Post.findByIdAndDelete(formData.get("id"));
+    revalidatePath("/blog");
+    revalidatePath("/admin");
+    return { success: true };
+  } catch (error) {
+    console.error("❌ Error deleting post:", error);
+    return { error: "Failed to delete post" };
+  }
+};
+
+/**
+ * Add a new user
+ */
+export const addUser = async (prevState, formData) => {
+  try {
+    const validatedFields = userSchema.safeParse({
+      username: formData.get("username"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+      img: formData.get("img"),
+      isAdmin: formData.get("isAdmin"),
+    });
+
+    if (!validatedFields.success) {
+      const errors = validatedFields.error.errors?.map((e) => ({
+        field: e.path.join("."),
+        message: e.message,
+      })) || [];
+      
+      return { error: errors[0]?.message || "Validation failed" };
+    }
+
+    const { username, email, password, img, isAdmin } = validatedFields.data;
+
+    await connectToDb();
+
+    if (await User.findOne({ username })) {
+      return { error: "Username already exists" };
+    }
+
+    if (await User.findOne({ email })) {
+      return { error: "Email already exists" };
+    }
+
+    const hashedPassword = await hashPassword(password);
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      img: img || "",
+      isAdmin: isAdmin === "true",
+      provider: "credentials",
+    });
+
+    await newUser.save();
+    revalidatePath("/admin");
+
+    return { success: true, message: "User created successfully" };
+  } catch (error) {
+    console.error("❌ Error creating user:", error);
+    return { error: error.message || "Failed to create user" };
+  }
+};
+
+/**
+ * Delete a user
+ */
+export const deleteUser = async (formData) => {
+  try {
+    await connectToDb();
+    const user = await User.findById(formData.get("id"));
+    
+    if (!user) {
+      return { error: "User not found" };
+    }
+    
+    if (user.isAdmin) {
+      return { error: "Cannot delete admin users" };
+    }
+
+    await Post.deleteMany({ userId: user._id });
+    await User.findByIdAndDelete(user._id);
+    revalidatePath("/admin");
+
+    return { success: true };
+  } catch (error) {
+    console.error("❌ Error deleting user:", error);
+    return { error: "Failed to delete user" };
+  }
+};
+
+/**
+ * Send a new inquiry/idea
+ */
+export const sendInquiry = async (prevState, formData) => {
+  const { name, email, phone, message, userId } = Object.fromEntries(formData);
+
+  try {
+    await connectToDb();
+    const newInquiry = new Inquiry({ 
+      name, 
+      email, 
+      phone, 
+      message, 
+      userId: userId && userId !== "undefined" ? userId : null 
+    });
+    await newInquiry.save();
+    console.log("✓ Inquiry saved successfully");
+    return { success: true };
+  } catch (error) {
+    console.error("❌ Error saving inquiry:", error);
+    return { error: "Failed to send message" };
+  }
+};
+
+/**
+ * Handle logout
+ */
+export const handleLogout = async () => {
+  "use server";
+  await signOut({ redirectTo: "/" });
 };

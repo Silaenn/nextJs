@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
-import { authConfig } from "./lib/auth.confiq";
+import { authConfig } from "./lib/auth.config";
+import { checkRateLimit } from "./middleware/rateLimit";
 
 export default NextAuth(authConfig).auth;
 
