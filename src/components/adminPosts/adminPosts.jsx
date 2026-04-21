@@ -25,7 +25,7 @@ const AdminPosts = async () => {
         <div className="space-y-3">
           {posts.map((post) => (
             <div 
-              key={post.id}
+              key={post._id.toString()}
               className="flex items-center justify-between p-4 bg-bg/50 rounded-lg hover:bg-bg/70 transition-all duration-200 group"
             >
               <div className="flex items-center gap-4">
@@ -47,7 +47,7 @@ const AdminPosts = async () => {
                 </div>
               </div>
               <form action={deletePost}>
-                <input type="hidden" name="id" value={post.id} />
+                <input type="hidden" name="id" value={post._id.toString()} />
                 <button 
                   type="submit"
                   className="px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-all duration-200"
