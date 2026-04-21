@@ -1,5 +1,6 @@
 import RegisterForm from "@/components/registerForm/registerForm";
 import Image from "next/image";
+import Link from "next/link";
 
 const RegisterPage = () => {
   return (
@@ -9,21 +10,23 @@ const RegisterPage = () => {
         {/* Left Side: Marketing/Visual */}
         <div className="hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-blue-900/40 to-primary/20 relative overflow-hidden">
           <div className="relative z-10">
-            <div className="text-2xl font-bold text-white mb-12">IdeaReality</div>
-            <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
+            <Link href="/" className="inline-block text-2xl font-bold text-white mb-12 hover:opacity-80 transition-opacity">
+              IdeaReality
+            </Link>
+            <h2 className="text-4xl font-bold text-white leading-tight mb-8">
               Start your <span className="text-primary">journey</span> with the elite <span className="text-blue-400">creatives</span>.
             </h2>
             {/* Illustration Image */}
-            <div className="relative h-80 w-full mb-6 animate-imageReveal">
+            <div className="relative h-80 w-full mb-8 animate-imageReveal">
               <Image 
-                src="/contact.png" 
+                src="/Pengeluaran1.png" 
                 alt="3D Illustration" 
                 fill 
                 priority
                 className="object-contain drop-shadow-[0_20px_50px_rgba(54,115,253,0.3)]"
               />
             </div>
-            <p className="text-textSoft text-lg mb-8 max-w-md">
+            <p className="text-textSoft text-lg mb-8 max-w-md leading-relaxed">
               Create an account to access our project management workspace and start building your dream project today.
             </p>
             

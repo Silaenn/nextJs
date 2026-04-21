@@ -1,5 +1,6 @@
 import LoginForm from "@/components/loginForm/loginForm";
 import Image from "next/image";
+import Link from "next/link";
 
 const LoginPage = () => {
   return (
@@ -9,15 +10,17 @@ const LoginPage = () => {
         {/* Left Side: Marketing/Visual */}
         <div className="hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-primary/20 to-blue-900/40 relative overflow-hidden">
           <div className="relative z-10">
-            <div className="text-2xl font-bold text-white mb-12">IdeaReality</div>
-            <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
+            <Link href="/" className="inline-block text-2xl font-bold text-white mb-12 hover:opacity-80 transition-opacity">
+              IdeaReality
+            </Link>
+            <h2 className="text-4xl font-bold text-white leading-tight mb-8">
               Turn your <span className="text-primary">vision</span> into a digital <span className="text-blue-400">reality</span>.
             </h2>
 
             {/* Illustration Image */}
-            <div className="relative h-80 mb-6 w-full animate-imageReveal">
+            <div className="relative h-80 mb-8 w-full animate-imageReveal">
               <Image 
-                src="/about.png" 
+                src="/Pengeluaran.png" 
                 alt="3D Illustration" 
                 fill 
                 priority
@@ -25,7 +28,7 @@ const LoginPage = () => {
               />
             </div>
 
-            <p className="text-textSoft text-lg mb-8 max-w-md">
+            <p className="text-textSoft text-lg mb-8 max-w-md leading-relaxed">
               Join our exclusive client portal to track your project progress and collaborate with our experts.
             </p>
             
