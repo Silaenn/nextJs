@@ -7,6 +7,13 @@ import { signIn, signOut } from "./auth";
 import bcrypt from "bcryptjs";
 import { loginSchema, registerSchema, postSchema, userSchema } from "./validations";
 import { hashPassword } from "./backendUtils";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: "drtf08xvi",
+  api_key: "183263687394385",
+  api_secret: "hwLVeuON_mGCMzeox9Kp4ygdJwE",
+});
 
 /**
  * Register a new user
@@ -143,7 +150,27 @@ export const addPost = async (prevState, formData) => {
       if (img.size > 5 * 1024 * 1024) {
         return { error: "File size must be less than 5MB" };
       }
-      imgPath = `/uploads/${Date.now()}-${img.name.replace(/[^a-zA-Z0-9.-]/g, "")}`;
+      
+      try {
+        const arrayBuffer = await img.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+        
+        // Upload to Cloudinary
+        const uploadResponse = await new Promise((resolve, reject) => {
+          cloudinary.uploader.upload_stream(
+            { resource_type: "image", folder: "nextjs-agency" },
+            (error, result) => {
+              if (error) reject(error);
+              else resolve(result);
+            }
+          ).end(buffer);
+        });
+        
+        imgPath = uploadResponse.secure_url;
+      } catch (err) {
+        console.error("❌ Failed to upload to Cloudinary:", err);
+        return { error: "Failed to upload image to cloud storage" };
+      }
     }
 
     const newPost = new Post({ title, desc, slug, userId, img: imgPath });
