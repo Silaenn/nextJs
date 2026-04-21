@@ -20,10 +20,7 @@ const Footer = ({ session }) => {
                 Contact
               </a>
               <a href="/blog" className="hover:text-white transition-colors">
-                Blog
-              </a>
-              <a href="https://github.com/Silaenn/nextJs" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                GitHub
+                Case Studies
               </a>
             </div>
           )}

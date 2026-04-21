@@ -26,10 +26,10 @@ const AdminUsers = async () => {
           {users.map((user) => (
             <div 
               key={user.id}
-              className="flex items-center justify-between p-4 bg-bg/50 rounded-lg hover:bg-bg/70 transition-all duration-200 group"
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-bg/50 rounded-lg hover:bg-bg/70 transition-all duration-200 group gap-4"
             >
-              <div className="flex items-center gap-4">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-bgSoft">
+              <div className="flex items-center gap-4 min-w-0">
+                <div className="relative w-12 h-12 flex-shrink-0 rounded-full overflow-hidden bg-bgSoft">
                   <Image
                     src={user.img || "/noavatar.png"}
                     alt={user.username}
@@ -37,25 +37,25 @@ const AdminUsers = async () => {
                     className="object-cover"
                   />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <h3 className="font-medium group-hover:text-primary transition-colors">
+                    <h3 className="font-medium group-hover:text-primary transition-colors truncate">
                       {user.username}
                     </h3>
                     {user.isAdmin && (
-                      <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">
+                      <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full flex-shrink-0">
                         Admin
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-textSoft">{user.email}</p>
+                  <p className="text-sm text-textSoft truncate">{user.email}</p>
                 </div>
               </div>
-              <form action={deleteUser}>
+              <form action={deleteUser} className="w-full sm:w-auto">
                 <input type="hidden" name="id" value={user.id} />
                 <button 
                   type="submit"
-                  className="px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-all duration-200"
+                  className="w-full sm:w-auto px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-all duration-200"
                   disabled={user.isAdmin}
                 >
                   {user.isAdmin ? 'Protected' : 'Delete'}

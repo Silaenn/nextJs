@@ -21,15 +21,15 @@ const AdminInquiries = async () => {
       ) : (
         <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
           {inquiries.map((inquiry) => (
-            <div key={inquiry._id} className="p-4 bg-bg rounded-xl border border-gray-700">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-primary">{inquiry.name}</h3>
-                <span className="text-xs text-textSoft">
+            <div key={inquiry._id} className="p-4 bg-bg rounded-xl border border-gray-700 overflow-hidden">
+              <div className="flex flex-col sm:flex-row justify-between items-start mb-2 gap-2">
+                <h3 className="font-bold text-primary truncate max-w-full">{inquiry.name}</h3>
+                <span className="text-xs text-textSoft flex-shrink-0">
                   {new Date(inquiry.createdAt).toLocaleDateString()}
                 </span>
               </div>
-              <p className="text-sm text-textSoft mb-2 italic">"{inquiry.email}"</p>
-              <p className="text-sm leading-relaxed">{inquiry.message}</p>
+              <p className="text-sm text-textSoft mb-2 italic truncate">{inquiry.email}</p>
+              <p className="text-sm leading-relaxed break-words">{inquiry.message}</p>
               <div className="mt-3 flex gap-2">
                 <span className="text-[10px] uppercase tracking-wider bg-primary/20 text-primary px-2 py-1 rounded">
                   {inquiry.status}

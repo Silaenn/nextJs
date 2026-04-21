@@ -23,7 +23,7 @@ const Home = async () => {
         {/* Text Content */}
         <div className="flex flex-col gap-8 animate-fadeIn">
           <div className="flex flex-col gap-6">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
               Realizing Your{" "}
               <span className="bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                 Biggest Ideas.

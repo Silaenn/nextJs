@@ -67,11 +67,11 @@ const AboutPage = () => {
           </p>
           
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {stats.map((stat, index) => (
               <div 
                 key={stat.label} 
-                className="text-center lg:text-left animate-fadeIn"
+                className="text-center sm:text-left animate-fadeIn"
                 style={{ animationDelay: `${0.2 + index * 0.1}s`, animationFillMode: 'forwards' }}
               >
                 <div className="text-3xl md:text-4xl font-bold text-primary mb-1">

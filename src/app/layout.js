@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
@@ -7,7 +7,10 @@ import ToastProvider from "@/components/toast/Toast";
 import { validateEnv } from "@/lib/env";
 import { auth } from "@/lib/auth";
 
-const inter = Inter({ subsets: ["latin"] });
+const plusJakartaSans = Plus_Jakarta_Sans({ 
+  subsets: ["latin"],
+  display: "swap",
+});
 
 // Validate environment variables in development
 if (process.env.NODE_ENV === "development") {
@@ -34,7 +37,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen flex flex-col antialiased`}>
+      <body className={`${plusJakartaSans.className} min-h-screen flex flex-col antialiased`}>
         <ToastProvider>
           <ErrorBoundary>
             <Navbar />

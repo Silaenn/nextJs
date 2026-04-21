@@ -76,7 +76,7 @@ const Links = ({ session }) => {
 
       {/* Mobile Navigation */}
       {open && (
-        <div className="md:hidden absolute top-20 left-0 right-0 bg-bg border-b border-bgSoft animate-slideIn">
+        <div className="md:hidden absolute top-20 left-0 right-0 bg-bg border-b border-bgSoft animate-slideIn max-h-[calc(100vh-5rem)] overflow-y-auto">
           <div className="container-custom py-4 flex flex-col gap-2">
             {filteredLinks.map((link) => (
               <NavLink 

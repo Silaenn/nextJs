@@ -26,10 +26,10 @@ const AdminPosts = async () => {
           {posts.map((post) => (
             <div 
               key={post._id.toString()}
-              className="flex items-center justify-between p-4 bg-bg/50 rounded-lg hover:bg-bg/70 transition-all duration-200 group"
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-bg/50 rounded-lg hover:bg-bg/70 transition-all duration-200 group gap-4"
             >
-              <div className="flex items-center gap-4">
-                <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-bgSoft">
+              <div className="flex items-center gap-4 min-w-0">
+                <div className="relative w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-bgSoft">
                   <Image
                     src={post.img || "/noavatar.png"}
                     alt={post.title}
@@ -37,8 +37,8 @@ const AdminPosts = async () => {
                     className="object-cover"
                   />
                 </div>
-                <div>
-                  <h3 className="font-medium group-hover:text-primary transition-colors">
+                <div className="min-w-0">
+                  <h3 className="font-medium group-hover:text-primary transition-colors truncate">
                     {post.title}
                   </h3>
                   <p className="text-sm text-textSoft">
@@ -46,11 +46,11 @@ const AdminPosts = async () => {
                   </p>
                 </div>
               </div>
-              <form action={deletePost}>
+              <form action={deletePost} className="w-full sm:w-auto">
                 <input type="hidden" name="id" value={post._id.toString()} />
                 <button 
                   type="submit"
-                  className="px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-all duration-200"
+                  className="w-full sm:w-auto px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-all duration-200"
                 >
                   Delete
                 </button>

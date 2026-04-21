@@ -38,15 +38,16 @@ export const ToastProvider = ({ children }) => {
   return (
     <ToastContext.Provider value={toast}>
       {children}
-      <div className="fixed bottom-4 right-4 z-50 space-y-2">
+      <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 z-50 space-y-2 pointer-events-none">
         {toasts.map((toast) => (
-          <ToastItem
-            key={toast.id}
-            id={toast.id}
-            message={toast.message}
-            type={toast.type}
-            onClose={removeToast}
-          />
+          <div key={toast.id} className="pointer-events-auto">
+            <ToastItem
+              id={toast.id}
+              message={toast.message}
+              type={toast.type}
+              onClose={removeToast}
+            />
+          </div>
         ))}
       </div>
     </ToastContext.Provider>
@@ -86,7 +87,7 @@ const ToastItem = ({ id, message, type, onClose }) => {
 
   return (
     <div
-      className={`${typeStyles[type]} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 min-w-[300px] animate-slideIn`}
+      className={`${typeStyles[type]} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 w-full md:min-w-[300px] md:w-auto animate-slideIn`}
       role="alert"
     >
       <span className="flex-shrink-0">{icons[type]}</span>
