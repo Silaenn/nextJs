@@ -143,13 +143,6 @@ export default function RegisterForm() {
       >
         {isLoading ? "Creating account..." : "Create Account"}
       </button>
-
-      <div className="text-center text-sm text-textSoft">
-        Already have an account?{" "}
-        <Link href="/login" className="text-primary hover:underline">
-          Sign in
-        </Link>
-      </div>
     </form>
   );
 }
