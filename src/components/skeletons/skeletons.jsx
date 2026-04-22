@@ -63,16 +63,18 @@ export const FormSkeleton = () => (
 
 // Skeleton for Blog Post Card
 export const PostCardSkeleton = () => (
-  <div className="glass rounded-[2.5rem] p-6 border-white/5 animate-pulse h-full flex flex-col">
-    <div className="aspect-[4/3] bg-white/5 rounded-[2rem] mb-8"></div>
-    <div className="flex items-center gap-4 mb-6">
-      <div className="w-8 h-[1px] bg-accent/50" />
-      <div className="h-3 bg-white/5 rounded-full w-24"></div>
+  <div className="glass rounded-[2rem] border-white/5 animate-pulse h-full overflow-hidden">
+    <div className="relative aspect-[4/5] bg-white/5">
+        <div className="absolute bottom-0 left-0 right-0 p-8">
+            <div className="h-8 bg-white/5 rounded-xl w-3/4 mb-4"></div>
+            <div className="h-4 bg-white/5 rounded-full w-full mb-2"></div>
+            <div className="h-4 bg-white/5 rounded-full w-2/3 mb-6"></div>
+            <div className="flex items-center gap-3">
+                <div className="h-[1px] w-8 bg-accent/30" />
+                <div className="h-2 bg-white/5 rounded-full w-20"></div>
+            </div>
+        </div>
     </div>
-    <div className="h-8 bg-white/5 rounded-xl w-3/4 mb-4"></div>
-    <div className="h-4 bg-white/5 rounded-full w-full mb-2"></div>
-    <div className="h-4 bg-white/5 rounded-full w-2/3 mb-10"></div>
-    <div className="mt-auto h-4 bg-white/5 rounded-full w-24"></div>
   </div>
 );
 

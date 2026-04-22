@@ -9,8 +9,6 @@ import { DatabaseError, NotFoundError } from "./errors";
  * @returns {Promise<Array>} Array of posts
  */
 export const getPosts = async (options = {}) => {
-  noStore();
-  
   try {
     await connectToDb();
     
