@@ -2,21 +2,30 @@ import { PostCardSkeleton } from "@/components/skeletons/skeletons";
 
 export default function Loading() {
   return (
-    <div className="container-custom py-12">
-      {/* Header Placeholder */}
-      <div className="mb-12 text-center animate-pulse">
-        <div className="h-10 md:h-12 bg-bgSoft rounded-lg w-64 md:w-80 mx-auto mb-4"></div>
-        <div className="space-y-2">
-          <div className="h-4 bg-bgSoft rounded w-full max-w-2xl mx-auto"></div>
-          <div className="h-4 bg-bgSoft rounded w-3/4 max-w-lg mx-auto"></div>
-        </div>
-      </div>
+    <div className="relative min-h-screen py-32 overflow-hidden">
+      {/* Background accents */}
+      <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
 
-      {/* Posts Grid Placeholder */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[...Array(6)].map((_, i) => (
-          <PostCardSkeleton key={i} />
-        ))}
+      <div className="container-custom relative z-10">
+        {/* Header Section Placeholder */}
+        <div className="max-w-4xl mb-24 animate-pulse">
+            <div className="h-4 bg-accent/20 rounded-full w-32 mb-6"></div>
+            <div className="space-y-4 mb-8">
+                <div className="h-16 bg-white/5 rounded-3xl w-3/4"></div>
+                <div className="h-16 bg-white/5 rounded-3xl w-1/2"></div>
+            </div>
+            <div className="space-y-2">
+                <div className="h-4 bg-white/5 rounded-full w-full"></div>
+                <div className="h-4 bg-white/5 rounded-full w-2/3"></div>
+            </div>
+        </div>
+
+        {/* Posts Grid Placeholder */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[...Array(6)].map((_, i) => (
+            <PostCardSkeleton key={i} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,53 +1,48 @@
 export default function Loading() {
   return (
-    <div className="container-custom py-12 overflow-hidden">
-      {/* Hero Section Placeholder */}
-      <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-        {/* Text Section Placeholder */}
-        <div className="order-2 lg:order-1 animate-pulse">
-          <div className="h-4 bg-bgSoft rounded w-32 mb-4"></div>
-          <div className="h-12 bg-bgSoft rounded w-full mb-6"></div>
-          <div className="h-12 bg-bgSoft rounded w-4/5 mb-6"></div>
-          <div className="space-y-3 mb-8">
-            <div className="h-4 bg-bgSoft rounded w-full"></div>
-            <div className="h-4 bg-bgSoft rounded w-full"></div>
-            <div className="h-4 bg-bgSoft rounded w-2/3"></div>
-          </div>
-          
-          {/* Stats Placeholder */}
-          <div className="grid grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="text-center lg:text-left">
-                <div className="h-10 bg-bgSoft rounded w-16 mb-2 mx-auto lg:mx-0"></div>
-                <div className="h-4 bg-bgSoft rounded w-20 mx-auto lg:mx-0"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* Image Placeholder */}
-        <div className="order-1 lg:order-2 relative h-[400px] md:h-[500px]">
-          <div className="w-full h-full bg-bgSoft rounded-xl animate-pulse"></div>
-        </div>
-      </div>
+    <div className="relative min-h-screen py-32 overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(54,115,253,0.05)_0%,transparent_50%)] pointer-events-none" />
 
-      {/* Features Section Placeholder */}
-      <div className="py-20 border-t border-bgSoft">
-        <div className="text-center mb-12 animate-pulse">
-          <div className="h-10 bg-bgSoft rounded w-48 mx-auto mb-4"></div>
-          <div className="h-4 bg-bgSoft rounded w-full max-w-2xl mx-auto mb-2"></div>
-          <div className="h-4 bg-bgSoft rounded w-3/4 max-w-xl mx-auto"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="p-8 bg-bgSoft/50 rounded-3xl border border-bgSoft animate-pulse">
-              <div className="w-12 h-12 bg-bgSoft rounded-lg mb-4"></div>
-              <div className="h-6 bg-bgSoft rounded w-3/4 mb-2"></div>
-              <div className="h-4 bg-bgSoft rounded w-full mb-1"></div>
-              <div className="h-4 bg-bgSoft rounded w-5/6"></div>
+      <div className="container-custom relative z-10 animate-pulse">
+        {/* Header Section Placeholder */}
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-48 items-center mb-32">
+            <div>
+                <div className="h-4 bg-accent/20 rounded-full w-32 mb-6"></div>
+                <div className="space-y-4 mb-12">
+                    <div className="h-16 bg-white/5 rounded-3xl w-full"></div>
+                    <div className="h-16 bg-white/5 rounded-3xl w-3/4"></div>
+                </div>
+                <div className="space-y-2 mb-12">
+                    <div className="h-4 bg-white/5 rounded-full w-full"></div>
+                    <div className="h-4 bg-white/5 rounded-full w-full"></div>
+                    <div className="h-4 bg-white/5 rounded-full w-2/3"></div>
+                </div>
+
+                {/* Stats Cards Placeholder */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    {[...Array(3)].map((_, i) => (
+                        <div key={i}>
+                            <div className="h-10 bg-accent/20 rounded-xl w-16 mb-2"></div>
+                            <div className="h-3 bg-white/5 rounded-full w-24"></div>
+                        </div>
+                    ))}
+                </div>
             </div>
-          ))}
+
+            <div className="relative h-[400px] lg:h-[600px] w-full bg-white/5 rounded-[3rem]">
+            </div>
+        </div>
+
+        {/* Feature Grid Placeholder */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[...Array(4)].map((_, i) => (
+                <div key={i} className="glass rounded-[3rem] p-10 border-white/5 h-64 flex flex-col justify-end">
+                    <div className="w-12 h-1 bg-accent/50 mb-10" />
+                    <div className="h-6 bg-white/5 rounded-xl w-1/2 mb-4"></div>
+                    <div className="h-4 bg-white/5 rounded-full w-full"></div>
+                </div>
+            ))}
         </div>
       </div>
     </div>

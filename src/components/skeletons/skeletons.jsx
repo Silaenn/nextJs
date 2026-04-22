@@ -1,21 +1,21 @@
 // Skeleton for Posts List
 export const PostsSkeleton = () => (
   <div className="animate-pulse">
-    <div className="flex items-center justify-between mb-6">
-      <div className="h-8 bg-bgSoft rounded w-24"></div>
-      <div className="h-6 bg-bgSoft rounded w-16"></div>
+    <div className="flex items-center justify-between mb-10">
+      <div className="h-8 bg-white/5 rounded-full w-48"></div>
+      <div className="h-4 bg-white/5 rounded-full w-24"></div>
     </div>
-    <div className="space-y-3">
-      {[...Array(4)].map((_, i) => (
-        <div key={i} className="flex items-center justify-between p-4 bg-bg/50 rounded-lg">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-bgSoft rounded-lg"></div>
-            <div className="space-y-2">
-              <div className="h-4 bg-bgSoft rounded w-32"></div>
-              <div className="h-3 bg-bgSoft rounded w-20"></div>
+    <div className="space-y-4">
+      {[...Array(5)].map((_, i) => (
+        <div key={i} className="flex items-center justify-between p-6 glass rounded-3xl border-white/5">
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 bg-white/5 rounded-2xl"></div>
+            <div className="space-y-3">
+              <div className="h-5 bg-white/5 rounded-full w-48"></div>
+              <div className="h-3 bg-white/5 rounded-full w-32"></div>
             </div>
           </div>
-          <div className="h-8 bg-bgSoft rounded w-20"></div>
+          <div className="h-10 bg-white/5 rounded-full w-24"></div>
         </div>
       ))}
     </div>
@@ -25,21 +25,21 @@ export const PostsSkeleton = () => (
 // Skeleton for Users List
 export const UsersSkeleton = () => (
   <div className="animate-pulse">
-    <div className="flex items-center justify-between mb-6">
-      <div className="h-8 bg-bgSoft rounded w-24"></div>
-      <div className="h-6 bg-bgSoft rounded w-16"></div>
+    <div className="flex items-center justify-between mb-10">
+      <div className="h-8 bg-white/5 rounded-full w-48"></div>
+      <div className="h-4 bg-white/5 rounded-full w-24"></div>
     </div>
-    <div className="space-y-3">
-      {[...Array(4)].map((_, i) => (
-        <div key={i} className="flex items-center justify-between p-4 bg-bg/50 rounded-lg">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-bgSoft rounded-full"></div>
-            <div className="space-y-2">
-              <div className="h-4 bg-bgSoft rounded w-32"></div>
-              <div className="h-3 bg-bgSoft rounded w-24"></div>
+    <div className="space-y-4">
+      {[...Array(5)].map((_, i) => (
+        <div key={i} className="flex items-center justify-between p-6 glass rounded-3xl border-white/5">
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 bg-white/5 rounded-full"></div>
+            <div className="space-y-3">
+              <div className="h-5 bg-white/5 rounded-full w-48"></div>
+              <div className="h-3 bg-white/5 rounded-full w-32"></div>
             </div>
           </div>
-          <div className="h-8 bg-bgSoft rounded w-20"></div>
+          <div className="h-10 bg-white/5 rounded-full w-24"></div>
         </div>
       ))}
     </div>
@@ -47,41 +47,54 @@ export const UsersSkeleton = () => (
 );
 
 // Skeleton for Forms
-export const FormSkeleton = ({ title = "Loading" }) => (
-  <div className="card animate-pulse">
-    <div className="h-8 bg-bgSoft rounded w-40 mb-6"></div>
-    <div className="space-y-5">
-      <div className="h-10 bg-bgSoft rounded"></div>
-      <div className="h-10 bg-bgSoft rounded"></div>
-      <div className="h-10 bg-bgSoft rounded"></div>
-      <div className="h-32 bg-bgSoft rounded"></div>
-      <div className="h-10 bg-bgSoft rounded"></div>
+export const FormSkeleton = () => (
+  <div className="glass rounded-[3rem] p-10 md:p-20 border-white/5 animate-pulse">
+    <div className="h-4 bg-accent/20 rounded-full w-32 mb-6"></div>
+    <div className="h-10 bg-white/5 rounded-2xl w-64 mb-12"></div>
+    <div className="space-y-6">
+      <div className="h-16 bg-white/5 rounded-2xl w-full"></div>
+      <div className="h-16 bg-white/5 rounded-2xl w-full"></div>
+      <div className="h-16 bg-white/5 rounded-2xl w-full"></div>
+      <div className="h-48 bg-white/5 rounded-[2rem] w-full"></div>
+      <div className="h-16 bg-accent/20 rounded-full w-full"></div>
     </div>
   </div>
 );
 
 // Skeleton for Blog Post Card
 export const PostCardSkeleton = () => (
-  <div className="card animate-pulse">
-    <div className="aspect-video bg-bgSoft rounded-lg mb-4"></div>
-    <div className="h-4 bg-bgSoft rounded w-24 mb-2"></div>
-    <div className="h-6 bg-bgSoft rounded w-3/4 mb-2"></div>
-    <div className="h-4 bg-bgSoft rounded w-full mb-2"></div>
-    <div className="h-4 bg-bgSoft rounded w-2/3"></div>
+  <div className="glass rounded-[2.5rem] p-6 border-white/5 animate-pulse h-full flex flex-col">
+    <div className="aspect-[4/3] bg-white/5 rounded-[2rem] mb-8"></div>
+    <div className="flex items-center gap-4 mb-6">
+      <div className="w-8 h-[1px] bg-accent/50" />
+      <div className="h-3 bg-white/5 rounded-full w-24"></div>
+    </div>
+    <div className="h-8 bg-white/5 rounded-xl w-3/4 mb-4"></div>
+    <div className="h-4 bg-white/5 rounded-full w-full mb-2"></div>
+    <div className="h-4 bg-white/5 rounded-full w-2/3 mb-10"></div>
+    <div className="mt-auto h-4 bg-white/5 rounded-full w-24"></div>
   </div>
 );
 
 // Skeleton for Single Post
 export const PostSkeleton = () => (
-  <div className="container-custom py-12 animate-pulse">
+  <div className="container-custom py-32 animate-pulse">
     <div className="max-w-4xl mx-auto">
-      <div className="aspect-video bg-bgSoft rounded-xl mb-8"></div>
-      <div className="h-10 bg-bgSoft rounded w-3/4 mb-4"></div>
-      <div className="h-4 bg-bgSoft rounded w-32 mb-8"></div>
-      <div className="space-y-4">
-        <div className="h-4 bg-bgSoft rounded w-full"></div>
-        <div className="h-4 bg-bgSoft rounded w-full"></div>
-        <div className="h-4 bg-bgSoft rounded w-3/4"></div>
+      <div className="aspect-video bg-white/5 rounded-[3rem] mb-12"></div>
+      <div className="h-16 bg-white/5 rounded-3xl w-3/4 mb-8"></div>
+      <div className="flex items-center gap-6 mb-12">
+        <div className="w-12 h-12 bg-white/5 rounded-full"></div>
+        <div className="space-y-2">
+          <div className="h-4 bg-white/5 rounded-full w-32"></div>
+          <div className="h-3 bg-white/5 rounded-full w-20"></div>
+        </div>
+      </div>
+      <div className="space-y-6">
+        <div className="h-4 bg-white/5 rounded-full w-full"></div>
+        <div className="h-4 bg-white/5 rounded-full w-full"></div>
+        <div className="h-4 bg-white/5 rounded-full w-3/4"></div>
+        <div className="h-4 bg-white/5 rounded-full w-5/6 mt-12"></div>
+        <div className="h-4 bg-white/5 rounded-full w-full"></div>
       </div>
     </div>
   </div>
