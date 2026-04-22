@@ -70,18 +70,13 @@ const Home = async () => {
 
           {/* Hero Asset - Enhanced Styling */}
           <div className="relative reveal-up" style={{ animationDelay: '0.3s' }}>
-             {/* Decorative Background Elements behind Image */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-accent/5 blur-[100px] rounded-full -z-10" />
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] border border-white/5 rounded-full -z-10 animate-pulse-soft" />
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] border border-white/5 rounded-full -z-10" />
-
-             <div className="relative aspect-square lg:aspect-auto lg:h-[650px] w-full flex items-center justify-center group">
+             <div className="relative aspect-square lg:aspect-auto lg:h-[650px] w-full flex items-center justify-center group translate-x-10 lg:translate-x-20">
                 <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-105">
                     <Image
                     src="/hero.gif"
                     alt="Hero illustration"
                     fill
-                    className="object-contain drop-shadow-[0_30px_60px_rgba(54,115,253,0.25)]"
+                    className="object-contain scale-125 rounded-md"
                     priority
                     />
                 </div>
@@ -95,13 +90,6 @@ const Home = async () => {
                     <div className="text-[10px] font-black text-muted uppercase tracking-[0.2em] leading-tight">
                         ELITE <br/> PROJECTS
                     </div>
-                </div>
-             </div>
-
-             {/* Small Decorative Floating Element */}
-             <div className="absolute -top-6 -right-6 glass p-4 rounded-2xl shadow-xl animate-float opacity-50 hidden lg:block" style={{ animationDuration: '6s' }}>
-                <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
-                    <div className="w-2 h-2 bg-accent rounded-full animate-ping" />
                 </div>
              </div>
           </div>

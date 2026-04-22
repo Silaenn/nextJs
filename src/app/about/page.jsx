@@ -62,17 +62,17 @@ const AboutPage = () => {
             </div>
 
             <div className="relative h-[400px] lg:h-[600px] w-full lg:justify-self-end reveal-up" style={{ animationDelay: '0.2s' }}>
-                <Image 
-                    src="/about.png" 
-                    alt="Creative process" 
-                    fill 
-                    className="object-contain drop-shadow-[0_20px_50px_rgba(54,115,253,0.1)]"
-                />
-            </div>
+              <Image 
+                  src="/about.png" 
+                  alt="Creative process" 
+                  fill 
+                  className="object-contain drop-shadow-[0_20px_50px_rgba(54,115,253,0.1)] !left-20 lg:!left-28"
+              />
+          </div>
         </div>
 
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal-up">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 reveal-up">
             {features.map((feature, i) => (
                 <div key={i} className="glass rounded-[3rem] p-10 border-white/5 hover:border-accent/20 transition-all duration-500 group flex flex-col h-full overflow-hidden">
                     <div className="w-12 h-1 bg-accent mb-10 group-hover:w-full transition-all duration-500" />
