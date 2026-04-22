@@ -21,19 +21,8 @@ const ContactForm = ({ userId }) => {
   }, [state, toast]);
 
   return (
-    <div className="max-w-xl">
-      <div className="mb-12">
-        <span className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4 block">Get In Touch</span>
-        <h1 className="heading-xl leading-none mb-8">
-            Tell us about your <span className="text-white italic">Vision.</span>
-        </h1>
-        <p className="text-xl text-textSoft/80 leading-relaxed font-medium">
-            Ready to transform your ideas into a digital masterpiece? 
-            Our elite team is ready to bring your concept to life.
-        </p>
-      </div>
-
-      <form action={formAction} ref={formRef} className="space-y-8">
+    <div className="w-full">
+      <form action={formAction} ref={formRef} className="space-y-6">
         <input type="hidden" name="userId" value={userId || ""} />
         
         <div className="grid md:grid-cols-2 gap-8">

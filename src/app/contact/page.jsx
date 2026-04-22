@@ -28,6 +28,16 @@ const ContactPage = () => {
 
           {/* Form Section */}
           <div className="reveal-up" style={{ animationDelay: '0.2s' }}>
+            <div className="mb-12">
+                <span className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4 block">Get In Touch</span>
+                <h1 className="heading-xl leading-none mb-8">
+                    Tell us about your <span className="text-white italic">Vision.</span>
+                </h1>
+                <p className="text-xl text-textSoft/80 leading-relaxed font-medium">
+                    Ready to transform your ideas into a digital masterpiece? 
+                    Our elite team is ready to bring your concept to life.
+                </p>
+            </div>
             <ContactForm />
           </div>
         </div>
