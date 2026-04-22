@@ -81,7 +81,7 @@ const Links = ({ session }) => {
                 <>
                   {session.user?.isAdmin ? (
                     <NavLink 
-                      item={{ title: "Dashboard", path: "/admin" }} 
+                      item={{ title: "Admin", path: "/admin" }} 
                       mobile
                       onClick={() => setOpen(false)}
                     />

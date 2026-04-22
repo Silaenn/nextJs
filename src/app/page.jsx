@@ -11,7 +11,7 @@ const Home = async () => {
   }
 
   if (session?.user) {
-    return <WorkspacePage />;
+    redirect("/workspace");
   }
 
   return (

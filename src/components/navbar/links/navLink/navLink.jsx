@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 
 const NavLink = ({ item, mobile = false, onClick }) => {
   const pathName = usePathname();
-  const isActive = pathName === item.path;
+  const isActive = item.path === "/" 
+    ? pathName === "/" 
+    : pathName.startsWith(item.path);
 
   const baseClasses = "transition-all duration-300 font-bold text-sm uppercase tracking-widest";
   
