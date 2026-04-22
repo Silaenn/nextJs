@@ -9,77 +9,64 @@ const AdminUserForm = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   return (
-    <div className="card">
-      <h2 className="text-2xl font-bold mb-6">Add New User</h2>
+    <div className="space-y-10">
+      <div className="flex items-center gap-3">
+         <div className="h-8 w-[2px] bg-accent-2" />
+         <h2 className="text-xl font-black italic tracking-tighter uppercase text-white">Member Onboarding.</h2>
+      </div>
       
-      <form action={formAction} className="space-y-5">
-        {/* Username */}
-        <div>
-          <label htmlFor="username" className="block text-sm font-medium text-textSoft mb-2">
-            Username
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Enter username"
-            className="input-field"
-            required
-            minLength={3}
-            maxLength={20}
-          />
+      <form action={formAction} className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+            <label htmlFor="username" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Alias</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Username"
+                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                required
+            />
+            </div>
+
+            <div className="space-y-2">
+            <label htmlFor="email" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Electronic Mail</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Address"
+                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                required
+            />
+            </div>
         </div>
 
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-textSoft mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter email address"
-            className="input-field"
-            required
-          />
-        </div>
-
-        {/* Password */}
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium text-textSoft mb-2">
-            Password
-          </label>
+        <div className="space-y-2">
+          <label htmlFor="password" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Secret Key</label>
           <input
             type="password"
             id="password"
             name="password"
-            placeholder="Create a password"
-            className="input-field"
+            placeholder="••••••••"
+            className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
             required
-            minLength={6}
           />
-          <p className="mt-1 text-xs text-textSoft">Minimum 6 characters</p>
         </div>
 
-        {/* Profile Image URL */}
-        <div>
-          <label htmlFor="img" className="block text-sm font-medium text-textSoft mb-2">
-            Profile Image URL
-          </label>
+        <div className="space-y-2">
+          <label htmlFor="img" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Avatar Source (URL)</label>
           <input
             type="text"
             id="img"
             name="img"
-            placeholder="https://example.com/avatar.jpg"
-            className="input-field"
+            placeholder="https://..."
+            className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
           />
-          <p className="mt-1 text-xs text-textSoft">Optional - Leave empty for default avatar</p>
         </div>
 
-        {/* Admin Toggle */}
-        <div>
-          <label className="flex items-center gap-3 cursor-pointer">
+        <div className="py-4">
+          <label className="flex items-center gap-4 cursor-pointer group">
             <div className="relative">
               <input
                 type="checkbox"
@@ -89,27 +76,25 @@ const AdminUserForm = () => {
                 onChange={(e) => setIsAdmin(e.target.checked)}
                 className="sr-only"
               />
-              <div className={`w-12 h-6 rounded-full transition-colors ${isAdmin ? 'bg-primary' : 'bg-bgSoft'}`}>
-                <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform mt-0.5 ${isAdmin ? 'translate-x-6 ml-0.5' : 'translate-x-0.5'}`}></div>
+              <div className={`w-14 h-7 rounded-full transition-all duration-500 border border-white/10 ${isAdmin ? 'bg-accent border-accent' : 'bg-white/5'}`}>
+                <div className={`w-5 h-5 bg-white rounded-full shadow-xl transform transition-transform duration-500 mt-[3px] ${isAdmin ? 'translate-x-7' : 'translate-x-1'}`}></div>
               </div>
             </div>
-            <span className="text-sm font-medium text-textSoft">Grant admin privileges</span>
+            <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Grant Admin Authority</span>
           </label>
         </div>
 
-        {/* Error Message */}
         {state?.error && (
-          <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-3 rounded-lg text-sm">
+          <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-center">
             {state.error}
           </div>
         )}
 
-        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full btn-primary"
+          className="btn-primary w-full group"
         >
-          Create User
+          <span className="relative z-10 font-black uppercase tracking-[0.2em]">Authorize Member</span>
         </button>
       </form>
     </div>

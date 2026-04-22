@@ -3,53 +3,47 @@ import Link from "next/link";
 
 const PostCard = ({ post }) => {
   return (
-    <article className="card group cursor-pointer overflow-hidden">
+    <article className="group relative glass rounded-[2rem] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-accent/5 hover:shadow-2xl border-white/5 hover:border-white/20">
       <Link href={`/blog/${post.slug}`} className="block">
-        {/* Image */}
-        {post.img ? (
-          <div className="relative aspect-video overflow-hidden">
+        {/* Date Badge - Floating */}
+        <div className="absolute top-6 right-6 z-20 glass px-4 py-2 rounded-full border-white/20">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
+                {new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+            </span>
+        </div>
+
+        {/* Image Container */}
+        <div className="relative aspect-[4/5] overflow-hidden">
+          {post.img ? (
             <Image
               src={post.img}
               alt={post.title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover group-hover:scale-110 transition-transform duration-300"
+              className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
             />
-          </div>
-        ) : (
-          <div className="relative aspect-video bg-bgSoft flex items-center justify-center">
-            <svg className="w-16 h-16 text-textSoft/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-          </div>
-        )}
-        
-        {/* Content */}
-        <div className="p-5">
-          {/* Date */}
-          <div className="flex items-center gap-2 text-sm text-textSoft mb-3">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span>{new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-          </div>
+          ) : (
+            <div className="w-full h-full bg-surface-2 flex items-center justify-center">
+               <span className="text-4xl font-black italic text-white/5 tracking-tighter uppercase">NO.IMAGE</span>
+            </div>
+          )}
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent opacity-80" />
+          
+          {/* Bottom Content (Overlapping) */}
+          <div className="absolute bottom-0 left-0 right-0 p-8 pt-20">
+            <h2 className="text-2xl font-black leading-tight mb-4 tracking-tighter text-white group-hover:text-accent transition-colors">
+              {post.title}
+            </h2>
+            
+            <p className="text-textSoft text-sm line-clamp-2 mb-6 font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+              {post.desc}
+            </p>
 
-          {/* Title */}
-          <h2 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
-            {post.title}
-          </h2>
-
-          {/* Description */}
-          <p className="text-textSoft text-sm line-clamp-3 mb-4">
-            {post.desc}
-          </p>
-
-          {/* Read More Link */}
-          <div className="flex items-center gap-2 text-primary font-medium text-sm group/link">
-            <span>Read More</span>
-            <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <div className="flex items-center gap-3">
+                <div className="h-[1px] w-8 bg-accent transition-all duration-500 group-hover:w-16" />
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">Discover More</span>
+            </div>
           </div>
         </div>
       </Link>

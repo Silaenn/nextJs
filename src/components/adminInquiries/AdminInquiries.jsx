@@ -6,33 +6,36 @@ const AdminInquiries = async () => {
   const inquiries = await Inquiry.find().sort({ createdAt: -1 });
 
   return (
-    <div className="card p-6 bg-bgSoft rounded-2xl h-full">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">Client Inquiries</h2>
-        <span className="text-sm text-textSoft bg-bg px-3 py-1 rounded-full">
-          {inquiries.length} {inquiries.length === 1 ? 'inquiry' : 'inquiries'}
+    <div className="h-full">
+      <div className="flex items-center justify-between mb-10">
+        <h3 className="text-xl font-black italic tracking-tighter uppercase text-white">Client Intel.</h3>
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent glass px-4 py-2 rounded-full border-white/5">
+          {inquiries.length} SIGNALS
         </span>
       </div>
 
       {inquiries.length === 0 ? (
-        <div className="text-center py-12 text-textSoft">
-          <p>No inquiries yet</p>
+        <div className="text-center py-20 border border-dashed border-white/5 rounded-3xl">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">No signals detected.</p>
         </div>
       ) : (
-        <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[600px] overflow-y-auto pr-4 custom-scrollbar">
           {inquiries.map((inquiry) => (
-            <div key={inquiry._id} className="p-4 bg-bg rounded-xl border border-gray-700 overflow-hidden">
-              <div className="flex flex-col sm:flex-row justify-between items-start mb-2 gap-2">
-                <h3 className="font-bold text-primary truncate max-w-full">{inquiry.name}</h3>
-                <span className="text-xs text-textSoft flex-shrink-0">
+            <div key={inquiry._id} className="p-6 bg-white/[0.02] rounded-3xl border border-white/5 hover:border-white/10 transition-all group">
+              <div className="flex justify-between items-start mb-4">
+                <h4 className="text-sm font-black uppercase tracking-widest text-white group-hover:text-accent transition-colors">{inquiry.name}</h4>
+                <span className="text-[9px] font-bold text-muted uppercase tracking-[0.1em]">
                   {new Date(inquiry.createdAt).toLocaleDateString()}
                 </span>
               </div>
-              <p className="text-sm text-textSoft mb-2 italic truncate">{inquiry.email}</p>
-              <p className="text-sm leading-relaxed break-words">{inquiry.message}</p>
-              <div className="mt-3 flex gap-2">
-                <span className="text-[10px] uppercase tracking-wider bg-primary/20 text-primary px-2 py-1 rounded">
-                  {inquiry.status}
+              <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-4 opacity-60">{inquiry.email}</p>
+              <div className="text-sm text-textSoft leading-relaxed font-medium mb-6 line-clamp-4 italic">
+                &quot;{inquiry.message}&quot;
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="h-[1px] flex-1 bg-white/5" />
+                <span className="text-[9px] font-black uppercase tracking-[0.3em] text-accent">
+                  {inquiry.status || "PENDING"}
                 </span>
               </div>
             </div>

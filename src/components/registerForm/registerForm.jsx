@@ -1,7 +1,6 @@
 "use client";
 
 import { register } from "@/lib/action";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -30,7 +29,6 @@ export default function RegisterForm() {
     
     try {
       const result = await register(null, formData);
-      
       if (result?.error) {
         setError(result.error);
         setIsLoading(false);
@@ -38,7 +36,7 @@ export default function RegisterForm() {
         setSuccess(true);
       }
     } catch (err) {
-      setError("Something went wrong. Please try again.");
+      setError("System failure. Deployment of new identity failed.");
       setIsLoading(false);
     }
   };
@@ -51,97 +49,89 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div>
-        <label className="block text-sm font-medium text-textSoft mb-2">
-          Username
-        </label>
-        <input
-          type="text"
-          name="username"
-          required
-          minLength={3}
-          maxLength={20}
-          className="input-field"
-          placeholder="Choose a username"
-        />
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+            <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Alias</label>
+            <input
+                type="text"
+                name="username"
+                required
+                minLength={3}
+                maxLength={20}
+                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                placeholder="Username"
+            />
+        </div>
+
+        <div className="space-y-2">
+            <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Channel</label>
+            <input
+                type="email"
+                name="email"
+                required
+                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                placeholder="Email Address"
+            />
+        </div>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-textSoft mb-2">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
-          required
-          className="input-field"
-          placeholder="Enter your email"
-        />
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+            <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Secret Key</label>
+            <input
+                type="password"
+                name="password"
+                required
+                minLength={6}
+                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                placeholder="••••••••"
+            />
+        </div>
+
+        <div className="space-y-2">
+            <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Verify Key</label>
+            <input
+                type="password"
+                name="passwordRepeat"
+                required
+                minLength={6}
+                className={`w-full bg-white/[0.03] border ${!passwordsMatch ? "border-red-500" : "border-white/10"} rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all`}
+                placeholder="••••••••"
+                onChange={validatePassword}
+                onBlur={validatePassword}
+            />
+        </div>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-textSoft mb-2">
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          required
-          minLength={6}
-          className="input-field"
-          placeholder="Create a password"
-        />
-        <p className="mt-1 text-xs text-textSoft">Minimum 6 characters</p>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-textSoft mb-2">
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          name="passwordRepeat"
-          required
-          minLength={6}
-          className={`input-field ${!passwordsMatch ? "border-red-500" : ""}`}
-          placeholder="Confirm your password"
-          onChange={validatePassword}
-          onBlur={validatePassword}
-        />
-        {!passwordsMatch && (
-          <p className="mt-1 text-xs text-red-500">Passwords do not match</p>
-        )}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-textSoft mb-2">
-          Register as
-        </label>
-        <select name="isAdmin" className="input-field bg-bgSoft">
-          <option value="false">Client (View Case Studies)</option>
-          <option value="true">Admin (Manage Agency)</option>
+      <div className="space-y-2">
+        <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Operational Role</label>
+        <select name="isAdmin" className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white appearance-none focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all">
+          <option value="false" className="bg-bg">Client (Case Studies)</option>
+          <option value="true" className="bg-bg">Admin (Agency Intel)</option>
         </select>
       </div>
 
       {error && (
-        <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-3 rounded-lg text-sm">
+        <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-center">
           {error}
         </div>
       )}
 
       {success && (
-        <div className="bg-green-500/10 border border-green-500 text-green-500 px-4 py-3 rounded-lg text-sm">
-          Account created successfully! Redirecting...
+        <div className="bg-green-500/10 border border-green-500/20 text-green-400 px-5 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-center">
+          Identity Secured. Initializing login...
         </div>
       )}
 
       <button
         type="submit"
         disabled={isLoading || !passwordsMatch}
-        className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+        className="btn-primary w-full group"
       >
-        {isLoading ? "Creating account..." : "Create Account"}
+        <span className="relative z-10 font-black uppercase tracking-[0.2em]">
+            {isLoading ? "Synchronizing..." : "Initialize Identity"}
+        </span>
       </button>
     </form>
   );

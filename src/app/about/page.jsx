@@ -6,118 +6,88 @@ export const metadata = {
 };
 
 const stats = [
-  { value: "10+", label: "Years of Experience" },
-  { value: "500+", label: "Projects Completed" },
-  { value: "100+", label: "Happy Clients" },
+  { value: "12+", label: "YEARS OF INNOVATION", desc: "A legacy of digital excellence" },
+  { value: "850+", label: "GLOBAL PARTNERS", desc: "Trusted by visionaries worldwide" },
+  { value: "1.2k", label: "MILESTONES REACHED", desc: "Transforming ideas into reality" },
 ];
 
 const features = [
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-    title: "Web Development",
-    description: "Custom websites built with modern technologies and best practices."
+    title: "Web Strategy",
+    desc: "Architecting complex digital ecosystems with surgical precision."
   },
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-      </svg>
-    ),
-    title: "Mobile Apps",
-    description: "Native and cross-platform mobile applications for iOS and Android."
+    title: "Mobile Force",
+    desc: "Developing seamless, immersive experiences for every touchpoint."
   },
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-      </svg>
-    ),
-    title: "UI/UX Design",
-    description: "Beautiful and intuitive designs that enhance user experience."
+    title: "Cinematic UI",
+    desc: "Where high-art aesthetics meet human-centric interaction design."
   },
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
-    title: "Performance",
-    description: "Optimized solutions that deliver exceptional speed and reliability."
+    title: "High Performance",
+    desc: "Engineered for speed, built for reliability, optimized for growth."
   },
 ];
 
 const AboutPage = () => {
   return (
-    <div className="container-custom py-12 overflow-hidden">
-      {/* Hero Section */}
-      <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-        <div className="order-2 lg:order-1 animate-fadeInLeft">
-          <h2 className="text-primary font-semibold mb-4 tracking-wider">ABOUT AGENCY</h2>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            We create digital ideas that are <span className="text-primary">bigger, bolder, braver,</span> and better
-          </h1>
-          <p className="text-textSoft text-lg leading-relaxed mb-8">
-            We believe in good ideas, flexibility, and precision. We&apos;re your dedicated partner in 
-            transforming complex challenges into seamless digital solutions. From consulting to 
-            full-scale development, we help your business thrive.
-          </p>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {stats.map((stat, index) => (
-              <div 
-                key={stat.label} 
-                className="text-center sm:text-left animate-fadeIn"
-                style={{ animationDelay: `${0.2 + index * 0.1}s`, animationFillMode: 'forwards' }}
-              >
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-textSoft">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="order-1 lg:order-2 relative h-[400px] md:h-[500px] animate-imageReveal">
-          <Image
-            src="/about.png"
-            alt="About our agency"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
-      </div>
+    <div className="relative min-h-screen py-32 overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(54,115,253,0.05)_0%,transparent_50%)] pointer-events-none" />
 
-      {/* Features Section */}
-      <div className="py-20 border-t border-bgSoft">
-        <div className="text-center mb-12 animate-fadeIn">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Do</h2>
-          <p className="text-textSoft max-w-2xl mx-auto">
-            We provide comprehensive digital solutions to help your business grow and adapt 
-            to the ever-changing digital landscape.
-          </p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
-            <div 
-              key={feature.title} 
-              className="card group hover:border-primary/50 hover:bg-primary/5 transition-all duration-500 animate-scaleIn opacity-0"
-              style={{ animationDelay: `${0.4 + index * 0.1}s`, animationFillMode: 'forwards' }}
-            >
-              <div className="text-primary mb-4 transition-transform duration-300">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{feature.title}</h3>
-              <p className="text-textSoft text-sm leading-relaxed">{feature.description}</p>
+      <div className="container-custom relative z-10">
+        {/* Header Section */}
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-48 items-center mb-32">
+            <div className="reveal-up">
+                <span className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-6 block">Our Manifesto</span>
+                <h1 className="heading-xl leading-[0.9] mb-12">
+                    We design <span className="text-white italic">Futures.</span> Not just interfaces.
+                </h1>
+                <p className="text-xl text-textSoft/80 leading-relaxed font-medium mb-12">
+                    We are a collective of designers, engineers, and strategists dedicated to 
+                    the pursuit of digital perfection. We don&apos;t just build products; we create 
+                    unforgettable experiences that define industries.
+                </p>
+
+                {/* Stats Cards - Bento Style */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    {stats.map((stat, i) => (
+                        <div key={i} className="reveal-up" style={{ animationDelay: `${0.1 * i}s` }}>
+                            <div className="text-3xl font-black text-accent mb-1 tracking-tighter">{stat.value}</div>
+                            <div className="text-[10px] font-black text-white uppercase tracking-[0.2em]">{stat.label}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
-          ))}
+
+            <div className="relative h-[400px] lg:h-[600px] w-full lg:justify-self-end reveal-up" style={{ animationDelay: '0.2s' }}>
+                <Image 
+                    src="/about.png" 
+                    alt="Creative process" 
+                    fill 
+                    className="object-contain drop-shadow-[0_20px_50px_rgba(54,115,253,0.1)]"
+                />
+            </div>
+        </div>
+
+        {/* Feature Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal-up">
+            {features.map((feature, i) => (
+                <div key={i} className="glass rounded-[3rem] p-10 border-white/5 hover:border-accent/20 transition-all duration-500 group flex flex-col h-full overflow-hidden">
+                    <div className="w-12 h-1 bg-accent mb-10 group-hover:w-full transition-all duration-500" />
+                    <h4 className="text-lg font-black tracking-tighter text-white mb-6 uppercase leading-tight">{feature.title}</h4>
+                    <p className="text-sm text-textSoft leading-relaxed font-medium mb-4">{feature.desc}</p>
+                </div>
+            ))}
+        </div>
+
+        {/* Closing Action */}
+        <div className="mt-40 text-center reveal-up">
+            <h2 className="text-4xl font-black italic tracking-tighter text-white mb-10">Ready to start your legacy?</h2>
+            <button className="btn-primary">
+                Join The Force
+            </button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Post, User } from "./models";
+import { Post, User, Inquiry } from "./models";
 import { connectToDb } from "./utils";
 import { unstable_noStore as noStore } from "next/cache";
 import { DatabaseError, NotFoundError } from "./errors";
@@ -286,5 +286,24 @@ export const getPopularPosts = async (limit = 5) => {
   } catch (error) {
     console.error("Error fetching popular posts:", error);
     throw new DatabaseError("Failed to fetch popular posts");
+  }
+};
+
+/**
+ * Get inquiries for a specific user
+ * @param {string} userId - User ID
+ * @returns {Promise<Array>} Array of inquiries
+ */
+export const getInquiriesByUser = async (userId) => {
+  noStore();
+  try {
+    await connectToDb();
+    const inquiries = await Inquiry.find({ userId })
+      .sort({ createdAt: -1 })
+      .lean();
+    return inquiries;
+  } catch (error) {
+    console.error("Error fetching user inquiries:", error);
+    throw new DatabaseError("Failed to fetch your messages");
   }
 };

@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Syne } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
@@ -10,6 +10,13 @@ import { auth } from "@/lib/auth";
 const plusJakartaSans = Plus_Jakarta_Sans({ 
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-body",
+});
+
+const syne = Syne({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
 });
 
 // Validate environment variables in development
@@ -37,7 +44,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.className} min-h-screen flex flex-col antialiased`}>
+      <body className={`${plusJakartaSans.variable} ${syne.variable} font-body min-h-screen flex flex-col antialiased`}>
         <ToastProvider>
           <ErrorBoundary>
             <Navbar />

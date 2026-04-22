@@ -14,7 +14,6 @@ const AdminPostForm = ({ userId }) => {
     if (state?.success) {
       formRef.current?.reset();
       setPreview(null);
-      alert("Case Study created successfully!");
     }
   }, [state]);
 
@@ -22,57 +21,47 @@ const AdminPostForm = ({ userId }) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-      };
+      reader.onloadend = () => setPreview(reader.result);
       reader.readAsDataURL(file);
     }
   };
 
   return (
-    <div className="card animate-fadeIn">
-      <h2 className="text-2xl font-bold mb-6">Add New Case Study</h2>
+    <div className="space-y-10">
+      <div className="flex items-center gap-3">
+         <div className="h-8 w-[2px] bg-accent" />
+         <h2 className="text-xl font-black italic tracking-tighter uppercase text-white">Project Intel.</h2>
+      </div>
       
-      <form action={formAction} ref={formRef} className="space-y-5">
+      <form action={formAction} ref={formRef} className="space-y-6">
         <input type="hidden" name="userId" value={userId} />
         
-        {/* Title */}
-        <div>
-          <label htmlFor="title" className="block text-sm font-medium text-textSoft mb-2">
-            Project Title
-          </label>
+        <div className="space-y-2">
+          <label htmlFor="title" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Title</label>
           <input
             type="text"
             id="title"
             name="title"
-            placeholder="e.g. E-commerce Platform Redesign"
-            className="input-field"
+            placeholder="e.g. Cinematic Platform"
+            className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
             required
           />
         </div>
 
-        {/* Slug */}
-        <div>
-          <label htmlFor="slug" className="block text-sm font-medium text-textSoft mb-2">
-            Project URL Slug
-          </label>
+        <div className="space-y-2">
+          <label htmlFor="slug" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">URL Slug</label>
           <input
             type="text"
             id="slug"
             name="slug"
-            placeholder="e.g. ecommerce-redesign"
-            className="input-field"
+            placeholder="e.g. cinematic-platform"
+            className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
             required
-            pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
-            title="Lowercase letters, numbers, and hyphens only"
           />
         </div>
 
-        {/* Image Upload */}
-        <div>
-          <label htmlFor="img" className="block text-sm font-medium text-textSoft mb-2">
-            Project Cover Image
-          </label>
+        <div className="space-y-2">
+          <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Visual Asset</label>
           <div className="relative">
             <input
               type="file"
@@ -84,46 +73,37 @@ const AdminPostForm = ({ userId }) => {
             />
             <label
               htmlFor="img"
-              className="flex items-center justify-center gap-2 w-full p-4 border-2 border-dashed border-bgSoft rounded-lg cursor-pointer hover:border-primary transition-all duration-300 group"
+              className="flex items-center justify-center gap-4 w-full p-8 border border-dashed border-white/10 rounded-3xl cursor-pointer hover:bg-white/5 transition-all group"
             >
-              <svg className="w-6 h-6 text-textSoft group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span className="text-textSoft group-hover:text-primary transition-colors">
-                {preview ? "Change image" : "Choose project image"}
+              <span className="text-xs font-black uppercase tracking-widest text-muted group-hover:text-white">
+                {preview ? "Swap Visual" : "Upload Asset"}
               </span>
             </label>
             {preview && (
-              <div className="mt-4 relative aspect-video rounded-lg overflow-hidden border border-bgSoft animate-scaleIn">
+              <div className="mt-4 relative aspect-video rounded-3xl overflow-hidden border border-white/10">
                 <Image src={preview} alt="Preview" fill className="object-cover" />
               </div>
             )}
           </div>
         </div>
 
-        {/* Description */}
-        <div>
-          <label htmlFor="desc" className="block text-sm font-medium text-textSoft mb-2">
-            Project Description
-          </label>
+        <div className="space-y-2">
+          <label htmlFor="desc" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Brief Description</label>
           <textarea
             id="desc"
             name="desc"
-            placeholder="Describe the project, challenges, and results..."
-            className="input-field min-h-[150px] resize-y"
-            rows={6}
+            placeholder="Architecture breakdown..."
+            className="w-full bg-white/[0.03] border border-white/10 rounded-3xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all min-h-[120px] resize-none"
             required
           />
         </div>
 
-        {/* Error Message */}
         {state?.error && (
-          <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-3 rounded-lg text-sm animate-fadeIn">
+          <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-center">
             {state.error}
           </div>
         )}
 
-        {/* Submit Button */}
         <SubmitButton />
       </form>
     </div>
@@ -136,16 +116,11 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-all duration-300"
+      className="btn-primary w-full group"
     >
-      {pending ? (
-        <>
-          <div className="spinner w-5 h-5 border-2"></div>
-          Saving Project...
-        </>
-      ) : (
-        "Create Case Study"
-      )}
+      <span className="relative z-10 font-black uppercase tracking-[0.2em]">
+        {pending ? "ARCHITECTING..." : "DEPLOY CASE STUDY"}
+      </span>
     </button>
   );
 }

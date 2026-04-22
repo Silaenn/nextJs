@@ -8,17 +8,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#3673fd',
-        bg: '#0d0c22',
-        bgSoft: '#2d2b42',
-        text: '#ffffff',
-        textSoft: '#e5e5e5',
+        bg: 'var(--bg)',
+        surface: 'var(--surface)',
+        'surface-2': 'var(--surface-2)',
+        bgSoft: 'var(--bgSoft)',
+        accent: 'var(--accent)',
+        'accent-2': 'var(--accent-2)',
+        text: 'var(--text)',
+        textSoft: 'var(--textSoft)',
+        muted: 'var(--muted)',
+        primary: 'var(--accent)', // Map primary to accent for backward compatibility
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
-      maxWidth: {
-        'screen-xl': '1536px',
+        body: ['var(--font-body)', 'sans-serif'],
+        heading: ['var(--font-heading)', 'sans-serif'],
       },
     },
   },

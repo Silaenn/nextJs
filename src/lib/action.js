@@ -300,6 +300,7 @@ export const sendInquiry = async (prevState, formData) => {
     });
     await newInquiry.save();
     console.log("✓ Inquiry saved successfully");
+    revalidatePath("/workspace");
     return { success: true };
   } catch (error) {
     console.error("❌ Error saving inquiry:", error);

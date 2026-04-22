@@ -6,71 +6,108 @@ import WorkspacePage from "./workspace/page";
 const Home = async () => {
   const session = await auth();
 
-  // 1. ADMIN FLOW: If Admin is logged in, redirect directly to Dashboard
   if (session?.user?.isAdmin) {
     redirect("/admin");
   }
 
-  // 2. CLIENT FLOW: If Client is logged in, show Workspace instead of Landing Page
   if (session?.user) {
     return <WorkspacePage />;
   }
 
-  // 3. PUBLIC FLOW: Show Landing Page for potential clients
   return (
-    <main className="container-custom min-h-[calc(100vh-180px)] flex items-center py-20 overflow-hidden">
-      <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
-        {/* Text Content */}
-        <div className="flex flex-col gap-8 animate-fadeIn">
-          <div className="flex flex-col gap-6">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              Realizing Your{" "}
-              <span className="bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-                Biggest Ideas.
-              </span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-textSoft leading-relaxed max-w-xl">
-              We are a creative agency that transforms your vision into digital reality. 
-              From conceptualization to execution, we build the future you imagine.
-            </p>
-          </div>
+    <div className="relative overflow-hidden min-h-screen pt-40 lg:pt-32">
+      {/* Background Decorative Glow */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-accent-2/10 blur-[100px] rounded-full pointer-events-none" />
 
-          <div className="flex flex-wrap gap-4">
-            <button className="btn-primary shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-105 transition-all duration-300">
-              Get Started
-            </button>
-            <button className="btn-secondary hover:scale-105 transition-all duration-300">
-              Our Works
-            </button>
-          </div>
+      <main className="container-custom relative z-10 min-h-[calc(100vh-200px)] flex items-center py-20 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-72 items-center w-full">
+          {/* Text Content */}
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-8">
+              <div className="reveal-up inline-block">
+                <span className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-black uppercase tracking-[0.4em] text-accent">
+                  Creative Digital Agency
+                </span>
+              </div>
+              
+              <h1 className="heading-xl text-balance reveal-up stagger-1 leading-[0.9]">
+                Realizing Your <br />
+                <span className="text-accent italic font-black">
+                  Biggest Ideas.
+                </span>
+              </h1>
+              
+              <p className="text-xl md:text-2xl text-textSoft leading-relaxed max-w-xl reveal-up stagger-2">
+                We transform visionary concepts into digital masterworks. 
+                Where high-end design meets cutting-edge execution.
+              </p>
+            </div>
 
-          {/* Brands Section */}
-          <div className="pt-8">
-            <p className="text-sm text-textSoft mb-4">Trusted by leading companies</p>
-            <div className="relative w-full max-w-md h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-              <Image 
-                src="/brands.png" 
-                alt="Trusted brands" 
-                fill 
-                className="object-contain" 
-              />
+            <div className="flex flex-wrap gap-6 reveal-up stagger-3">
+              <button className="btn-primary group">
+                <span className="relative z-10">Start Project</span>
+              </button>
+              <button className="btn-secondary">
+                View Showcase
+              </button>
+            </div>
+
+            {/* Social Proof */}
+            <div className="pt-5 border-t border-white/5 reveal-up stagger-3" style={{ animationDelay: '0.4s' }}>
+              <div className="flex items-center gap-10 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+                 <div className="relative w-full max-w-sm h-10">
+                  <Image 
+                    src="/brands.png" 
+                    alt="Trusted brands" 
+                    fill 
+                    className="object-contain" 
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Hero Image Container */}
-        <div className="relative h-[400px] md:h-[500px] lg:h-[550px] w-full animate-imageReveal">
-          <Image
-            src="/hero.gif"
-            alt="Hero illustration"
-            fill
-            className="object-contain"
-            priority
-          />
+          {/* Hero Asset - Enhanced Styling */}
+          <div className="relative reveal-up" style={{ animationDelay: '0.3s' }}>
+             {/* Decorative Background Elements behind Image */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-accent/5 blur-[100px] rounded-full -z-10" />
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] border border-white/5 rounded-full -z-10 animate-pulse-soft" />
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] border border-white/5 rounded-full -z-10" />
+
+             <div className="relative aspect-square lg:aspect-auto lg:h-[650px] w-full flex items-center justify-center group">
+                <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-105">
+                    <Image
+                    src="/hero.gif"
+                    alt="Hero illustration"
+                    fill
+                    className="object-contain drop-shadow-[0_30px_60px_rgba(54,115,253,0.25)]"
+                    priority
+                    />
+                </div>
+             </div>
+
+             {/* Enhanced Floating badge */}
+             <div className="absolute -bottom-10 -left-10 glass px-8 py-8 rounded-[2.5rem] shadow-2xl animate-bounce border-white/10" style={{ animationDuration: '4s' }}>
+                <div className="flex items-center gap-4">
+                    <div className="text-4xl font-black text-accent tracking-tighter">100+</div>
+                    <div className="h-8 w-[1px] bg-white/10" />
+                    <div className="text-[10px] font-black text-muted uppercase tracking-[0.2em] leading-tight">
+                        ELITE <br/> PROJECTS
+                    </div>
+                </div>
+             </div>
+
+             {/* Small Decorative Floating Element */}
+             <div className="absolute -top-6 -right-6 glass p-4 rounded-2xl shadow-xl animate-float opacity-50 hidden lg:block" style={{ animationDuration: '6s' }}>
+                <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
+                    <div className="w-2 h-2 bg-accent rounded-full animate-ping" />
+                </div>
+             </div>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 };
 

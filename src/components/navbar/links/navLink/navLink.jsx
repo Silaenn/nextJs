@@ -7,17 +7,18 @@ const NavLink = ({ item, mobile = false, onClick }) => {
   const pathName = usePathname();
   const isActive = pathName === item.path;
 
-  const baseClasses = "transition-all duration-200 font-medium";
-  const desktopClasses = `px-4 py-2 rounded-lg ${
+  const baseClasses = "transition-all duration-300 font-bold text-sm uppercase tracking-widest";
+  
+  const desktopClasses = `px-5 py-2 rounded-full ${
     isActive
-      ? "bg-primary text-white"
-      : "text-textSoft hover:text-white hover:bg-bgSoft"
+      ? "bg-white text-bg font-black italic scale-105"
+      : "text-muted hover:text-white hover:bg-white/5"
   }`;
   
-  const mobileClasses = `w-full px-4 py-3 rounded-lg ${
+  const mobileClasses = `w-full px-6 py-4 rounded-2xl ${
     isActive
-      ? "bg-primary text-white"
-      : "text-textSoft hover:text-white hover:bg-bgSoft"
+      ? "bg-accent text-white"
+      : "text-textSoft hover:text-white hover:bg-white/5"
   }`;
 
   return (

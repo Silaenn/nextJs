@@ -6,53 +6,50 @@ const AdminPosts = async () => {
   const posts = await getPosts();
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">Posts</h2>
-        <span className="text-sm text-textSoft bg-bg px-3 py-1 rounded-full">
-          {posts.length} {posts.length === 1 ? 'post' : 'posts'}
+    <div className="h-full">
+      <div className="flex items-center justify-between mb-10">
+        <h3 className="text-xl font-black italic tracking-tighter uppercase text-white">Case Inventory.</h3>
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent glass px-4 py-2 rounded-full border-white/5">
+          {posts.length} ASSETS
         </span>
       </div>
 
       {posts.length === 0 ? (
-        <div className="text-center py-12 text-textSoft">
-          <svg className="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-          </svg>
-          <p>No posts yet</p>
+        <div className="text-center py-20 border border-dashed border-white/5 rounded-3xl">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">No data archived.</p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-4 max-h-[500px] overflow-y-auto pr-4 custom-scrollbar">
           {posts.map((post) => (
             <div 
               key={post._id.toString()}
-              className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-bg/50 rounded-lg hover:bg-bg/70 transition-all duration-200 group gap-4"
+              className="flex items-center justify-between p-4 bg-white/[0.02] rounded-2xl border border-white/5 hover:border-white/10 transition-all group"
             >
-              <div className="flex items-center gap-4 min-w-0">
-                <div className="relative w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-bgSoft">
+              <div className="flex items-center gap-6 min-w-0">
+                <div className="relative w-16 h-16 flex-shrink-0 rounded-2xl overflow-hidden glass border-white/10">
                   <Image
                     src={post.img || "/noavatar.png"}
                     alt={post.title}
                     fill
-                    className="object-cover"
+                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="font-medium group-hover:text-primary transition-colors truncate">
+                  <h4 className="text-sm font-black uppercase tracking-widest text-white group-hover:text-accent transition-colors truncate">
                     {post.title}
-                  </h3>
-                  <p className="text-sm text-textSoft">
+                  </h4>
+                  <p className="text-[9px] font-bold text-muted uppercase tracking-[0.2em] mt-1">
                     {new Date(post.createdAt).toLocaleDateString()}
                   </p>
                 </div>
               </div>
-              <form action={deletePost} className="w-full sm:w-auto">
+              <form action={deletePost}>
                 <input type="hidden" name="id" value={post._id.toString()} />
                 <button 
                   type="submit"
-                  className="w-full sm:w-auto px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-all duration-200"
+                  className="px-6 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-red-400 hover:text-white hover:bg-red-400/20 rounded-full transition-all"
                 >
-                  Delete
+                  Terminate
                 </button>
               </form>
             </div>

@@ -7,17 +7,19 @@ const Navbar = async () => {
   const session = await auth();
 
   return (
-    <nav className="bg-bg/80 backdrop-blur-md sticky top-0 z-50 border-b border-bgSoft/50">
-      <div className="container-custom h-20 flex items-center justify-between">
+    <div className="fixed top-6 left-0 right-0 z-[100] px-4 pointer-events-none">
+      <nav className="container-custom max-w-5xl h-16 glass rounded-full flex items-center justify-between px-6 pointer-events-auto">
         <Link 
           href="/" 
-          className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+          className="text-xl font-black tracking-tighter hover:scale-105 transition-transform duration-300"
         >
-          IdeaReality
+          <span className="text-white">IDEA</span>
+          <span className="text-accent italic">REALITY.</span>
         </Link>
+        
         <Links session={session} />
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 

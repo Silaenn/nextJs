@@ -6,59 +6,60 @@ const AdminUsers = async () => {
   const users = await getUsers();
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">Users</h2>
-        <span className="text-sm text-textSoft bg-bg px-3 py-1 rounded-full">
-          {users.length} {users.length === 1 ? 'user' : 'users'}
+    <div className="h-full">
+      <div className="flex items-center justify-between mb-10">
+        <h3 className="text-xl font-black italic tracking-tighter uppercase text-white">Member Registry.</h3>
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent glass px-4 py-2 rounded-full border-white/5">
+          {users.length} ENTITIES
         </span>
       </div>
 
       {users.length === 0 ? (
-        <div className="text-center py-12 text-textSoft">
-          <svg className="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-          <p>No users yet</p>
+        <div className="text-center py-20 border border-dashed border-white/5 rounded-3xl">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-muted">No entities recorded.</p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-4 max-h-[500px] overflow-y-auto pr-4 custom-scrollbar">
           {users.map((user) => (
             <div 
               key={user.id}
-              className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-bg/50 rounded-lg hover:bg-bg/70 transition-all duration-200 group gap-4"
+              className="flex items-center justify-between p-4 bg-white/[0.02] rounded-2xl border border-white/5 hover:border-white/10 transition-all group"
             >
-              <div className="flex items-center gap-4 min-w-0">
-                <div className="relative w-12 h-12 flex-shrink-0 rounded-full overflow-hidden bg-bgSoft">
+              <div className="flex items-center gap-6 min-w-0">
+                <div className="relative w-16 h-16 flex-shrink-0 rounded-full overflow-hidden glass border-white/10">
                   <Image
                     src={user.img || "/noavatar.png"}
                     alt={user.username}
                     fill
-                    className="object-cover"
+                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
                 </div>
                 <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-medium group-hover:text-primary transition-colors truncate">
+                  <div className="flex items-center gap-3">
+                    <h4 className="text-sm font-black uppercase tracking-widest text-white group-hover:text-accent transition-colors truncate">
                       {user.username}
-                    </h3>
+                    </h4>
                     {user.isAdmin && (
-                      <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full flex-shrink-0">
+                      <span className="text-[8px] font-black tracking-[0.2em] bg-accent/20 text-accent px-2 py-0.5 rounded-full uppercase">
                         Admin
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-textSoft truncate">{user.email}</p>
+                  <p className="text-[9px] font-bold text-muted uppercase tracking-[0.2em] mt-1 truncate">{user.email}</p>
                 </div>
               </div>
-              <form action={deleteUser} className="w-full sm:w-auto">
+              <form action={deleteUser}>
                 <input type="hidden" name="id" value={user.id} />
                 <button 
                   type="submit"
-                  className="w-full sm:w-auto px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-all duration-200"
+                  className={`px-6 py-2 text-[10px] font-black uppercase tracking-[0.2em] rounded-full transition-all ${
+                    user.isAdmin 
+                    ? "text-muted border border-white/5 cursor-not-allowed" 
+                    : "text-red-400 hover:text-white hover:bg-red-400/20"
+                  }`}
                   disabled={user.isAdmin}
                 >
-                  {user.isAdmin ? 'Protected' : 'Delete'}
+                  {user.isAdmin ? 'Secured' : 'Revoke'}
                 </button>
               </form>
             </div>

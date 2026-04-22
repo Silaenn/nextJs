@@ -1,14 +1,12 @@
 "use client";
 
 import { login } from "@/lib/action";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,53 +17,52 @@ export default function LoginForm() {
     
     try {
       const result = await login(null, formData);
-      
-      // If we reach here, it means no redirect happened (which means an error occurred)
       if (result?.error) {
         setError(result.error);
         setIsLoading(false);
       }
     } catch (err) {
-      // If it's a redirect error, let it happen
       if (err.message?.includes("NEXT_REDIRECT")) {
         throw err;
       }
-      setError("Something went wrong. Please try again.");
+      setError("Authorization failed. Please verify credentials.");
       setIsLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div>
-        <label className="block text-sm font-medium text-textSoft mb-2">
-          Username
-        </label>
-        <input
-          type="text"
-          name="username"
-          required
-          minLength={3}
-          className="input-field"
-          placeholder="Enter your username"
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="space-y-8">
+      <div className="space-y-6">
+        <div className="space-y-2">
+            <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+                Access Identity
+            </label>
+            <input
+                type="text"
+                name="username"
+                required
+                minLength={3}
+                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                placeholder="Username"
+            />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-textSoft mb-2">
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          required
-          className="input-field"
-          placeholder="Enter your password"
-        />
+        <div className="space-y-2">
+            <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+                Security Key
+            </label>
+            <input
+                type="password"
+                name="password"
+                required
+                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                placeholder="••••••••"
+            />
+        </div>
       </div>
 
       {error && (
-        <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-3 rounded-lg text-sm">
+        <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest text-center">
           {error}
         </div>
       )}
@@ -73,9 +70,11 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+        className="btn-primary w-full group"
       >
-        {isLoading ? "Signing in..." : "Sign In"}
+        <span className="relative z-10 font-black uppercase tracking-[0.2em]">
+            {isLoading ? "Verifying..." : "Authorize Access"}
+        </span>
       </button>
     </form>
   );

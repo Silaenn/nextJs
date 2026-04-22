@@ -3,98 +3,91 @@
 import { useFormState } from "react-dom";
 import { sendInquiry } from "@/lib/action";
 import { useEffect, useRef } from "react";
+import { useToast } from "@/components/toast/Toast";
 
 const ContactForm = ({ userId }) => {
   const [state, formAction] = useFormState(sendInquiry, undefined);
   const formRef = useRef();
+  const toast = useToast();
 
   useEffect(() => {
     if (state?.success) {
-      alert("Message sent successfully!");
+      toast.success("Connection established. We will talk soon.");
       formRef.current?.reset();
     }
-  }, [state]);
+    if (state?.error) {
+      toast.error(state.error);
+    }
+  }, [state, toast]);
 
   return (
-    <div className="max-w-lg">
-      <h2 className="text-primary font-semibold mb-4">CONTACT US</h2>
-      <h1 className="text-4xl md:text-5xl font-bold mb-6">
-        Let&apos;s talk about your project
-      </h1>
-      <p className="text-textSoft mb-8">
-        Have a question or want to work together? We&apos;d love to hear from you.
-        Fill out the form and we&apos;ll get back to you as soon as possible.
-      </p>
+    <div className="max-w-xl">
+      <div className="mb-12">
+        <span className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4 block">Get In Touch</span>
+        <h1 className="heading-xl leading-none mb-8">
+            Tell us about your <span className="text-white italic">Vision.</span>
+        </h1>
+        <p className="text-xl text-textSoft/80 leading-relaxed font-medium">
+            Ready to transform your ideas into a digital masterpiece? 
+            Our elite team is ready to bring your concept to life.
+        </p>
+      </div>
 
-      <form action={formAction} ref={formRef} className="space-y-5">
+      <form action={formAction} ref={formRef} className="space-y-8">
         <input type="hidden" name="userId" value={userId || ""} />
-        {/* Name */}
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-textSoft mb-2">
-            Name and Surname
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="John Doe"
-            className="input-field"
-            required
-          />
-        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+            {/* Name */}
+            <div className="space-y-3">
+            <label htmlFor="name" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+                Identity
+            </label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Name Surname"
+                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                required
+            />
+            </div>
 
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-textSoft mb-2">
-            Email Address
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="john@example.com"
-            className="input-field"
-            required
-          />
-        </div>
-
-        {/* Phone (optional) */}
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-textSoft mb-2">
-            Phone Number <span className="text-gray-500">(optional)</span>
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="+1 (555) 000-0000"
-            className="input-field"
-          />
+            {/* Email */}
+            <div className="space-y-3">
+            <label htmlFor="email" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+                Channel
+            </label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Address"
+                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                required
+            />
+            </div>
         </div>
 
         {/* Message */}
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-textSoft mb-2">
-            Message
+        <div className="space-y-3">
+          <label htmlFor="message" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+            Brief
           </label>
           <textarea
             id="message"
             name="message"
-            placeholder="Tell us about your project..."
-            className="input-field min-h-[150px] resize-y"
-            rows={5}
+            placeholder="Describe your project vision..."
+            className="w-full bg-white/[0.03] border border-white/10 rounded-3xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all min-h-[160px] resize-none"
             required
           />
         </div>
 
-        {state?.error && <p className="text-red-500 text-sm">{state.error}</p>}
-
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full btn-primary flex items-center justify-center gap-2"
+          className="btn-primary w-full group"
         >
-          Send Message
+          <span className="relative z-10 font-black uppercase tracking-[0.2em]">Initiate Contact</span>
         </button>
       </form>
     </div>
