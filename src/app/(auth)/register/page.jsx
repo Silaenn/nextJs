@@ -12,39 +12,51 @@ const RegisterPage = () => {
         <div className="glass rounded-[3rem] overflow-hidden border-white/5 shadow-2xl grid lg:grid-cols-2 min-h-[750px]">
           
           {/* Left: Cinematic Marketing */}
-          <div className="hidden lg:flex flex-col justify-between p-16 relative overflow-hidden bg-surface">
-            <div className="absolute top-0 left-0 w-full h-full opacity-40">
-               <Image src="/Pengeluaran1.png" alt="Overlay" fill className="object-contain grayscale" />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-bg via-bg/80 to-transparent" />
-
-            <div className="relative z-10">
-                <Link href="/" className="text-xl font-black italic tracking-tighter text-white mb-20 block">IDEA<span className="text-accent">REALITY.</span></Link>
+          <div className="hidden lg:flex flex-col p-16 relative overflow-hidden bg-surface">
+            <div className="relative z-10 flex flex-col h-full">
+                <Link href="/" className="text-xl font-black italic tracking-tighter text-white mb-16 block">IDEA<span className="text-accent">REALITY.</span></Link>
                 
-                <h1 className="text-6xl font-black leading-[0.9] tracking-tighter text-white mb-12 uppercase italic">
-                    New <br/>
-                    <span className="text-accent">Identity.</span>
-                </h1>
-                
-                <p className="text-xl text-textSoft font-medium leading-relaxed max-w-sm mb-12">
-                    Join the digital vanguard. Secure your access to the most advanced creative workspace.
-                </p>
+                <div className="flex-1 flex flex-col justify-center">
+                    <h1 className="text-6xl font-black leading-[0.9] tracking-tighter text-white mb-8 uppercase italic">
+                        New <br/>
+                        <span className="text-accent">Identity.</span>
+                    </h1>
+                    
+                    <p className="text-xl text-textSoft font-medium leading-relaxed max-w-sm mb-12">
+                        Join the digital vanguard. Secure your access to the most advanced creative workspace.
+                    </p>
 
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="p-6 glass rounded-2xl border-white/5">
-                        <div className="text-2xl font-black text-accent mb-1 tracking-tighter">500+</div>
-                        <div className="text-[10px] font-black text-muted uppercase tracking-[0.2em]">ALLIES</div>
+                    {/* Featured Image - Dedicated Space */}
+                    <div className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden glass border-white/5 shadow-2xl mb-12 group">
+                       <Image 
+                        src="/Pengeluaran1.png" 
+                        alt="Workspace Preview" 
+                        fill 
+                        className="object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-700" 
+                        priority
+                       />
+                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                     </div>
-                    <div className="p-6 glass rounded-2xl border-white/5">
-                        <div className="text-2xl font-black text-white mb-1 tracking-tighter">10Y+</div>
-                        <div className="text-[10px] font-black text-muted uppercase tracking-[0.2em]">LEGACY</div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="p-6 glass rounded-2xl border-white/5">
+                            <div className="text-2xl font-black text-accent mb-1 tracking-tighter">500+</div>
+                            <div className="text-[10px] font-black text-muted uppercase tracking-[0.2em]">ALLIES</div>
+                        </div>
+                        <div className="p-6 glass rounded-2xl border-white/5">
+                            <div className="text-2xl font-black text-white mb-1 tracking-tighter">10Y+</div>
+                            <div className="text-[10px] font-black text-muted uppercase tracking-[0.2em]">LEGACY</div>
+                        </div>
                     </div>
+                </div>
+
+                <div className="relative z-10 mt-auto pt-10 border-t border-white/5">
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted">© 2025 ELITE DIGITAL ARCHITECTURE</p>
                 </div>
             </div>
 
-            <div className="relative z-10 mt-auto pt-10 border-t border-white/5">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted">© 2025 ELITE DIGITAL ARCHITECTURE</p>
-            </div>
+            {/* Ambient Background Glow */}
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent/10 blur-[120px] rounded-full pointer-events-none" />
           </div>
 
           {/* Right: Premium Form */}
