@@ -9,16 +9,17 @@ const ContactForm = ({ userId }) => {
   const [state, formAction] = useFormState(sendInquiry, undefined);
   const formRef = useRef();
   const toast = useToast();
+  const toastRef = useRef(toast);
 
   useEffect(() => {
     if (state?.success) {
-      toast.success("Connection established. We will talk soon.");
+      toastRef.current.success("Connection established. We will talk soon.");
       formRef.current?.reset();
     }
     if (state?.error) {
-      toast.error(state.error);
+      toastRef.current.error(state.error);
     }
-  }, [state, toast]);
+  }, [state]);
 
   return (
     <div className="w-full">

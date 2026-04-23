@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback, useMemo } from "react";
 
 const ToastContext = createContext();
 
@@ -16,7 +16,8 @@ export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
   const addToast = useCallback((message, type = "info", duration = 5000) => {
-    const id = Date.now();
+    // Gunakan randomUUID agar ID selalu unik meski dipanggil di milidetik yang sama
+    const id = crypto.randomUUID();
     setToasts((prev) => [...prev, { id, message, type }]);
 
     setTimeout(() => {
@@ -28,12 +29,12 @@ export const ToastProvider = ({ children }) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
   }, []);
 
-  const toast = {
+  const toast = useMemo(() => ({
     success: (message, duration) => addToast(message, "success", duration),
     error: (message, duration) => addToast(message, "error", duration),
     warning: (message, duration) => addToast(message, "warning", duration),
     info: (message, duration) => addToast(message, "info", duration),
-  };
+  }), [addToast]);
 
   return (
     <ToastContext.Provider value={toast}>
