@@ -11,13 +11,13 @@ const AdminPage = async () => {
   const session = await auth();
 
   return (
-    <div className="relative min-h-screen py-24 overflow-hidden">
+    <div className="relative min-h-screen py-32 overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
       
       <div className="container-custom relative z-10">
         {/* Header Section */}
-        <div className="mb-20 reveal-up">
+        <div className="mb-12 reveal-up">
             <span className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-4 block">Control Center</span>
             <h1 className="heading-xl leading-none tracking-tighter mb-4 italic uppercase">Architecture <span className="text-white">Admin.</span></h1>
             <p className="text-xl text-textSoft font-medium">Precision management for your digital assets.</p>
