@@ -9,7 +9,7 @@ export const InquirySkeleton = () => (
 
     {/* Cards Scroll Area Match: max-h-[600px] */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[600px] overflow-hidden pr-4">
-      {[...Array(6)].map((_, i) => (
+      {[...Array(2)].map((_, i) => (
         <div key={i} className="p-6 bg-white/[0.02] rounded-3xl border border-white/5">
           <div className="flex justify-between items-start mb-4">
             <div className="h-4 bg-white/10 rounded-full w-32"></div>

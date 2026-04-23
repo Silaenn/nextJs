@@ -62,17 +62,6 @@ const AdminUserForm = () => {
           />
         </div>
 
-        <div className="space-y-2">
-          <label htmlFor="img" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Avatar Source (URL)</label>
-          <input
-            type="text"
-            id="img"
-            name="img"
-            placeholder="https://..."
-            className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
-          />
-        </div>
-
         <div className="py-4">
           <label className="flex items-center gap-4 cursor-pointer group">
             <div className="relative">

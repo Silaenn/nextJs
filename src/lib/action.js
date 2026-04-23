@@ -3,26 +3,36 @@
 import { revalidatePath } from "next/cache";
 import { Post, User, Inquiry } from "./models";
 import { connectToDb } from "./utils";
-import { signIn, signOut } from "./auth";
+import { auth, signIn, signOut } from "./auth";
 import bcrypt from "bcryptjs";
 import { loginSchema, registerSchema, postSchema, userSchema } from "./validations";
 import { hashPassword } from "./backendUtils";
 import { v2 as cloudinary } from "cloudinary";
 
-cloudinary.config({
-  cloud_name: "drtf08xvi",
-  api_key: "183263687394385",
-  api_secret: "hwLVeuON_mGCMzeox9Kp4ygdJwE",
-});
+/**
+ * Helper to check if current user is the demo account
+ */
+const checkDemoProtection = async () => {
+  const session = await auth();
+  if (session?.user?.username === "admin_demo") {
+    throw new Error("Action disabled in Demo Mode. Create your own account for full access.");
+  }
+  return session;
+};
 
 /**
- * Register a new user
+ * Register a new user (Public Registration)
  */
 export const register = async (previousState, formData) => {
-  const { username, email, password, img, passwordRepeat, isAdmin } =
+  const { username, email, password, img, passwordRepeat } =
     Object.fromEntries(formData);
 
   try {
+    // Prevent registering with reserved demo username
+    if (username.toLowerCase() === "admin_demo") {
+      return { error: "This username is reserved for system use." };
+    }
+    
     // Validate input
     const validated = registerSchema.safeParse({
       username,
@@ -30,7 +40,7 @@ export const register = async (previousState, formData) => {
       password,
       passwordRepeat,
       img: img || "",
-      isAdmin: isAdmin || "false",
+      isAdmin: "false", // Hardcoded to false for public safety
     });
 
     if (!validated.success) {
@@ -115,6 +125,7 @@ export const login = async (prevState, formData) => {
  */
 export const addPost = async (prevState, formData) => {
   try {
+    await checkDemoProtection();
     const validatedFields = postSchema.safeParse({
       title: formData.get("title"),
       slug: formData.get("slug"),
@@ -191,6 +202,7 @@ export const addPost = async (prevState, formData) => {
  */
 export const deletePost = async (formData) => {
   try {
+    await checkDemoProtection();
     await connectToDb();
     await Post.findByIdAndDelete(formData.get("id"));
     revalidatePath("/blog");
@@ -207,6 +219,7 @@ export const deletePost = async (formData) => {
  */
 export const addUser = async (prevState, formData) => {
   try {
+    await checkDemoProtection();
     const validatedFields = userSchema.safeParse({
       username: formData.get("username"),
       email: formData.get("email"),
@@ -261,6 +274,7 @@ export const addUser = async (prevState, formData) => {
  */
 export const deleteUser = async (formData) => {
   try {
+    await checkDemoProtection();
     await connectToDb();
     const user = await User.findById(formData.get("id"));
     
@@ -316,6 +330,7 @@ export const updateInquiryStatus = async (formData) => {
   const status = formData.get("status");
 
   try {
+    await checkDemoProtection();
     await connectToDb();
     await Inquiry.findByIdAndUpdate(id, { status });
     revalidatePath("/admin");
@@ -334,6 +349,7 @@ export const deleteInquiry = async (formData) => {
   const id = formData.get("id");
 
   try {
+    await checkDemoProtection();
     await connectToDb();
     await Inquiry.findByIdAndDelete(id);
     revalidatePath("/admin");

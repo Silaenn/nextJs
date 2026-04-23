@@ -104,14 +104,6 @@ export default function RegisterForm() {
         </div>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">Operational Role</label>
-        <select name="isAdmin" className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white appearance-none focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all">
-          <option value="false" className="bg-bg">Client (Case Studies)</option>
-          <option value="true" className="bg-bg">Admin (Agency Intel)</option>
-        </select>
-      </div>
-
       {error && (
         <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-center">
           {error}
