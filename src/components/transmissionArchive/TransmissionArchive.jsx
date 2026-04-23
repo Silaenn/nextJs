@@ -1,12 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
 import { InquirySkeleton } from "@/components/skeletons/skeletons";
+import { deleteInquiry } from "@/lib/action";
 
 const getStatusColor = (status) => {
-  switch (status) {
-    case "pending": return "text-yellow-500 border-yellow-500/20 bg-yellow-500/5";
-    case "reviewed": return "text-accent border-accent/20 bg-accent/5";
-    case "accepted": return "text-green-500 border-green-500/20 bg-green-500/5";
+  const s = status?.toUpperCase() || "PENDING";
+  switch (s) {
+    case "PENDING": return "text-yellow-500 border-yellow-500/20 bg-yellow-500/5";
+    case "IN PROGRESS": return "text-accent border-accent/20 bg-accent/5";
+    case "COMPLETED": return "text-green-500 border-green-500/20 bg-green-500/5";
+    case "CANCELLED": return "text-red-500 border-red-500/20 bg-red-500/5";
     default: return "text-muted border-white/10 bg-white/5";
   }
 };
@@ -15,18 +18,19 @@ const TransmissionArchive = ({ userId }) => {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchInquiries = async () => {
+    try {
+        const res = await fetch(`/api/inquiries?userId=${userId}`);
+        const data = await res.json();
+        setInquiries(data);
+    } catch (err) {
+        console.error("Failed to fetch:", err);
+    } finally {
+        setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchInquiries = async () => {
-        try {
-            const res = await fetch(`/api/inquiries?userId=${userId}`);
-            const data = await res.json();
-            setInquiries(data);
-        } catch (err) {
-            console.error("Failed to fetch:", err);
-        } finally {
-            setLoading(false);
-        }
-    };
     fetchInquiries();
   }, [userId]);
 
@@ -74,7 +78,7 @@ const TransmissionArchive = ({ userId }) => {
                                 <div className="flex flex-wrap items-center justify-between gap-6 mb-8">
                                     <div className="flex items-center gap-4">
                                         <div className={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border ${getStatusColor(inquiry.status)}`}>
-                                            {inquiry.status}
+                                            {inquiry.status || "PENDING"}
                                         </div>
                                         <div className="h-[1px] w-6 bg-white/10" />
                                         <span className="text-[10px] font-black text-muted uppercase tracking-[0.2em]">
@@ -85,7 +89,20 @@ const TransmissionArchive = ({ userId }) => {
                                             })}
                                         </span>
                                     </div>
-                                    <div className="text-[9px] font-black text-accent/50 uppercase tracking-widest">Sector: Global</div>
+                                    <div className="flex items-center gap-6">
+                                        <div className="text-[9px] font-black text-accent/50 uppercase tracking-widest">Sector: Global</div>
+                                        {(inquiry.status?.toUpperCase() === "PENDING" || !inquiry.status) && (
+                                            <form action={async (formData) => {
+                                                if(confirm("Are you sure you want to cancel this transmission?")) {
+                                                    await deleteInquiry(formData);
+                                                    fetchInquiries();
+                                                }
+                                            }}>
+                                                <input type="hidden" name="id" value={inquiry._id} />
+                                                <button className="text-[9px] font-black text-red-500/40 hover:text-red-500 uppercase tracking-widest transition-all">Cancel</button>
+                                            </form>
+                                        )}
+                                    </div>
                                 </div>
                                 
                                 <h4 className="font-bold text-lg md:text-xl text-white group-hover:text-accent transition-colors duration-500 leading-relaxed mb-8 italic">

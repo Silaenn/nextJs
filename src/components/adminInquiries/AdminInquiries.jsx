@@ -2,25 +2,37 @@
 
 import { useState, useEffect } from "react";
 import { InquirySkeleton } from "@/components/skeletons/skeletons";
+import { updateInquiryStatus, deleteInquiry } from "@/lib/action";
 
 const AdminInquiries = () => {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchInquiries = async () => {
+    try {
+      const res = await fetch("/api/admin/inquiries");
+      const data = await res.json();
+      setInquiries(data);
+    } catch (err) {
+      console.error("Failed to fetch:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchInquiries = async () => {
-      try {
-        const res = await fetch("/api/admin/inquiries");
-        const data = await res.json();
-        setInquiries(data);
-      } catch (err) {
-        console.error("Failed to fetch:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchInquiries();
   }, []);
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "PENDING": return "text-yellow-500 bg-yellow-500/10";
+      case "IN PROGRESS": return "text-accent bg-accent/10";
+      case "COMPLETED": return "text-green-500 bg-green-500/10";
+      case "CANCELLED": return "text-red-500 bg-red-500/10";
+      default: return "text-muted bg-white/5";
+    }
+  };
 
   if (loading) return <InquirySkeleton />;
 
@@ -43,19 +55,40 @@ const AdminInquiries = () => {
             <div key={inquiry._id} className="p-6 bg-white/[0.02] rounded-3xl border border-white/5 hover:border-white/10 transition-all group">
               <div className="flex justify-between items-start mb-4">
                 <h4 className="text-sm font-black uppercase tracking-widest text-white group-hover:text-accent transition-colors">{inquiry.name}</h4>
-                <span className="text-[9px] font-bold text-muted uppercase tracking-[0.1em]">
-                  {new Date(inquiry.createdAt).toLocaleDateString()}
-                </span>
+                <form action={async (formData) => {
+                    await deleteInquiry(formData);
+                    fetchInquiries();
+                }}>
+                    <input type="hidden" name="id" value={inquiry._id} />
+                    <button className="text-[10px] font-black text-red-500/40 hover:text-red-500 uppercase tracking-widest transition-colors">Terminate</button>
+                </form>
               </div>
               <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-4 opacity-60">{inquiry.email}</p>
               <div className="text-sm text-textSoft leading-relaxed font-medium mb-6 line-clamp-4 italic">
                 &quot;{inquiry.message}&quot;
               </div>
-              <div className="flex items-center gap-4">
-                <div className="h-[1px] flex-1 bg-white/5" />
-                <span className="text-[9px] font-black uppercase tracking-[0.3em] text-accent">
-                  {inquiry.status || "PENDING"}
-                </span>
+              
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                  {["PENDING", "IN PROGRESS", "COMPLETED", "CANCELLED"].map((s) => (
+                    <form key={s} action={async (formData) => {
+                        await updateInquiryStatus(formData);
+                        fetchInquiries();
+                    }}>
+                        <input type="hidden" name="id" value={inquiry._id} />
+                        <input type="hidden" name="status" value={s} />
+                        <button 
+                            className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${
+                                inquiry.status === s 
+                                ? getStatusColor(s) + " border border-current"
+                                : "text-muted hover:text-white bg-white/5"
+                            }`}
+                        >
+                            {s}
+                        </button>
+                    </form>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

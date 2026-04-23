@@ -309,6 +309,43 @@ export const sendInquiry = async (prevState, formData) => {
 };
 
 /**
+ * Update inquiry status
+ */
+export const updateInquiryStatus = async (formData) => {
+  const id = formData.get("id");
+  const status = formData.get("status");
+
+  try {
+    await connectToDb();
+    await Inquiry.findByIdAndUpdate(id, { status });
+    revalidatePath("/admin");
+    revalidatePath("/workspace");
+    return { success: true };
+  } catch (error) {
+    console.error("❌ Error updating status:", error);
+    return { error: "Failed to update status" };
+  }
+};
+
+/**
+ * Delete an inquiry
+ */
+export const deleteInquiry = async (formData) => {
+  const id = formData.get("id");
+
+  try {
+    await connectToDb();
+    await Inquiry.findByIdAndDelete(id);
+    revalidatePath("/admin");
+    revalidatePath("/workspace");
+    return { success: true };
+  } catch (error) {
+    console.error("❌ Error deleting inquiry:", error);
+    return { error: "Failed to delete message" };
+  }
+};
+
+/**
  * Handle logout
  */
 export const handleLogout = async () => {
