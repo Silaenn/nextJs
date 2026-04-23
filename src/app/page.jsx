@@ -31,30 +31,30 @@ const Home = async () => {
                 </span>
               </div>
               
-              <h1 className="heading-xl text-balance reveal-up stagger-1 leading-[0.9]">
+              <h1 className="heading-xl text-balance reveal-up leading-[0.9]">
                 Realizing Your <br />
                 <span className="text-accent italic font-black">
                   Biggest Ideas.
                 </span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-textSoft leading-relaxed max-w-xl reveal-up stagger-2">
+              <p className="text-xl md:text-2xl text-textSoft leading-relaxed max-w-xl reveal-up stagger-1">
                 We transform visionary concepts into digital masterworks. 
                 Where high-end design meets cutting-edge execution.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-6 reveal-up stagger-3">
-              <button className="btn-primary group">
+            <div className="flex flex-wrap gap-6">
+              <button className="btn-primary group reveal-up stagger-2">
                 <span className="relative z-10">Start Project</span>
               </button>
-              <button className="btn-secondary">
+              <button className="btn-secondary reveal-up stagger-3">
                 View Showcase
               </button>
             </div>
 
             {/* Social Proof */}
-            <div className="pt-5 border-t border-white/5 reveal-up stagger-3" style={{ animationDelay: '0.4s' }}>
+            <div className="pt-5 border-t border-white/5 reveal-up stagger-4">
               <div className="flex items-center gap-10 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
                  <div className="relative w-full max-w-sm h-10">
                   <Image 
@@ -68,9 +68,9 @@ const Home = async () => {
             </div>
           </div>
 
-          {/* Hero Asset - Enhanced Styling */}
-          <div className="relative reveal-up" style={{ animationDelay: '0.3s' }}>
-             <div className="relative aspect-square lg:aspect-auto lg:h-[650px] w-full flex items-center justify-center group translate-x-10 lg:translate-x-20">
+          {/* Hero Asset - Tanpa double animation agar sinkron */}
+          <div className="relative">
+             <div className="relative aspect-square lg:aspect-auto lg:h-[650px] w-full flex items-center justify-center group translate-x-10 lg:translate-x-20 reveal-up">
                 <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-105">
                     <Image
                     src="/hero.gif"
@@ -82,9 +82,9 @@ const Home = async () => {
                 </div>
              </div>
 
-             {/* Enhanced Floating badge */}
-             <div className="absolute -bottom-10 -left-10 glass px-8 py-8 rounded-[2.5rem] shadow-2xl animate-bounce border-white/10" style={{ animationDuration: '4s' }}>
-                <div className="flex items-center gap-4">
+             {/* Floating badge - Muncul bareng tanpa delay */}
+             <div className="absolute -bottom-10 -left-20 glass px-8 py-8 rounded-[2.5rem] shadow-2xl reveal-up border-white/10">
+                <div className="flex items-center gap-4 animate-bounce" style={{ animationDuration: '4s' }}>
                     <div className="text-4xl font-black text-accent tracking-tighter">100+</div>
                     <div className="h-8 w-[1px] bg-white/10" />
                     <div className="text-[10px] font-black text-muted uppercase tracking-[0.2em] leading-tight">
