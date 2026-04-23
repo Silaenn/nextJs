@@ -1,9 +1,30 @@
-import { getPosts } from "@/lib/data";
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { deletePost } from "@/lib/action";
+import { PostsSkeleton } from "@/components/skeletons/skeletons";
 
-const AdminPosts = async () => {
-  const posts = await getPosts();
+const AdminPosts = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch("/api/admin/posts");
+        const data = await res.json();
+        setPosts(data);
+      } catch (err) {
+        console.error("Failed to fetch posts:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []);
+
+  if (loading) return <PostsSkeleton />;
 
   return (
     <div className="h-full">
@@ -22,7 +43,7 @@ const AdminPosts = async () => {
         <div className="space-y-4 max-h-[500px] overflow-y-auto pr-4 custom-scrollbar">
           {posts.map((post) => (
             <div 
-              key={post._id.toString()}
+              key={post._id}
               className="flex items-center justify-between p-4 bg-white/[0.02] rounded-2xl border border-white/5 hover:border-white/10 transition-all group"
             >
               <div className="flex items-center gap-6 min-w-0">
@@ -44,7 +65,7 @@ const AdminPosts = async () => {
                 </div>
               </div>
               <form action={deletePost}>
-                <input type="hidden" name="id" value={post._id.toString()} />
+                <input type="hidden" name="id" value={post._id} />
                 <button 
                   type="submit"
                   className="px-6 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-red-400 hover:text-white hover:bg-red-400/20 rounded-full transition-all"

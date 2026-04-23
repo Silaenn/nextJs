@@ -2,11 +2,19 @@
 
 import { addUser } from "@/lib/action";
 import { useFormState } from "react-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { FormSkeleton } from "@/components/skeletons/skeletons";
 
 const AdminUserForm = () => {
   const [state, formAction] = useFormState(addUser, undefined);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  if (loading) return <FormSkeleton />;
 
   return (
     <div className="space-y-10">

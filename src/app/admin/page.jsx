@@ -1,11 +1,9 @@
-import { Suspense } from "react";
 import AdminPosts from "@/components/adminPosts/adminPosts";
 import AdminPostForm from "@/components/adminPostForm/adminPostForm";
 import AdminUsers from "@/components/adminUsers/adminUsers";
 import AdminUserForm from "@/components/adminUsersForm/adminUsersForm";
 import AdminInquiries from "@/components/adminInquiries/AdminInquiries";
 import { auth } from "@/lib/auth";
-import { PostsSkeleton, UsersSkeleton, FormSkeleton } from "@/components/skeletons/skeletons";
 
 const AdminPage = async () => {
   const session = await auth();
@@ -25,65 +23,55 @@ const AdminPage = async () => {
 
         {/* Priority: Inquiries (Bento Style) */}
         <div className="grid grid-cols-12 gap-6 mb-12">
-            <div className="col-span-12 reveal-up">
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5">
+            <div className="col-span-12">
+                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 reveal-up">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-12 h-[1px] bg-accent" />
                         <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Inbound Inquiries</h2>
                     </div>
-                    <Suspense fallback={<PostsSkeleton />}>
-                        <AdminInquiries />
-                    </Suspense>
+                    <AdminInquiries />
                 </div>
             </div>
 
             {/* Content Management Section */}
-            <div className="col-span-12 lg:col-span-7 reveal-up" style={{ animationDelay: '0.1s' }}>
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full">
+            <div className="col-span-12 lg:col-span-7" style={{ animationDelay: '0.1s' }}>
+                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full reveal-up">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-12 h-[1px] bg-accent" />
                         <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Case Studies</h2>
                     </div>
-                    <Suspense fallback={<PostsSkeleton />}>
-                        <AdminPosts />
-                    </Suspense>
+                    <AdminPosts />
                 </div>
             </div>
 
-            <div className="col-span-12 lg:col-span-5 reveal-up" style={{ animationDelay: '0.2s' }}>
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full bg-accent/5">
+            <div className="col-span-12 lg:col-span-5" style={{ animationDelay: '0.2s' }}>
+                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full bg-accent/5 reveal-up">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-12 h-[1px] bg-accent" />
                         <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Draft Content</h2>
                     </div>
-                    <Suspense fallback={<FormSkeleton title="Add New Post" />}>
-                        <AdminPostForm userId={session.user.id} />
-                    </Suspense>
+                    <AdminPostForm userId={session.user.id} />
                 </div>
             </div>
 
             {/* User Management Section */}
-            <div className="col-span-12 lg:col-span-5 reveal-up" style={{ animationDelay: '0.3s' }}>
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full">
+            <div className="col-span-12 lg:col-span-5" style={{ animationDelay: '0.3s' }}>
+                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full reveal-up">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-12 h-[1px] bg-accent" />
                         <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Personnel</h2>
                     </div>
-                    <Suspense fallback={<UsersSkeleton />}>
-                        <AdminUsers />
-                    </Suspense>
+                    <AdminUsers />
                 </div>
             </div>
 
-            <div className="col-span-12 lg:col-span-7 reveal-up" style={{ animationDelay: '0.4s' }}>
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full">
+            <div className="col-span-12 lg:col-span-7" style={{ animationDelay: '0.4s' }}>
+                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full reveal-up">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-12 h-[1px] bg-accent" />
                         <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Onboard Member</h2>
                     </div>
-                    <Suspense fallback={<FormSkeleton title="Add New User" />}>
-                        <AdminUserForm />
-                    </Suspense>
+                    <AdminUserForm />
                 </div>
             </div>
         </div>

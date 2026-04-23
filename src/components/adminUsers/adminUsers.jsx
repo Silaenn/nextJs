@@ -1,9 +1,30 @@
-import { getUsers } from "@/lib/data";
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { deleteUser } from "@/lib/action";
+import { UsersSkeleton } from "@/components/skeletons/skeletons";
 
-const AdminUsers = async () => {
-  const users = await getUsers();
+const AdminUsers = () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch("/api/admin/users");
+        const data = await res.json();
+        setUsers(data);
+      } catch (err) {
+        console.error("Failed to fetch users:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUsers();
+  }, []);
+
+  if (loading) return <UsersSkeleton />;
 
   return (
     <div className="h-full">
@@ -22,7 +43,7 @@ const AdminUsers = async () => {
         <div className="space-y-4 max-h-[500px] overflow-y-auto pr-4 custom-scrollbar">
           {users.map((user) => (
             <div 
-              key={user.id}
+              key={user._id}
               className="flex items-center justify-between p-4 bg-white/[0.02] rounded-2xl border border-white/5 hover:border-white/10 transition-all group"
             >
               <div className="flex items-center gap-6 min-w-0">
@@ -49,7 +70,7 @@ const AdminUsers = async () => {
                 </div>
               </div>
               <form action={deleteUser}>
-                <input type="hidden" name="id" value={user.id} />
+                <input type="hidden" name="id" value={user._id} />
                 <button 
                   type="submit"
                   className={`px-6 py-2 text-[10px] font-black uppercase tracking-[0.2em] rounded-full transition-all ${

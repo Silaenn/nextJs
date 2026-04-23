@@ -1,31 +1,29 @@
-// Skeleton for Inquiry Archive
+// Skeleton for Inquiry Archive (Matches AdminInquiries)
 export const InquirySkeleton = () => (
-  <div className="flex flex-col h-full">
-    {/* Header */}
-    <div className="p-10 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
-      <div className="flex items-center gap-4">
-        <div className="w-2 h-2 bg-white/20 rounded-full" />
-        <div className="h-5 w-48 bg-white/10 rounded-full" />
-      </div>
-      <div className="h-6 w-16 bg-white/5 rounded-full" />
+  <div className="h-full animate-pulse">
+    {/* Header Match: Client Intel. */}
+    <div className="flex items-center justify-between mb-10">
+      <div className="h-8 bg-white/10 rounded-xl w-48"></div>
+      <div className="h-8 bg-white/5 rounded-full w-24"></div>
     </div>
 
-    {/* Cards */}
-    <div className="flex-1 p-8 md:p-10 animate-pulse space-y-6">
-      {[...Array(4)].map((_, i) => (
-        <div key={i} className="glass p-8 rounded-[2.5rem] border-white/5 bg-white/[0.03]">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
-              <div className="h-6 w-20 bg-white/10 rounded-full" />
-              <div className="h-4 w-20 bg-white/5 rounded-full" />
-            </div>
-            <div className="h-4 w-24 bg-white/5 rounded-full" />
+    {/* Cards Scroll Area Match: max-h-[600px] */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[600px] overflow-hidden pr-4">
+      {[...Array(6)].map((_, i) => (
+        <div key={i} className="p-6 bg-white/[0.02] rounded-3xl border border-white/5">
+          <div className="flex justify-between items-start mb-4">
+            <div className="h-4 bg-white/10 rounded-full w-32"></div>
+            <div className="h-3 bg-white/5 rounded-full w-16"></div>
           </div>
-          <div className="h-6 bg-white/10 rounded-lg w-full mb-4" />
-          <div className="h-6 bg-white/10 rounded-lg w-2/3 mb-8" />
-          <div className="flex gap-8 pt-6 border-t border-white/10">
-            <div className="h-8 w-32 bg-white/5 rounded-full" />
-            <div className="h-8 w-32 bg-white/5 rounded-full" />
+          <div className="h-3 bg-accent/20 rounded-full w-40 mb-4"></div>
+          <div className="space-y-2 mb-6">
+            <div className="h-4 bg-white/5 rounded-lg w-full"></div>
+            <div className="h-4 bg-white/5 rounded-lg w-full"></div>
+            <div className="h-4 bg-white/5 rounded-lg w-2/3"></div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="h-[1px] flex-1 bg-white/5" />
+            <div className="h-3 bg-accent/20 rounded-full w-12"></div>
           </div>
         </div>
       ))}
@@ -33,65 +31,90 @@ export const InquirySkeleton = () => (
   </div>
 );
 
-// Skeleton for Posts List
+// Skeleton for Posts List (Matches AdminPosts)
 export const PostsSkeleton = () => (
-  <div className="animate-pulse">
+  <div className="h-full animate-pulse">
+    {/* Header Match: Case Inventory. */}
     <div className="flex items-center justify-between mb-10">
-      <div className="h-8 bg-white/5 rounded-full w-48"></div>
-      <div className="h-4 bg-white/5 rounded-full w-24"></div>
+      <div className="h-8 bg-white/10 rounded-xl w-48"></div>
+      <div className="h-8 bg-white/5 rounded-full w-24"></div>
     </div>
-    <div className="space-y-4">
+    
+    {/* List Scroll Area Match: max-h-[500px] */}
+    <div className="space-y-4 max-h-[600px] overflow-hidden pr-4">
       {[...Array(5)].map((_, i) => (
-        <div key={i} className="flex items-center justify-between p-6 glass rounded-3xl border-white/5">
+        <div key={i} className="flex items-center justify-between p-4 bg-white/[0.02] rounded-2xl border border-white/5">
           <div className="flex items-center gap-6">
-            <div className="w-16 h-16 bg-white/5 rounded-2xl"></div>
+            <div className="w-16 h-16 bg-white/5 rounded-2xl glass border border-white/10"></div>
             <div className="space-y-3">
-              <div className="h-5 bg-white/5 rounded-full w-48"></div>
-              <div className="h-3 bg-white/5 rounded-full w-32"></div>
+              <div className="h-4 bg-white/10 rounded-full w-48"></div>
+              <div className="h-2 bg-white/5 rounded-full w-32"></div>
             </div>
           </div>
-          <div className="h-10 bg-white/5 rounded-full w-24"></div>
+          <div className="h-8 bg-white/5 rounded-full w-24"></div>
         </div>
       ))}
     </div>
   </div>
 );
 
-// Skeleton for Users List
+// Skeleton for Users List (Matches AdminUsers)
 export const UsersSkeleton = () => (
-  <div className="animate-pulse">
+  <div className="h-full animate-pulse">
+    {/* Header Match: Member Registry. */}
     <div className="flex items-center justify-between mb-10">
-      <div className="h-8 bg-white/5 rounded-full w-48"></div>
-      <div className="h-4 bg-white/5 rounded-full w-24"></div>
+      <div className="h-8 bg-white/10 rounded-xl w-48"></div>
+      <div className="h-8 bg-white/5 rounded-full w-24"></div>
     </div>
-    <div className="space-y-4">
-      {[...Array(5)].map((_, i) => (
-        <div key={i} className="flex items-center justify-between p-6 glass rounded-3xl border-white/5">
+
+    {/* List Scroll Area Match: max-h-[500px] */}
+    <div className="space-y-4 max-h-[500px] overflow-hidden pr-4">
+      {[...Array(4)].map((_, i) => (
+        <div key={i} className="flex items-center justify-between p-4 bg-white/[0.02] rounded-2xl border border-white/5">
           <div className="flex items-center gap-6">
-            <div className="w-16 h-16 bg-white/5 rounded-full"></div>
+            <div className="w-16 h-16 bg-white/5 rounded-full glass border border-white/10"></div>
             <div className="space-y-3">
-              <div className="h-5 bg-white/5 rounded-full w-48"></div>
-              <div className="h-3 bg-white/5 rounded-full w-32"></div>
+              <div className="flex items-center gap-3">
+                <div className="h-4 bg-white/10 rounded-full w-32"></div>
+                <div className="h-3 bg-accent/20 rounded-full w-10"></div>
+              </div>
+              <div className="h-2 bg-white/5 rounded-full w-40"></div>
             </div>
           </div>
-          <div className="h-10 bg-white/5 rounded-full w-24"></div>
+          <div className="h-8 bg-white/5 rounded-full w-24"></div>
         </div>
       ))}
     </div>
   </div>
 );
 
-// Skeleton for Forms
+// Skeleton for Forms (Matches AdminPostForm & AdminUserForm)
 export const FormSkeleton = () => (
-  <div className="glass rounded-[3rem] p-10 md:p-20 border-white/5 animate-pulse">
-    <div className="h-4 bg-accent/20 rounded-full w-32 mb-6"></div>
-    <div className="h-10 bg-white/5 rounded-2xl w-64 mb-12"></div>
+  <div className="space-y-10 animate-pulse">
+    {/* Header Match: Project Intel. / Member Onboarding. */}
+    <div className="flex items-center gap-3">
+       <div className="h-8 w-[2px] bg-white/20" />
+       <div className="h-8 bg-white/10 rounded-xl w-48"></div>
+    </div>
+    
     <div className="space-y-6">
-      <div className="h-16 bg-white/5 rounded-2xl w-full"></div>
-      <div className="h-16 bg-white/5 rounded-2xl w-full"></div>
-      <div className="h-16 bg-white/5 rounded-2xl w-full"></div>
-      <div className="h-48 bg-white/5 rounded-[2rem] w-full"></div>
-      <div className="h-16 bg-accent/20 rounded-full w-full"></div>
+      <div className="space-y-6">
+        <div className="h-3 bg-white/5 rounded-full w-12 ml-1"></div>
+        <div className="h-14 bg-white/[0.03] border border-white/10 rounded-2xl w-full"></div>
+      </div>
+      <div className="space-y-6">
+        <div className="h-3 bg-white/5 rounded-full w-16 ml-1"></div>
+        <div className="h-14 bg-white/[0.03] border border-white/10 rounded-2xl w-full"></div>
+      </div>
+      <div className="space-y-6">
+        <div className="h-3 bg-white/5 rounded-full w-16 ml-1"></div>
+        <div className="h-20 bg-white/[0.03] border border-white/10 rounded-2xl w-full"></div>
+      </div>
+      <div className="space-y-6">
+        <div className="h-3 bg-white/5 rounded-full w-20 ml-1"></div>
+        <div className="h-32 bg-white/[0.03] border border-dashed border-white/10 rounded-3xl w-full"></div>
+      </div>
+      <div className="h-16 bg-white/[0.03] rounded-full w-full mt-10"></div>
     </div>
   </div>
 );

@@ -1,9 +1,28 @@
-import { Inquiry } from "@/lib/models";
-import { connectToDb } from "@/lib/utils";
+"use client";
 
-const AdminInquiries = async () => {
-  await connectToDb();
-  const inquiries = await Inquiry.find().sort({ createdAt: -1 });
+import { useState, useEffect } from "react";
+import { InquirySkeleton } from "@/components/skeletons/skeletons";
+
+const AdminInquiries = () => {
+  const [inquiries, setInquiries] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchInquiries = async () => {
+      try {
+        const res = await fetch("/api/admin/inquiries");
+        const data = await res.json();
+        setInquiries(data);
+      } catch (err) {
+        console.error("Failed to fetch:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchInquiries();
+  }, []);
+
+  if (loading) return <InquirySkeleton />;
 
   return (
     <div className="h-full">

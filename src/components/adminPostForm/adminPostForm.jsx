@@ -4,13 +4,16 @@ import { addPost } from "@/lib/action";
 import { useFormState, useFormStatus } from "react-dom";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { FormSkeleton } from "@/components/skeletons/skeletons";
 
 const AdminPostForm = ({ userId }) => {
   const [state, formAction] = useFormState(addPost, undefined);
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(true);
   const formRef = useRef();
 
   useEffect(() => {
+    setLoading(false);
     if (state?.success) {
       formRef.current?.reset();
       setPreview(null);
@@ -25,6 +28,8 @@ const AdminPostForm = ({ userId }) => {
       reader.readAsDataURL(file);
     }
   };
+
+  if (loading) return <FormSkeleton />;
 
   return (
     <div className="space-y-10">
