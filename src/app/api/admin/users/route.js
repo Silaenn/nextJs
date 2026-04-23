@@ -11,7 +11,7 @@ export async function GET() {
     }
 
     await connectToDb();
-    const users = await User.find().select("-password").sort({ createdAt: -1 }).lean();
+    const users = await User.find({ isAdmin: true }).select("-password").sort({ createdAt: -1 }).lean();
     return NextResponse.json(users);
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch users" }, { status: 500 });
