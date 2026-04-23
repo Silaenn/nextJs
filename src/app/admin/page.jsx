@@ -55,7 +55,7 @@ const AdminPage = async () => {
             </div>
 
             {/* User Management Section */}
-            <div className="col-span-12 lg:col-span-5" style={{ animationDelay: '0.3s' }}>
+            <div className="col-span-12 lg:col-span-6" style={{ animationDelay: '0.3s' }}>
                 <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full reveal-up">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-12 h-[1px] bg-accent" />
@@ -65,7 +65,7 @@ const AdminPage = async () => {
                 </div>
             </div>
 
-            <div className="col-span-12 lg:col-span-7" style={{ animationDelay: '0.4s' }}>
+            <div className="col-span-12 lg:col-span-6" style={{ animationDelay: '0.4s' }}>
                 <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full reveal-up">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-12 h-[1px] bg-accent" />
