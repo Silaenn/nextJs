@@ -1,3 +1,38 @@
+// Skeleton for Inquiry Archive
+export const InquirySkeleton = () => (
+  <div className="flex flex-col h-full">
+    {/* Header */}
+    <div className="p-10 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
+      <div className="flex items-center gap-4">
+        <div className="w-2 h-2 bg-white/20 rounded-full" />
+        <div className="h-5 w-48 bg-white/10 rounded-full" />
+      </div>
+      <div className="h-6 w-16 bg-white/5 rounded-full" />
+    </div>
+
+    {/* Cards */}
+    <div className="flex-1 p-8 md:p-10 animate-pulse space-y-6">
+      {[...Array(4)].map((_, i) => (
+        <div key={i} className="glass p-8 rounded-[2.5rem] border-white/5 bg-white/[0.03]">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="h-6 w-20 bg-white/10 rounded-full" />
+              <div className="h-4 w-20 bg-white/5 rounded-full" />
+            </div>
+            <div className="h-4 w-24 bg-white/5 rounded-full" />
+          </div>
+          <div className="h-6 bg-white/10 rounded-lg w-full mb-4" />
+          <div className="h-6 bg-white/10 rounded-lg w-2/3 mb-8" />
+          <div className="flex gap-8 pt-6 border-t border-white/10">
+            <div className="h-8 w-32 bg-white/5 rounded-full" />
+            <div className="h-8 w-32 bg-white/5 rounded-full" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
 // Skeleton for Posts List
 export const PostsSkeleton = () => (
   <div className="animate-pulse">
