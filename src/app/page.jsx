@@ -81,7 +81,7 @@ const Home = async () => {
             </div>
 
             {/* Floating badge */}
-            <div className="absolute -bottom-4 sm:-bottom-6 lg:bottom-16 left-1/2 lg:-left-10 xl:-left-20 -translate-x-1/2 lg:translate-x-0 glass px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-8 rounded-xl sm:rounded-2xl lg:rounded-[2.5rem] shadow-2xl reveal-up border-white/10 z-20 whitespace-nowrap">
+            <div className="absolute bottom-4 sm:bottom-10 lg:bottom-20 left-1/2 lg:-left-10 xl:-left-20 -translate-x-1/2 lg:translate-x-0 glass px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-8 rounded-xl sm:rounded-2xl lg:rounded-[2.5rem] shadow-2xl reveal-up border-white/10 z-20 whitespace-nowrap">
               <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 animate-bounce" style={{ animationDuration: '4s' }}>
                 <div className="text-xl sm:text-2xl lg:text-4xl font-black text-accent tracking-tighter">100+</div>
                 <div className="h-5 sm:h-6 lg:h-8 w-[1px] bg-white/10" />

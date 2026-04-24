@@ -27,11 +27,6 @@ const RegisterPage = () => {
                   <span className="text-accent">Identity.</span>
                 </h1>
 
-                <p className="text-lg xl:text-xl text-textSoft font-medium leading-relaxed max-w-sm mb-10 xl:mb-12">
-                  Join the digital vanguard. Secure your access to the most
-                  advanced creative workspace.
-                </p>
-
                 {/* Featured Image */}
                 <div className="relative w-full aspect-[4/3] rounded-[1.5rem] xl:rounded-[2rem] overflow-hidden glass border-white/5 shadow-2xl mb-10 xl:mb-12 group">
                   <Image
@@ -43,6 +38,11 @@ const RegisterPage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                 </div>
+
+                <p className="text-lg xl:text-xl text-textSoft font-medium leading-relaxed max-w-sm mb-10 xl:mb-12">
+                  Join the digital vanguard. Secure your access to the most
+                  advanced creative workspace.
+                </p>
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-3 xl:gap-4">

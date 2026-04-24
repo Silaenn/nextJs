@@ -27,11 +27,6 @@ const LoginPage = () => {
                   <span className="text-accent">Portal.</span>
                 </h1>
 
-                <p className="text-lg xl:text-xl text-textSoft font-medium leading-relaxed max-w-sm mb-10 xl:mb-12">
-                  Access your exclusive workspace and collaborate with our
-                  master engineers in real-time.
-                </p>
-
                 {/* Featured Image */}
                 <div className="relative w-full aspect-[4/3] rounded-[1.5rem] xl:rounded-[2rem] overflow-hidden glass border-white/5 shadow-2xl mb-10 xl:mb-12 group">
                   <Image
@@ -42,6 +37,11 @@ const LoginPage = () => {
                     priority
                   />
                 </div>
+
+                <p className="text-lg xl:text-xl text-textSoft font-medium leading-relaxed max-w-sm mb-10 xl:mb-12">
+                  Access your exclusive workspace and collaborate with our
+                  master engineers in real-time.
+                </p>
 
                 <div className="space-y-4 xl:space-y-6">
                   {["DIRECT ACCESS", "REAL-TIME SYNC", "ELITE SUPPORT"].map((item, i) => (
