@@ -73,17 +73,17 @@ const Home = async () => {
              <div className="relative aspect-square lg:aspect-auto lg:h-[650px] w-full flex items-center justify-center group translate-x-10 lg:translate-x-20 reveal-up">
                 <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-105">
                     <Image
-                    src="/hero.gif"
+                    src="/hero1.jpeg"
                     alt="Hero illustration"
                     fill
-                    className="object-contain scale-125 rounded-md"
+                    className="object-contain scale-125 rounded-md mix-blend-screen"
                     priority
                     />
                 </div>
              </div>
 
              {/* Floating badge - Muncul bareng tanpa delay */}
-             <div className="absolute -bottom-10 -left-20 glass px-8 py-8 rounded-[2.5rem] shadow-2xl reveal-up border-white/10">
+             <div className="absolute bottom-16 -left-20 glass px-8 py-8 rounded-[2.5rem] shadow-2xl reveal-up border-white/10">
                 <div className="flex items-center gap-4 animate-bounce" style={{ animationDuration: '4s' }}>
                     <div className="text-4xl font-black text-accent tracking-tighter">100+</div>
                     <div className="h-8 w-[1px] bg-white/10" />
