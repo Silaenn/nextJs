@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Loading from "./loading";
+import Link from "next/link";
 
 export const metadata = {
   title: "About Us",
@@ -113,9 +113,11 @@ const AboutPage = () => {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black italic tracking-tighter text-white mb-6 sm:mb-8 lg:mb-10">
             Ready to start your legacy?
           </h2>
-          <button className="btn-primary w-full sm:w-auto">
-            Join The Force
-          </button>
+          <Link href="/login">
+            <button className="btn-primary w-full sm:w-auto">
+              Join The Force
+            </button>
+          </Link>
         </div>
       </div>
     </div>
