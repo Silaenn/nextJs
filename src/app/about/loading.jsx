@@ -52,6 +52,11 @@ export default function Loading() {
           ))}
         </div>
 
+        {/* CTA Placeholder */}
+        <div className="mt-24 sm:mt-32 lg:mt-40 text-center px-4 flex flex-col items-center gap-6 sm:gap-8 lg:gap-10">
+         <div className="h-7 sm:h-9 lg:h-11 bg-white/5 rounded-2xl w-64 sm:w-80 lg:w-96" />
+         <div className="h-12 sm:h-14 bg-white/[0.03] rounded-full w-full sm:w-48" />
+        </div>
       </div>
     </div>
   );

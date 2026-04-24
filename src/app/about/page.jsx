@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Loading from "./loading";
 
 export const metadata = {
   title: "About Us",
@@ -116,7 +117,6 @@ const AboutPage = () => {
             Join The Force
           </button>
         </div>
-
       </div>
     </div>
   );

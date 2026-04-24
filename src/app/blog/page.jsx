@@ -2,6 +2,7 @@ import { getPosts } from "@/lib/data";
 import PostCard from "@/components/postCard/postCard";
 import { PostCardSkeleton } from "@/components/skeletons/skeletons";
 import { Suspense } from "react";
+import Loading from "./loading";
 
 export const revalidate = 3600;
 
@@ -68,7 +69,6 @@ const BlogPage = () => {
             <PostList />
           </Suspense>
         </div>
-
       </div>
     </div>
   );

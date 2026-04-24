@@ -9,7 +9,7 @@ export default function Loading() {
       <div className="container-custom relative z-10">
         {/* Header Section Placeholder */}
         <div className="max-w-4xl mb-24 animate-pulse">
-            <div className="h-4 bg-accent/20 rounded-full w-32 mb-6"></div>
+            <div className="h-4 bg-white/5 rounded-full w-32 mb-6"></div>
             <div className="space-y-4 mb-8">
                 <div className="h-16 bg-white/5 rounded-3xl w-3/4"></div>
                 <div className="h-16 bg-white/5 rounded-3xl w-1/2"></div>
