@@ -9,71 +9,93 @@ const AdminPage = async () => {
   const session = await auth();
 
   return (
-    <div className="relative min-h-screen py-32 overflow-hidden">
+    <div className="relative min-h-screen py-24 sm:py-28 lg:py-32 overflow-hidden">
       {/* Background Ambience */}
-      <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
-      
+      <div className="absolute top-0 right-0 w-[70%] sm:w-[50%] h-[50%] bg-accent/5 blur-[100px] sm:blur-[150px] rounded-full pointer-events-none" />
+
       <div className="container-custom relative z-10">
-        {/* Header Section */}
-        <div className="mb-12 reveal-up">
-            <span className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-4 block">Control Center</span>
-            <h1 className="heading-xl leading-none tracking-tighter mb-4 italic uppercase">Architecture <span className="text-white">Admin.</span></h1>
-            <p className="text-xl text-textSoft font-medium">Precision management for your digital assets.</p>
+
+        {/* Header */}
+        <div className="mb-8 sm:mb-10 lg:mb-12 reveal-up">
+          <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-accent mb-3 sm:mb-4 block">
+            Control Center
+          </span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-none tracking-tighter mb-3 sm:mb-4 italic uppercase">
+            Architecture{" "}
+            <span className="text-white">Admin.</span>
+          </h1>
+          <p className="text-base sm:text-lg lg:text-xl text-textSoft font-medium">
+            Precision management for your digital assets.
+          </p>
         </div>
 
-        {/* Priority: Inquiries (Bento Style) */}
-        <div className="grid grid-cols-12 gap-6 mb-12">
-            <div className="col-span-12">
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 reveal-up">
-                    <div className="flex items-center gap-4 mb-10">
-                        <div className="w-12 h-[1px] bg-accent" />
-                        <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Inbound Inquiries</h2>
-                    </div>
-                    <AdminInquiries />
-                </div>
-            </div>
+        <div className="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6 mb-8 sm:gap-y-5 lg:gap-y-6">
 
-            {/* Content Management Section */}
-            <div className="col-span-12 lg:col-span-7" style={{ animationDelay: '0.1s' }}>
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full reveal-up">
-                    <div className="flex items-center gap-4 mb-10">
-                        <div className="w-12 h-[1px] bg-accent" />
-                        <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Case Studies</h2>
-                    </div>
-                    <AdminPosts />
-                </div>
+          {/* Inbound Inquiries */}
+          <div className="col-span-12">
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:gap-y-5 lg:mb-10">
+                <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
+                <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
+                  Inbound Inquiries
+                </h2>
+              </div>
+              <AdminInquiries />
             </div>
+          </div>
 
-            <div className="col-span-12 lg:col-span-5" style={{ animationDelay: '0.2s' }}>
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full bg-accent/5 reveal-up">
-                    <div className="flex items-center gap-4 mb-10">
-                        <div className="w-12 h-[1px] bg-accent" />
-                        <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Draft Content</h2>
-                    </div>
-                    <AdminPostForm userId={session.user.id} />
-                </div>
+          {/* Case Studies */}
+          <div className="col-span-12 lg:col-span-7" style={{ animationDelay: "0.1s" }}>
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10">
+                <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
+                <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
+                  Case Studies
+                </h2>
+              </div>
+              <AdminPosts />
             </div>
+          </div>
 
-            {/* User Management Section */}
-            <div className="col-span-12 lg:col-span-6" style={{ animationDelay: '0.3s' }}>
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full reveal-up">
-                    <div className="flex items-center gap-4 mb-10">
-                        <div className="w-12 h-[1px] bg-accent" />
-                        <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Personnel</h2>
-                    </div>
-                    <AdminUsers />
-                </div>
+          {/* Draft Content */}
+          <div className="col-span-12 lg:col-span-5" style={{ animationDelay: "0.2s" }}>
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full bg-accent/5 reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10">
+                <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
+                <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
+                  Draft Content
+                </h2>
+              </div>
+              <AdminPostForm userId={session.user.id} />
             </div>
+          </div>
 
-            <div className="col-span-12 lg:col-span-6" style={{ animationDelay: '0.4s' }}>
-                <div className="glass rounded-[3rem] p-8 md:p-12 border-white/5 h-full reveal-up">
-                    <div className="flex items-center gap-4 mb-10">
-                        <div className="w-12 h-[1px] bg-accent" />
-                        <h2 className="text-sm font-black uppercase tracking-[0.3em] text-white italic">Onboard Member</h2>
-                    </div>
-                    <AdminUserForm />
-                </div>
+          {/* Personnel */}
+          <div className="col-span-12 lg:col-span-6" style={{ animationDelay: "0.3s" }}>
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10">
+                <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
+                <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
+                  Personnel
+                </h2>
+              </div>
+              <AdminUsers />
             </div>
+          </div>
+
+          {/* Onboard Member */}
+          <div className="col-span-12 lg:col-span-6" style={{ animationDelay: "0.4s" }}>
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10">
+                <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
+                <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
+                  Onboard Member
+                </h2>
+              </div>
+              <AdminUserForm />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
