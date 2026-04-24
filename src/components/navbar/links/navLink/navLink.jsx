@@ -17,10 +17,10 @@ const NavLink = ({ item, mobile = false, onClick }) => {
       : "text-muted hover:text-white hover:bg-white/5"
   }`;
   
-  const mobileClasses = `w-full px-6 py-4 rounded-2xl ${
+  const mobileClasses = `w-full px-6 py-4 flex items-center justify-between ${
     isActive
-      ? "bg-accent text-white"
-      : "text-textSoft hover:text-white hover:bg-white/5"
+      ? "text-accent font-black border-l-2 border-accent bg-accent/5 pl-5"
+      : "text-textSoft hover:text-white hover:bg-white/5 rounded-2xl"
   }`;
 
   return (
