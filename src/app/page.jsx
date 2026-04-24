@@ -9,7 +9,7 @@ const Home = async () => {
   if (session?.user) redirect("/workspace");
 
   return (
-    <div className="relative overflow-hidden min-h-screen pt-24 sm:pt-28 lg:pt-0">
+    <div className="relative overflow-hidden min-h-screen pt-24 sm:pt-28 lg:pt-10">
       {/* Background Decorative Glow */}
       <div className="absolute top-[-5%] left-[-10%] w-[80%] sm:w-[70%] lg:w-[40%] h-[35%] sm:h-[40%] bg-accent/10 blur-[60px] sm:blur-[80px] lg:blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-5%] right-[-10%] w-[70%] sm:w-[60%] lg:w-[30%] h-[25%] sm:h-[30%] bg-accent-2/10 blur-[50px] sm:blur-[70px] lg:blur-[100px] rounded-full pointer-events-none" />
