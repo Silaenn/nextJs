@@ -90,32 +90,49 @@ export const UsersSkeleton = () => (
 
 // Skeleton for Forms (Matches AdminPostForm & AdminUserForm)
 export const FormSkeleton = () => (
-  <div className="space-y-10 animate-pulse">
-    {/* Header Match: Project Intel. / Member Onboarding. */}
-    <div className="flex items-center gap-3">
-       <div className="h-8 w-[2px] bg-white/20" />
-       <div className="h-8 bg-white/10 rounded-xl w-48"></div>
+  <div className="space-y-6 sm:space-y-8 lg:space-y-10 animate-pulse">
+
+    {/* "Get In Touch" badge */}
+    <div className="h-3 sm:h-4 bg-white/10 rounded-full w-24 sm:w-28" />
+
+    {/* "Tell us about your Vision." heading */}
+    <div className="space-y-2 sm:space-y-3">
+      <div className="h-8 sm:h-10 lg:h-12 bg-white/5 rounded-2xl w-full" />
+      <div className="h-8 sm:h-10 lg:h-12 bg-white/5 rounded-2xl w-2/3" />
     </div>
-    
-    <div className="space-y-6">
-      <div className="space-y-6">
-        <div className="h-3 bg-white/5 rounded-full w-12 ml-1"></div>
-        <div className="h-14 bg-white/[0.03] border border-white/10 rounded-2xl w-full"></div>
-      </div>
-      <div className="space-y-6">
-        <div className="h-3 bg-white/5 rounded-full w-16 ml-1"></div>
-        <div className="h-14 bg-white/[0.03] border border-white/10 rounded-2xl w-full"></div>
-      </div>
-      <div className="space-y-6">
-        <div className="h-3 bg-white/5 rounded-full w-16 ml-1"></div>
-        <div className="h-20 bg-white/[0.03] border border-white/10 rounded-2xl w-full"></div>
-      </div>
-      <div className="space-y-6">
-        <div className="h-3 bg-white/5 rounded-full w-20 ml-1"></div>
-        <div className="h-32 bg-white/[0.03] border border-dashed border-white/10 rounded-3xl w-full"></div>
-      </div>
-      <div className="h-16 bg-white/[0.03] rounded-full w-full mt-10"></div>
+
+    {/* "Ready to transform..." subtext */}
+    <div className="space-y-2">
+      <div className="h-3 sm:h-3.5 bg-white/5 rounded-full w-full" />
+      <div className="h-3 sm:h-3.5 bg-white/5 rounded-full w-full" />
+      <div className="h-3 sm:h-3.5 bg-white/5 rounded-full w-3/4" />
     </div>
+
+    {/* Form fields */}
+    <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+
+      {/* Name + Email — 2 kolom sesuai ContactForm */}
+      <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
+        <div className="space-y-1.5 sm:space-y-2">
+          <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-10 sm:w-12 ml-1" />
+          <div className="h-11 sm:h-12 lg:h-14 bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl w-full" />
+        </div>
+        <div className="space-y-1.5 sm:space-y-2">
+          <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-10 sm:w-12 ml-1" />
+          <div className="h-11 sm:h-12 lg:h-14 bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl w-full" />
+        </div>
+      </div>
+
+      {/* Message textarea */}
+      <div className="space-y-1.5 sm:space-y-2">
+        <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-16 sm:w-20 ml-1" />
+        <div className="h-24 sm:h-28 lg:h-32 bg-white/[0.03] border border-white/10 rounded-2xl sm:rounded-3xl w-full" />
+      </div>
+
+      {/* Submit button */}
+      <div className="h-12 sm:h-14 lg:h-16 bg-white/[0.03] rounded-full w-full" />
+    </div>
+
   </div>
 );
 
