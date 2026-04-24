@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { InquirySkeleton } from "@/components/skeletons/skeletons";
+import { TransmissionSkeleton } from "@/components/skeletons/skeletons";
 import { deleteInquiry } from "@/lib/action";
 
 const getStatusColor = (status) => {
@@ -37,7 +37,7 @@ const TransmissionArchive = ({ userId }) => {
   if (loading) {
     return (
       <div className="lg:col-span-7 glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] border-white/5 bg-surface-2/20 h-[600px] sm:h-[800px] lg:h-[1130px] overflow-y-hidden">
-        <InquirySkeleton />
+        <TransmissionSkeleton />
       </div>
     );
   }

@@ -31,6 +31,60 @@ export const InquirySkeleton = () => (
   </div>
 );
 
+export const TransmissionSkeleton = () => (
+  <div className="h-full flex flex-col animate-pulse">
+
+    {/* Archive Header */}
+    <div className="p-5 sm:p-7 lg:p-10 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
+      <div className="flex items-center gap-3 sm:gap-4">
+        <div className="w-2 h-2 bg-accent/40 rounded-full flex-shrink-0" />
+        <div className="h-4 sm:h-5 bg-white/10 rounded-lg w-36 sm:w-48" />
+      </div>
+      <div className="h-6 sm:h-7 bg-white/5 rounded-full w-16 sm:w-20 flex-shrink-0 ml-3" />
+    </div>
+
+    {/* Archive Body */}
+    <div className="flex-1 p-4 sm:p-6 lg:p-10 space-y-4 sm:space-y-5 lg:space-y-6 overflow-hidden">
+      {[...Array(3)].map((_, i) => (
+        <div
+          key={i}
+          className="glass p-5 sm:p-6 lg:p-8 rounded-2xl sm:rounded-[1.5rem] lg:rounded-[2.5rem] border-white/5"
+        >
+          {/* Top Row: status badge + date | sector + cancel */}
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6 lg:mb-8">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="h-5 sm:h-6 bg-yellow-500/10 border border-yellow-500/20 rounded-full w-16 sm:w-20" />
+              <div className="h-[1px] w-4 sm:w-6 bg-white/10 hidden sm:block" />
+              <div className="h-3 bg-white/5 rounded-full w-20 sm:w-24" />
+            </div>
+            <div className="h-3 bg-white/5 rounded-full w-16 sm:w-20 hidden sm:block" />
+          </div>
+
+          {/* Message */}
+          <div className="space-y-2 mb-4 sm:mb-6 lg:mb-8">
+            <div className="h-3.5 sm:h-4 lg:h-5 bg-white/5 rounded-lg w-full" />
+            <div className="h-3.5 sm:h-4 lg:h-5 bg-white/5 rounded-lg w-full" />
+            <div className="h-3.5 sm:h-4 lg:h-5 bg-white/5 rounded-lg w-2/3" />
+          </div>
+
+          {/* Footer Meta */}
+          <div className="flex flex-wrap gap-4 sm:gap-6 pt-4 sm:pt-5 border-t border-white/5">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/5 flex-shrink-0" />
+              <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-16 sm:w-20" />
+            </div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/5 flex-shrink-0" />
+              <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-24 sm:w-32" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+);
+
 // Skeleton for Posts List (Matches AdminPosts)
 export const PostsSkeleton = () => (
   <div className="h-full animate-pulse">
