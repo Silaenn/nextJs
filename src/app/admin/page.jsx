@@ -33,14 +33,16 @@ const AdminPage = async () => {
 
           {/* Inbound Inquiries */}
           <div className="col-span-12">
-            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 flex flex-col reveal-up">
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 flex flex-col reveal-up min-h-[350px] sm:min-h-[450px]">
               <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10 flex-shrink-0">
                 <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
                 <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
                   Inbound Inquiries
                 </h2>
               </div>
-              <AdminInquiries />
+              <div className="flex-1 flex flex-col">
+                <AdminInquiries />
+              </div>
             </div>
           </div>
 
@@ -53,7 +55,7 @@ const AdminPage = async () => {
                   Case Studies
                 </h2>
               </div>
-              <div className="flex-1 min-h-0">
+              <div className="flex-1 flex flex-col min-h-0">
                 <AdminPosts />
               </div>
             </div>
@@ -81,7 +83,7 @@ const AdminPage = async () => {
                   Personnel
                 </h2>
               </div>
-              <div className="flex-1 min-h-0">
+              <div className="flex-1 flex flex-col min-h-0">
                 <AdminUsers />
               </div>
             </div>

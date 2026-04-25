@@ -49,7 +49,7 @@ const AdminInquiries = () => {
   if (loading) return <InquirySkeleton />;
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="flex-1 flex flex-col">
       <ConfirmModal
         isOpen={modalConfig.isOpen}
         onClose={closeModal}
