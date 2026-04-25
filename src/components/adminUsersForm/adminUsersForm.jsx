@@ -2,20 +2,24 @@
 
 import { addUser } from "@/lib/action";
 import { useFormState } from "react-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AdminUserFormSkeleton } from "@/components/skeletons/skeletons";
 import { useToast } from "@/components/toast/Toast";
 
 const AdminUserForm = () => {
   const [state, formAction] = useFormState(addUser, undefined);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const toast = useToast();
+
+  const formRef = useRef();
 
   useEffect(() => {
     setLoading(false);
     if (state?.success) {
       toast.success("Member authorized successfully.");
+      formRef.current?.reset();
+      // Trigger event to refresh AdminUsers list
+      window.dispatchEvent(new CustomEvent("user-created"));
     }
     if (state?.error) {
       toast.error(state.error);
@@ -41,7 +45,7 @@ const AdminUserForm = () => {
         </h2>
       </div>
 
-      <form action={formAction} className="space-y-4 sm:space-y-5 lg:space-y-6">
+      <form action={formAction} ref={formRef} className="space-y-4 sm:space-y-5 lg:space-y-6">
 
         {/* Alias + Email — 2 col di md ke atas, stack di mobile */}
         <div className="grid md:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
@@ -82,27 +86,8 @@ const AdminUserForm = () => {
           />
         </div>
 
-        {/* Toggle */}
-        <div className="py-3 sm:py-4">
-          <label className="flex items-center gap-3 sm:gap-4 cursor-pointer group w-fit">
-            <div className="relative flex-shrink-0">
-              <input
-                type="checkbox"
-                name="isAdmin"
-                value="true"
-                checked={isAdmin}
-                onChange={(e) => setIsAdmin(e.target.checked)}
-                className="sr-only"
-              />
-              <div className={`w-12 sm:w-14 h-6 sm:h-7 rounded-full transition-all duration-500 border border-white/10 ${isAdmin ? "bg-accent border-accent" : "bg-white/5"}`}>
-                <div className={`w-4 h-4 sm:w-5 sm:h-5 bg-white rounded-full shadow-xl transform transition-transform duration-500 mt-[4px] sm:mt-[3px] ${isAdmin ? "translate-x-6 sm:translate-x-7" : "translate-x-1"}`} />
-              </div>
-            </div>
-            <span className="text-[9px] sm:text-[10px] font-black text-white uppercase tracking-[0.2em]">
-              Grant Admin Authority
-            </span>
-          </label>
-        </div>
+        {/* Hidden Admin Status (Forced to true) */}
+        <input type="hidden" name="isAdmin" value="true" />
 
         {/* Error */}
         {state?.error && (

@@ -26,6 +26,10 @@ const AdminUsers = () => {
 
   useEffect(() => {
     fetchUsers();
+
+    // Listen for real-time updates from AdminUserForm
+    window.addEventListener("user-created", fetchUsers);
+    return () => window.removeEventListener("user-created", fetchUsers);
   }, []);
 
   const openModal = (id) => setModalConfig({ isOpen: true, id });
@@ -52,8 +56,8 @@ const AdminUsers = () => {
         isOpen={modalConfig.isOpen}
         onClose={closeModal}
         onConfirm={handleConfirmDelete}
-        title="Revoke Authority"
-        message="Are you sure you want to revoke this member's authority? This will permanently remove their access."
+        title="Terminate Entity"
+        message="Are you sure you want to permanently delete this member? This action cannot be undone."
       />
 
       {/* Section Header */}
@@ -117,7 +121,7 @@ const AdminUsers = () => {
                       : "text-red-400 hover:text-white hover:bg-red-400/20"
                   }`}
                 >
-                  {user.isAdmin ? "Secured" : "Revoke"}
+                  {user.isAdmin ? "Secured" : "Terminate"}
                 </button>
               </div>
             </div>
