@@ -5,20 +5,26 @@ import { useFormState, useFormStatus } from "react-dom";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { AdminPostFormSkeleton } from "@/components/skeletons/skeletons";
+import { useToast } from "@/components/toast/Toast";
 
 const AdminPostForm = ({ userId }) => {
   const [state, formAction] = useFormState(addPost, undefined);
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(true);
   const formRef = useRef();
+  const toast = useToast();
 
   useEffect(() => {
     setLoading(false);
     if (state?.success) {
+      toast.success("Post deployed successfully.");
       formRef.current?.reset();
       setPreview(null);
     }
-  }, [state]);
+    if (state?.error) {
+      toast.error(state.error);
+    }
+  }, [state, toast]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];

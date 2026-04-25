@@ -3,10 +3,12 @@
 import { login } from "@/lib/action";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useToast } from "@/components/toast/Toast";
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const toast = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,13 +21,18 @@ export default function LoginForm() {
       const result = await login(null, formData);
       if (result?.error) {
         setError(result.error);
+        toast.error(result.error);
         setIsLoading(false);
+      } else {
+        toast.success("Identity verified. Access granted.");
       }
     } catch (err) {
       if (err.message?.includes("NEXT_REDIRECT")) {
+        toast.success("Identity verified. Access granted.");
         throw err;
       }
       setError("Authorization failed. Please verify credentials.");
+      toast.error("Authorization failed. Please verify credentials.");
       setIsLoading(false);
     }
   };
@@ -42,13 +49,18 @@ export default function LoginForm() {
       const result = await login(null, formData);
       if (result?.error) {
         setError(result.error);
+        toast.error(result.error);
         setIsLoading(false);
+      } else {
+        toast.success("Demo access granted. Welcome.");
       }
     } catch (err) {
       if (err.message?.includes("NEXT_REDIRECT")) {
+        toast.success("Demo access granted. Welcome.");
         throw err;
       }
       setError("Demo access is temporarily unavailable.");
+      toast.error("Demo access is temporarily unavailable.");
       setIsLoading(false);
     }
   };

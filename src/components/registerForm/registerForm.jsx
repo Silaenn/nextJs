@@ -3,6 +3,7 @@
 import { register } from "@/lib/action";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useToast } from "@/components/toast/Toast";
 
 export default function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,15 +11,17 @@ export default function RegisterForm() {
   const [success, setSuccess] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const router = useRouter();
+  const toast = useToast();
 
   useEffect(() => {
     if (success) {
+      toast.success("Identity Secured. Initializing login...");
       const timer = setTimeout(() => {
         router.push("/login");
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [success, router]);
+  }, [success, router, toast]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,12 +32,14 @@ export default function RegisterForm() {
       const result = await register(null, formData);
       if (result?.error) {
         setError(result.error);
+        toast.error(result.error);
         setIsLoading(false);
       } else {
         setSuccess(true);
       }
     } catch (err) {
       setError("System failure. Deployment of new identity failed.");
+      toast.error("System failure. Deployment of new identity failed.");
       setIsLoading(false);
     }
   };

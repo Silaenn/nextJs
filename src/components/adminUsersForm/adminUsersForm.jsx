@@ -4,15 +4,23 @@ import { addUser } from "@/lib/action";
 import { useFormState } from "react-dom";
 import { useState, useEffect } from "react";
 import { AdminUserFormSkeleton } from "@/components/skeletons/skeletons";
+import { useToast } from "@/components/toast/Toast";
 
 const AdminUserForm = () => {
   const [state, formAction] = useFormState(addUser, undefined);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const toast = useToast();
 
   useEffect(() => {
     setLoading(false);
-  }, []);
+    if (state?.success) {
+      toast.success("Member authorized successfully.");
+    }
+    if (state?.error) {
+      toast.error(state.error);
+    }
+  }, [state, toast]);
 
   if (loading) return <AdminUserFormSkeleton />;
 
