@@ -72,6 +72,16 @@ const ContactForm = ({ userId }) => {
           />
         </div>
 
+        {/* Guest Nudge */}
+        {!userId && (
+          <div className="bg-white/5 border border-white/5 rounded-2xl p-4 sm:p-5">
+            <p className="text-[9px] sm:text-[10px] text-textSoft font-medium leading-relaxed italic">
+              <span className="text-accent font-black uppercase tracking-widest mr-2">Pro Tip:</span>
+              Log in before sending to track this transmission status in your private workspace real-time.
+            </p>
+          </div>
+        )}
+
         {/* Submit Button */}
         <button
           type="submit"

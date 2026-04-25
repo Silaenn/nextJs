@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
-import { User } from "./models";
+import { User, Inquiry } from "./models";
 import bcrypt from "bcryptjs";
 import { authConfig } from "./auth.config";
 
@@ -22,6 +22,17 @@ const login = async (credentials) => {
 
     if (!isPasswordCorrect) {
       throw new Error("Wrong credentials!");
+    }
+
+    // Sync previous guest inquiries with the same email to this user
+    try {
+      await Inquiry.updateMany(
+        { email: user.email, userId: null },
+        { userId: user._id }
+      );
+      console.log("✓ Synchronized guest inquiries for user:", user.username);
+    } catch (syncErr) {
+      console.warn("Could not sync inquiries on login:", syncErr);
     }
 
     // Update last login
