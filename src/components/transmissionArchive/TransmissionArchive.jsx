@@ -36,6 +36,10 @@ const TransmissionArchive = ({ userId }) => {
 
   useEffect(() => {
     fetchInquiries();
+
+    // Listen for real-time updates from ContactForm
+    window.addEventListener("inquiry-sent", fetchInquiries);
+    return () => window.removeEventListener("inquiry-sent", fetchInquiries);
   }, [userId]);
 
   const openModal = (id) => setModalConfig({ isOpen: true, id });

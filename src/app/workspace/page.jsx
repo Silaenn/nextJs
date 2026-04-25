@@ -81,7 +81,11 @@ const WorkspacePage = async () => {
                 <p className="text-sm sm:text-base text-textSoft font-medium leading-relaxed mb-8 sm:mb-10 lg:mb-12">
                   Have a breakthrough concept? Securely transmit your vision to our engineering sector.
                 </p>
-                <ContactForm userId={session.user.id} />
+                <ContactForm 
+                  userId={session.user.id} 
+                  initialName={session.user.username}
+                  initialEmail={session.user.email}
+                />
               </div>
               <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 blur-[100px] rounded-full pointer-events-none transition-all duration-700 group-hover:bg-accent/10" />
             </div>

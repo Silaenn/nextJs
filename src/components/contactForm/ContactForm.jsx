@@ -5,7 +5,7 @@ import { sendInquiry } from "@/lib/action";
 import { useEffect, useRef } from "react";
 import { useToast } from "@/components/toast/Toast";
 
-const ContactForm = ({ userId }) => {
+const ContactForm = ({ userId, initialName, initialEmail }) => {
   const [state, formAction] = useFormState(sendInquiry, undefined);
   const formRef = useRef();
   const toast = useToast();
@@ -15,6 +15,8 @@ const ContactForm = ({ userId }) => {
     if (state?.success) {
       toastRef.current.success("Connection established. We will talk soon.");
       formRef.current?.reset();
+      // Trigger event to refresh TransmissionArchive
+      window.dispatchEvent(new CustomEvent("inquiry-sent"));
     }
     if (state?.error) {
       toastRef.current.error(state.error);
@@ -36,8 +38,10 @@ const ContactForm = ({ userId }) => {
                 type="text"
                 id="name"
                 name="name"
+                defaultValue={initialName || ""}
+                readOnly={!!initialName}
                 placeholder="Name Surname"
-                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                className={`w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all ${initialName ? "opacity-60 cursor-not-allowed" : ""}`}
                 required
             />
             </div>
@@ -51,8 +55,10 @@ const ContactForm = ({ userId }) => {
                 type="email"
                 id="email"
                 name="email"
+                defaultValue={initialEmail || ""}
+                readOnly={!!initialEmail}
                 placeholder="Email Address"
-                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                className={`w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all ${initialEmail ? "opacity-60 cursor-not-allowed" : ""}`}
                 required
             />
             </div>
