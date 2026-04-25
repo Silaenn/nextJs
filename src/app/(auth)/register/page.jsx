@@ -93,7 +93,7 @@ const RegisterPage = () => {
 
             <RegisterForm />
 
-            <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/5 text-center">
+            <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/5 text-center">
               <p className="text-xs sm:text-sm text-textSoft font-medium">
                 Already an ally?{" "}
                 <Link
