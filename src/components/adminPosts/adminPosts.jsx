@@ -26,6 +26,10 @@ const AdminPosts = () => {
 
   useEffect(() => {
     fetchPosts();
+
+    // Listen for real-time updates from AdminPostForm
+    window.addEventListener("post-created", fetchPosts);
+    return () => window.removeEventListener("post-created", fetchPosts);
   }, []);
 
   const openModal = (id) => setModalConfig({ isOpen: true, id });

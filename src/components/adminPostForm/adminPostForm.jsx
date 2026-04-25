@@ -20,6 +20,8 @@ const AdminPostForm = ({ userId }) => {
       toast.success("Post deployed successfully.");
       formRef.current?.reset();
       setPreview(null);
+      // Trigger event to refresh AdminPosts list
+      window.dispatchEvent(new CustomEvent("post-created"));
     }
     if (state?.error) {
       toast.error(state.error);
