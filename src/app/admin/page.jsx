@@ -33,8 +33,8 @@ const AdminPage = async () => {
 
           {/* Inbound Inquiries */}
           <div className="col-span-12">
-            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 reveal-up">
-              <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:gap-y-5 lg:mb-10">
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 flex flex-col reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10 flex-shrink-0">
                 <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
                 <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
                   Inbound Inquiries
@@ -46,21 +46,23 @@ const AdminPage = async () => {
 
           {/* Case Studies */}
           <div className="col-span-12 lg:col-span-7" style={{ animationDelay: "0.1s" }}>
-            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full reveal-up">
-              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10">
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full flex flex-col reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10 flex-shrink-0">
                 <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
                 <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
                   Case Studies
                 </h2>
               </div>
-              <AdminPosts />
+              <div className="flex-1 min-h-0">
+                <AdminPosts />
+              </div>
             </div>
           </div>
 
           {/* Draft Content */}
           <div className="col-span-12 lg:col-span-5" style={{ animationDelay: "0.2s" }}>
-            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full bg-accent/5 reveal-up">
-              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10">
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full bg-accent/5 flex flex-col reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10 flex-shrink-0">
                 <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
                 <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
                   Draft Content
@@ -72,21 +74,23 @@ const AdminPage = async () => {
 
           {/* Personnel */}
           <div className="col-span-12 lg:col-span-6" style={{ animationDelay: "0.3s" }}>
-            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full reveal-up">
-              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10">
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full flex flex-col reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10 flex-shrink-0">
                 <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
                 <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
                   Personnel
                 </h2>
               </div>
-              <AdminUsers />
+              <div className="flex-1 min-h-0">
+                <AdminUsers />
+              </div>
             </div>
           </div>
 
           {/* Onboard Member */}
           <div className="col-span-12 lg:col-span-6" style={{ animationDelay: "0.4s" }}>
-            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full reveal-up">
-              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10">
+            <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-5 sm:p-8 lg:p-12 border-white/5 h-full flex flex-col reveal-up">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 lg:mb-10 flex-shrink-0">
                 <div className="w-8 sm:w-12 h-[1px] bg-accent flex-shrink-0" />
                 <h2 className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white italic">
                   Onboard Member

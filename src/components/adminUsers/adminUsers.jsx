@@ -39,7 +39,7 @@ const AdminUsers = () => {
   if (loading) return <UsersSkeleton />;
 
   return (
-    <div className="h-full">
+    <div className="flex flex-col h-full">
       <ConfirmModal
         isOpen={modalConfig.isOpen}
         onClose={closeModal}
@@ -49,7 +49,7 @@ const AdminUsers = () => {
       />
 
       {/* Section Header */}
-      <div className="flex items-center justify-between gap-3 mb-6 sm:mb-8 lg:mb-10">
+      <div className="flex items-center justify-between gap-3 mb-6 sm:mb-8 lg:mb-10 flex-shrink-0">
         <h3 className="text-base sm:text-lg lg:text-xl font-black italic tracking-tighter uppercase text-white">
           Member Registry.
         </h3>
@@ -59,7 +59,7 @@ const AdminUsers = () => {
       </div>
 
       {users.length === 0 ? (
-        <div className="text-center py-12 sm:py-16 lg:py-20 border border-dashed border-white/5 rounded-2xl sm:rounded-3xl">
+        <div className="flex-1 flex flex-col items-center justify-center border border-dashed border-white/5 rounded-2xl sm:rounded-3xl bg-white/[0.01]">
           <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-muted">
             No entities recorded.
           </p>

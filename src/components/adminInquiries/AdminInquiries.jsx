@@ -69,7 +69,7 @@ const AdminInquiries = () => {
       </div>
 
       {inquiries.length === 0 ? (
-        <div className="min-h-[200px] sm:min-h-[300px] flex flex-col items-center justify-center border border-dashed border-white/5 rounded-2xl sm:rounded-3xl bg-white/[0.01]">
+        <div className="flex-1 flex flex-col items-center justify-center border border-dashed border-white/5 rounded-2xl sm:rounded-3xl bg-white/[0.01]">
           <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-muted">
             No signals detected.
           </p>
