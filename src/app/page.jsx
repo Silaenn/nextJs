@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const Home = async () => {
   const session = await auth();
@@ -42,13 +43,13 @@ const Home = async () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col xs:flex-row flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 lg:gap-6 w-full sm:w-auto">
-              <button className="btn-primary group reveal-up stagger-2 w-full xs:w-auto">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 lg:gap-6 w-full sm:w-auto">
+              <Link href="/contact" className="btn-primary group reveal-up stagger-2 w-full sm:w-auto text-center">
                 <span className="relative z-10 px-4 sm:px-6">Start Project</span>
-              </button>
-              <button className="btn-secondary reveal-up stagger-3 w-full xs:w-auto">
+              </Link>
+              <Link href="/blog" className="btn-secondary reveal-up stagger-3 w-full sm:w-auto text-center flex items-center justify-center">
                 View Showcase
-              </button>
+              </Link>
             </div>
 
             {/* Social Proof */}
