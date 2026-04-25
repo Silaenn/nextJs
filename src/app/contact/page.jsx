@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ContactForm from "@/components/contactForm/ContactForm";
+import { FormSkeleton } from "@/components/skeletons/skeletons";
 
 export const metadata = {
   title: "Contact Us",

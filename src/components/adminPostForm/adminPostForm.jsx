@@ -4,7 +4,7 @@ import { addPost } from "@/lib/action";
 import { useFormState, useFormStatus } from "react-dom";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { FormSkeleton } from "@/components/skeletons/skeletons";
+import { AdminPostFormSkeleton } from "@/components/skeletons/skeletons";
 
 const AdminPostForm = ({ userId }) => {
   const [state, formAction] = useFormState(addPost, undefined);
@@ -29,7 +29,7 @@ const AdminPostForm = ({ userId }) => {
     }
   };
 
-  if (loading) return <FormSkeleton />;
+  if (loading) return <AdminPostFormSkeleton />;
 
   const inputClass =
     "w-full bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all";

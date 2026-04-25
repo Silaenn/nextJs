@@ -143,6 +143,84 @@ export const UsersSkeleton = () => (
 );
 
 // Skeleton for Forms (Matches AdminPostForm & AdminUserForm)
+export const AdminPostFormSkeleton = () => (
+  <div className="space-y-6 sm:space-y-8 lg:space-y-10 animate-pulse">
+    {/* Section Title */}
+    <div className="flex items-center gap-3">
+      <div className="h-6 sm:h-8 w-[2px] bg-white/10 flex-shrink-0" />
+      <div className="h-6 sm:h-8 bg-white/10 rounded-lg w-32 sm:w-40" />
+    </div>
+
+    <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+      {/* Title */}
+      <div className="space-y-1.5 sm:space-y-2">
+        <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-10 sm:w-12 ml-1" />
+        <div className="h-11 sm:h-12 lg:h-14 bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl w-full" />
+      </div>
+
+      {/* Slug */}
+      <div className="space-y-1.5 sm:space-y-2">
+        <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-20 sm:w-24 ml-1" />
+        <div className="h-11 sm:h-12 lg:h-14 bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl w-full" />
+      </div>
+
+      {/* Visual Asset */}
+      <div className="space-y-1.5 sm:space-y-2">
+        <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-24 sm:w-28 ml-1" />
+        <div className="h-24 sm:h-32 lg:h-40 bg-white/[0.03] border border-dashed border-white/10 rounded-2xl sm:rounded-3xl w-full" />
+      </div>
+
+      {/* Description */}
+      <div className="space-y-1.5 sm:space-y-2">
+        <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-32 sm:w-40 ml-1" />
+        <div className="h-24 sm:h-28 lg:h-32 bg-white/[0.03] border border-white/10 rounded-2xl sm:rounded-3xl w-full" />
+      </div>
+
+      {/* Submit button */}
+      <div className="h-12 sm:h-14 lg:h-16 bg-white/[0.03] rounded-xl sm:rounded-2xl w-full" />
+    </div>
+  </div>
+);
+
+export const AdminUserFormSkeleton = () => (
+  <div className="space-y-6 sm:space-y-8 lg:space-y-10 animate-pulse">
+    {/* Section Title */}
+    <div className="flex items-center gap-3">
+      <div className="h-6 sm:h-8 w-[2px] bg-white/10 flex-shrink-0" />
+      <div className="h-6 sm:h-8 bg-white/10 rounded-lg w-40 sm:w-52" />
+    </div>
+
+    <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+      {/* Alias + Email */}
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
+        <div className="space-y-1.5 sm:space-y-2">
+          <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-10 sm:w-12 ml-1" />
+          <div className="h-11 sm:h-12 lg:h-14 bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl w-full" />
+        </div>
+        <div className="space-y-1.5 sm:space-y-2">
+          <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-24 sm:w-32 ml-1" />
+          <div className="h-11 sm:h-12 lg:h-14 bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl w-full" />
+        </div>
+      </div>
+
+      {/* Password */}
+      <div className="space-y-1.5 sm:space-y-2">
+        <div className="h-2.5 sm:h-3 bg-white/5 rounded-full w-20 sm:w-24 ml-1" />
+        <div className="h-11 sm:h-12 lg:h-14 bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl w-full" />
+      </div>
+
+      {/* Toggle */}
+      <div className="py-3 sm:py-4 flex items-center gap-3 sm:gap-4">
+        <div className="w-12 sm:w-14 h-6 sm:h-7 rounded-full bg-white/5 border border-white/10" />
+        <div className="h-3 bg-white/5 rounded-full w-32 sm:w-40" />
+      </div>
+
+      {/* Submit button */}
+      <div className="h-12 sm:h-14 lg:h-16 bg-white/[0.03] rounded-xl sm:rounded-2xl w-full" />
+    </div>
+  </div>
+);
+
 export const FormSkeleton = () => (
   <div className="space-y-6 sm:space-y-8 lg:space-y-10 animate-pulse">
 

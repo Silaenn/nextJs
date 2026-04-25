@@ -3,7 +3,7 @@
 import { addUser } from "@/lib/action";
 import { useFormState } from "react-dom";
 import { useState, useEffect } from "react";
-import { FormSkeleton } from "@/components/skeletons/skeletons";
+import { AdminUserFormSkeleton } from "@/components/skeletons/skeletons";
 
 const AdminUserForm = () => {
   const [state, formAction] = useFormState(addUser, undefined);
@@ -14,7 +14,7 @@ const AdminUserForm = () => {
     setLoading(false);
   }, []);
 
-  if (loading) return <FormSkeleton />;
+  if (loading) return <AdminUserFormSkeleton />;
 
   const inputClass =
     "w-full bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all";
