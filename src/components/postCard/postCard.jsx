@@ -6,8 +6,8 @@ const PostCard = ({ post }) => {
     <article className="group relative glass rounded-[2rem] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-accent/5 hover:shadow-2xl border-white/5 hover:border-white/20 reveal-up">
       <Link href={`/blog/${post.slug}`} className="block">
         {/* Date Badge - Floating */}
-        <div className="absolute top-6 right-6 z-20 glass px-4 py-2 rounded-full border-white/20">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
+        <div className="absolute top-6 right-6 z-20 bg-bg/60 backdrop-blur-md h-8 px-4 rounded-full border border-white/10 shadow-xl flex items-center justify-center">
+            <span className="text-[9px] font-black uppercase tracking-[0.2em] text-accent leading-none">
                 {new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
             </span>
         </div>
