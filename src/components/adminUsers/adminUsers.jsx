@@ -4,11 +4,13 @@ import Image from "next/image";
 import { deleteUser } from "@/lib/action";
 import { UsersSkeleton } from "@/components/skeletons/skeletons";
 import ConfirmModal from "@/components/confirmModal/ConfirmModal";
+import { useToast } from "@/components/toast/Toast";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalConfig, setModalConfig] = useState({ isOpen: false, id: null });
+  const toast = useToast();
 
   const fetchUsers = async () => {
     try {
@@ -32,8 +34,14 @@ const AdminUsers = () => {
   const handleConfirmDelete = async () => {
     const formData = new FormData();
     formData.append("id", modalConfig.id);
-    await deleteUser(formData);
-    fetchUsers();
+    const result = await deleteUser(formData);
+    
+    if (result?.error) {
+      toast.error(result.error);
+    } else {
+      toast.success("Member revoked successfully.");
+      fetchUsers();
+    }
   };
 
   if (loading) return <UsersSkeleton />;

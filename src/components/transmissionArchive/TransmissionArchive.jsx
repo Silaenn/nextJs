@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { TransmissionSkeleton } from "@/components/skeletons/skeletons";
 import { deleteInquiry } from "@/lib/action";
+import ConfirmModal from "@/components/confirmModal/ConfirmModal";
+import { useToast } from "@/components/toast/Toast";
 
 const getStatusColor = (status) => {
   const s = status?.toUpperCase() || "PENDING";
@@ -17,6 +19,8 @@ const getStatusColor = (status) => {
 const TransmissionArchive = ({ userId }) => {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalConfig, setModalConfig] = useState({ isOpen: false, id: null });
+  const toast = useToast();
 
   const fetchInquiries = async () => {
     try {
@@ -34,6 +38,22 @@ const TransmissionArchive = ({ userId }) => {
     fetchInquiries();
   }, [userId]);
 
+  const openModal = (id) => setModalConfig({ isOpen: true, id });
+  const closeModal = () => setModalConfig({ isOpen: false, id: null });
+
+  const handleConfirmCancel = async () => {
+    const formData = new FormData();
+    formData.append("id", modalConfig.id);
+    const result = await deleteInquiry(formData);
+    
+    if (result?.error) {
+      toast.error(result.error);
+    } else {
+      toast.success("Transmission cancelled successfully.");
+      fetchInquiries();
+    }
+  };
+
   if (loading) {
     return (
       <div className="lg:col-span-7 glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] border-white/5 bg-surface-2/20 h-[600px] sm:h-[800px] lg:h-[1130px] overflow-y-hidden">
@@ -44,6 +64,13 @@ const TransmissionArchive = ({ userId }) => {
 
   return (
     <div className="lg:col-span-7">
+      <ConfirmModal
+        isOpen={modalConfig.isOpen}
+        onClose={closeModal}
+        onConfirm={handleConfirmCancel}
+        title="Abort Transmission"
+        message="Are you sure you want to cancel this transmission? This log will be permanently removed from your archive."
+      />
       <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] border-white/5 min-h-[500px] sm:min-h-[700px] lg:min-h-[1020px] flex flex-col overflow-hidden bg-surface-2/20">
         
         {/* Archive Header */}
@@ -60,9 +87,9 @@ const TransmissionArchive = ({ userId }) => {
         </div>
 
         {/* Archive Body */}
-        <div className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto max-h-[500px] sm:max-h-[700px] lg:max-h-[1020px] scrollbar-custom">
+        <div className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto max-h-[500px] sm:max-h-[700px] lg:max-h-[1020px] scrollbar-custom flex flex-col">
           {inquiries.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center py-16 sm:py-20 text-center">
+            <div className="flex-1 flex flex-col items-center justify-center py-12 text-center">
               <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full bg-white/[0.02] border border-white/5 flex items-center justify-center mb-6 sm:mb-8 lg:mb-10">
                 <svg className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-muted opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -106,19 +133,14 @@ const TransmissionArchive = ({ userId }) => {
                         Sector: Global
                       </div>
                       {(inquiry.status?.toUpperCase() === "PENDING" || !inquiry.status) && (
-                        <form
-                          action={async (formData) => {
-                            if (confirm("Are you sure you want to cancel this transmission?")) {
-                              await deleteInquiry(formData);
-                              fetchInquiries();
-                            }
-                          }}
-                        >
-                          <input type="hidden" name="id" value={inquiry._id} />
-                          <button className="text-[9px] font-black text-red-500/40 hover:text-red-500 uppercase tracking-widest transition-all">
+                        <div>
+                          <button 
+                            onClick={() => openModal(inquiry._id)}
+                            className="text-[9px] font-black text-red-500/40 hover:text-red-500 uppercase tracking-widest transition-all"
+                          >
                             Cancel
                           </button>
-                        </form>
+                        </div>
                       )}
                     </div>
                   </div>

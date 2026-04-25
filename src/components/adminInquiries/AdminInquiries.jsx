@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import { InquirySkeleton } from "@/components/skeletons/skeletons";
 import { updateInquiryStatus, deleteInquiry } from "@/lib/action";
 import ConfirmModal from "@/components/confirmModal/ConfirmModal";
+import { useToast } from "@/components/toast/Toast";
 
 const AdminInquiries = () => {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalConfig, setModalConfig] = useState({ isOpen: false, id: null });
+  const toast = useToast();
 
   const fetchInquiries = async () => {
     try {
@@ -32,8 +34,24 @@ const AdminInquiries = () => {
   const handleConfirmDelete = async () => {
     const formData = new FormData();
     formData.append("id", modalConfig.id);
-    await deleteInquiry(formData);
-    fetchInquiries();
+    const result = await deleteInquiry(formData);
+    
+    if (result?.error) {
+      toast.error(result.error);
+    } else {
+      toast.success("Signal terminated successfully.");
+      fetchInquiries();
+    }
+  };
+
+  const handleStatusUpdate = async (formData) => {
+    const result = await updateInquiryStatus(formData);
+    if (result?.error) {
+      toast.error(result.error);
+    } else {
+      toast.success("Signal status synchronized.");
+      fetchInquiries();
+    }
   };
 
   const getStatusColor = (status) => {
@@ -111,10 +129,7 @@ const AdminInquiries = () => {
                 {["PENDING", "IN PROGRESS", "COMPLETED", "CANCELLED"].map((s) => (
                   <form
                     key={s}
-                    action={async (formData) => {
-                      await updateInquiryStatus(formData);
-                      fetchInquiries();
-                    }}
+                    action={handleStatusUpdate}
                   >
                     <input type="hidden" name="id" value={inquiry._id} />
                     <input type="hidden" name="status" value={s} />

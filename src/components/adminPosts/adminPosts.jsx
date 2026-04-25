@@ -4,11 +4,13 @@ import Image from "next/image";
 import { deletePost } from "@/lib/action";
 import { PostsSkeleton } from "@/components/skeletons/skeletons";
 import ConfirmModal from "@/components/confirmModal/ConfirmModal";
+import { useToast } from "@/components/toast/Toast";
 
 const AdminPosts = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalConfig, setModalConfig] = useState({ isOpen: false, id: null });
+  const toast = useToast();
 
   const fetchPosts = async () => {
     try {
@@ -32,8 +34,14 @@ const AdminPosts = () => {
   const handleConfirmDelete = async () => {
     const formData = new FormData();
     formData.append("id", modalConfig.id);
-    await deletePost(formData);
-    fetchPosts();
+    const result = await deletePost(formData);
+    
+    if (result?.error) {
+      toast.error(result.error);
+    } else {
+      toast.success("Asset terminated successfully.");
+      fetchPosts();
+    }
   };
 
   if (loading) return <PostsSkeleton />;

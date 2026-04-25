@@ -11,8 +11,8 @@ const PostList = async () => {
 
   if (posts.length === 0) {
     return (
-      <div className="col-span-full text-center py-20 sm:py-32 glass rounded-2xl sm:rounded-[3rem] border-white/5">
-        <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-muted">
+      <div className="col-span-full text-center py-32 sm:py-48 lg:py-64 glass rounded-2xl sm:rounded-[3rem] border-white/5 flex flex-col items-center justify-center bg-white/[0.01]">
+        <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-muted">
           No artifacts discovered.
         </p>
       </div>
