@@ -88,6 +88,17 @@ export const register = async (previousState, formData) => {
     await newUser.save();
     console.log("✓ User registered successfully:", username);
 
+    // Sync previous guest inquiries with the same email to this new user
+    try {
+      await Inquiry.updateMany(
+        { email: email.toLowerCase(), userId: null },
+        { userId: newUser._id }
+      );
+      console.log("✓ Linked previous guest inquiries to new user.");
+    } catch (syncErr) {
+      console.warn("Could not sync previous inquiries:", syncErr);
+    }
+
     return { success: true };
   } catch (error) {
     console.error("❌ Error registering user (DETAILED):", {

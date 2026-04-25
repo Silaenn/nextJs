@@ -26,16 +26,18 @@ if (process.env.NODE_ENV === "development") {
 
 export const metadata = {
   title: {
-    default: "Next.js 14 - Creative Agency",
-    template: "%s | Next.js 14",
+    default: "ARCHITECT. | Creative Digital Agency",
+    template: "%s | ARCHITECT.",
   },
-  description: "A modern full-stack application built with Next.js 14, MongoDB, and NextAuth",
-  keywords: ["Next.js", "React", "MongoDB", "Blog", "CMS"],
-  authors: [{ name: "Your Name", url: "https://yourwebsite.com" }],
+  description: "Transforming visionary concepts into digital masterworks. High-end design meets cutting-edge execution.",
+  icons: {
+    icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-family=%22serif%22 font-weight=%22900%22 font-size=%2280%22 fill=%22%2300f2ff%22>A</text></svg>',
+  },
+  keywords: ["Digital Agency", "Creative Design", "Full-stack Development", "Architecture Admin"],
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Next.js 14",
+    siteName: "ARCHITECT. Agency",
   },
 };
 
