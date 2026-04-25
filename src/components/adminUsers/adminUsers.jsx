@@ -93,9 +93,9 @@ const AdminUsers = () => {
                     className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
                 </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                    <h4 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white group-hover:text-accent transition-colors truncate">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <h4 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white group-hover:text-accent transition-colors truncate min-w-0">
                       {user.username}
                     </h4>
                     {user.isAdmin && (
