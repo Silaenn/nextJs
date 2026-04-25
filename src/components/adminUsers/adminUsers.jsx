@@ -3,30 +3,50 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { deleteUser } from "@/lib/action";
 import { UsersSkeleton } from "@/components/skeletons/skeletons";
+import ConfirmModal from "@/components/confirmModal/ConfirmModal";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalConfig, setModalConfig] = useState({ isOpen: false, id: null });
+
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch("/api/admin/users");
+      const data = await res.json();
+      setUsers(data);
+    } catch (err) {
+      console.error("Failed to fetch users:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch("/api/admin/users");
-        const data = await res.json();
-        setUsers(data);
-      } catch (err) {
-        console.error("Failed to fetch users:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchUsers();
   }, []);
+
+  const openModal = (id) => setModalConfig({ isOpen: true, id });
+  const closeModal = () => setModalConfig({ isOpen: false, id: null });
+
+  const handleConfirmDelete = async () => {
+    const formData = new FormData();
+    formData.append("id", modalConfig.id);
+    await deleteUser(formData);
+    fetchUsers();
+  };
 
   if (loading) return <UsersSkeleton />;
 
   return (
     <div className="h-full">
+      <ConfirmModal
+        isOpen={modalConfig.isOpen}
+        onClose={closeModal}
+        onConfirm={handleConfirmDelete}
+        title="Revoke Authority"
+        message="Are you sure you want to revoke this member's authority? This will permanently remove their access."
+      />
 
       {/* Section Header */}
       <div className="flex items-center justify-between gap-3 mb-6 sm:mb-8 lg:mb-10">
@@ -79,10 +99,9 @@ const AdminUsers = () => {
               </div>
 
               {/* Action */}
-              <form action={deleteUser}>
-                <input type="hidden" name="id" value={user._id} />
+              <div>
                 <button
-                  type="submit"
+                  onClick={() => !user.isAdmin && openModal(user._id)}
                   disabled={user.isAdmin}
                   className={`px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] rounded-full transition-all flex-shrink-0 whitespace-nowrap ${
                     user.isAdmin
@@ -92,7 +111,7 @@ const AdminUsers = () => {
                 >
                   {user.isAdmin ? "Secured" : "Revoke"}
                 </button>
-              </form>
+              </div>
             </div>
           ))}
         </div>

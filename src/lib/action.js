@@ -9,6 +9,13 @@ import { loginSchema, registerSchema, postSchema, userSchema } from "./validatio
 import { hashPassword } from "./backendUtils";
 import { v2 as cloudinary } from "cloudinary";
 
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 /**
  * Helper to check if current user is the demo account
  */
@@ -180,7 +187,7 @@ export const addPost = async (prevState, formData) => {
         imgPath = uploadResponse.secure_url;
       } catch (err) {
         console.error("❌ Failed to upload to Cloudinary:", err);
-        return { error: "Failed to upload image to cloud storage" };
+        return { error: `Cloudinary Error: ${err.message || "Unknown upload error"}` };
       }
     }
 

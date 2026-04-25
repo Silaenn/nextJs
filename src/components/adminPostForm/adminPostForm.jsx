@@ -75,6 +75,9 @@ const AdminPostForm = ({ userId }) => {
             className={inputClass}
             required
           />
+          <p className="text-[8px] text-muted uppercase tracking-widest ml-1">
+            * Lowercase, numbers, and hyphens only (no spaces)
+          </p>
         </div>
 
         {/* Image Upload */}

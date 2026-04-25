@@ -3,30 +3,50 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { deletePost } from "@/lib/action";
 import { PostsSkeleton } from "@/components/skeletons/skeletons";
+import ConfirmModal from "@/components/confirmModal/ConfirmModal";
 
 const AdminPosts = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalConfig, setModalConfig] = useState({ isOpen: false, id: null });
+
+  const fetchPosts = async () => {
+    try {
+      const res = await fetch("/api/admin/posts");
+      const data = await res.json();
+      setPosts(data);
+    } catch (err) {
+      console.error("Failed to fetch posts:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch("/api/admin/posts");
-        const data = await res.json();
-        setPosts(data);
-      } catch (err) {
-        console.error("Failed to fetch posts:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchPosts();
   }, []);
+
+  const openModal = (id) => setModalConfig({ isOpen: true, id });
+  const closeModal = () => setModalConfig({ isOpen: false, id: null });
+
+  const handleConfirmDelete = async () => {
+    const formData = new FormData();
+    formData.append("id", modalConfig.id);
+    await deletePost(formData);
+    fetchPosts();
+  };
 
   if (loading) return <PostsSkeleton />;
 
   return (
     <div className="h-full">
+      <ConfirmModal
+        isOpen={modalConfig.isOpen}
+        onClose={closeModal}
+        onConfirm={handleConfirmDelete}
+        title="Terminate Asset"
+        message="Are you sure you want to permanently delete this case study? This data cannot be recovered."
+      />
 
       {/* Section Header */}
       <div className="flex items-center justify-between gap-3 mb-6 sm:mb-8 lg:mb-10">
@@ -72,15 +92,14 @@ const AdminPosts = () => {
               </div>
 
               {/* Delete */}
-              <form action={deletePost}>
-                <input type="hidden" name="id" value={post._id} />
+              <div>
                 <button
-                  type="submit"
+                  onClick={() => openModal(post._id)}
                   className="px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-red-400 hover:text-white hover:bg-red-400/20 rounded-full transition-all flex-shrink-0 whitespace-nowrap"
                 >
                   Terminate
                 </button>
-              </form>
+              </div>
             </div>
           ))}
         </div>

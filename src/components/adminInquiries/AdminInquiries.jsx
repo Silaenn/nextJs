@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import { InquirySkeleton } from "@/components/skeletons/skeletons";
 import { updateInquiryStatus, deleteInquiry } from "@/lib/action";
+import ConfirmModal from "@/components/confirmModal/ConfirmModal";
 
 const AdminInquiries = () => {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalConfig, setModalConfig] = useState({ isOpen: false, id: null });
 
   const fetchInquiries = async () => {
     try {
@@ -24,6 +26,16 @@ const AdminInquiries = () => {
     fetchInquiries();
   }, []);
 
+  const openModal = (id) => setModalConfig({ isOpen: true, id });
+  const closeModal = () => setModalConfig({ isOpen: false, id: null });
+
+  const handleConfirmDelete = async () => {
+    const formData = new FormData();
+    formData.append("id", modalConfig.id);
+    await deleteInquiry(formData);
+    fetchInquiries();
+  };
+
   const getStatusColor = (status) => {
     switch (status) {
       case "PENDING": return "text-yellow-500 bg-yellow-500/10";
@@ -38,6 +50,13 @@ const AdminInquiries = () => {
 
   return (
     <div className="h-full">
+      <ConfirmModal
+        isOpen={modalConfig.isOpen}
+        onClose={closeModal}
+        onConfirm={handleConfirmDelete}
+        title="Terminate Signal"
+        message="Are you sure you want to permanently delete this client signal? This action cannot be undone."
+      />
 
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6 sm:mb-8 lg:mb-10 gap-3">
@@ -67,17 +86,14 @@ const AdminInquiries = () => {
                 <h4 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white group-hover:text-accent transition-colors leading-snug">
                   {inquiry.name}
                 </h4>
-                <form
-                  action={async (formData) => {
-                    await deleteInquiry(formData);
-                    fetchInquiries();
-                  }}
-                >
-                  <input type="hidden" name="id" value={inquiry._id} />
-                  <button className="text-[9px] sm:text-[10px] font-black text-red-500/40 hover:text-red-500 uppercase tracking-widest transition-colors flex-shrink-0">
+                <div>
+                  <button 
+                    onClick={() => openModal(inquiry._id)}
+                    className="text-[9px] sm:text-[10px] font-black text-red-500/40 hover:text-red-500 uppercase tracking-widest transition-colors flex-shrink-0"
+                  >
                     Terminate
                   </button>
-                </form>
+                </div>
               </div>
 
               {/* Email */}
