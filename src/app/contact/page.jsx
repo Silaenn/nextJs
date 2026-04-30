@@ -18,7 +18,7 @@ const ContactPage = () => {
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 items-center">
 
           {/* Image Section — stacks below form on mobile */}
-          <div className="relative h-[240px] sm:h-[340px] lg:h-[600px] w-full order-2 lg:order-1 reveal-up">
+          <div className="relative h-[240px] sm:h-[340px] lg:h-[600px] w-full order-1 lg:order-1 reveal-up">
             <Image
               src="/contact.png"
               alt="Contact us"
