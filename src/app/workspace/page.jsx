@@ -22,7 +22,7 @@ const WorkspacePage = async () => {
         <div className="mb-14 sm:mb-20 lg:mb-24 flex flex-col lg:flex-row lg:items-end justify-between gap-8 sm:gap-10 lg:gap-12">
           
           {/* Title */}
-          <div className="max-w-3xl">
+          <div className="max-w-3xl min-w-0">
             <div className="inline-flex items-center gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full glass border-white/10 text-accent text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] mb-6 sm:mb-8 reveal-up">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
@@ -42,11 +42,11 @@ const WorkspacePage = async () => {
           </div>
 
           {/* User Card */}
-          <div className="glass p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] lg:rounded-[2.5rem] border-white/5 flex items-center gap-4 sm:gap-6 shadow-2xl reveal-up w-full lg:w-auto">
+          <div className="glass p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] lg:rounded-[2.5rem] border-white/5 flex items-center gap-4 sm:gap-6 shadow-2xl reveal-up lg:flex-shrink-0 lg:max-w-xs w-full lg:w-auto">
             <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl sm:rounded-2xl bg-surface-2 flex items-center justify-center text-white font-black text-2xl sm:text-3xl border border-white/10 shadow-inner flex-shrink-0">
               {session.user.username?.[0]?.toUpperCase()}
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-accent mb-1">
                 Authenticated User
               </p>
