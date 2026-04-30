@@ -1,46 +1,100 @@
-NEXTJS CREATE
+# IDEA REALITY. — High-End Digital Agency Platform
 
-![Next-js-14-Homepage](https://github.com/Silaenn/nextJs/assets/131638765/a139f3ab-4745-4516-b2b2-ecd30c111a9d)
+![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=for-the-badge&logo=next.js)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3-38B2AC?style=for-the-badge&logo=tailwind-css)
+![MongoDB](https://img.shields.io/badge/MongoDB-Shared-47A248?style=for-the-badge&logo=mongodb)
+![NextAuth.js](https://img.shields.io/badge/NextAuth.js-v5_Beta-000000?style=for-the-badge)
 
-![About-Page-Next-js-14](https://github.com/Silaenn/nextJs/assets/131638765/fe61fb02-f5fc-4d8e-8123-c09c55852235)
+**IDEA REALITY.** (Project Architect) adalah platform agensi digital modern yang dibangun dengan fokus pada estetika **Dark Luxury**, performa tinggi, dan pengalaman pengguna yang imersif. Platform ini dirancang untuk mengubah visi kreatif menjadi karya digital yang nyata.
 
-![Contact-Page-Next-js-14](https://github.com/Silaenn/nextJs/assets/131638765/0f618e49-8948-4161-bbf7-4d14398201e1)
+---
 
+## ✨ Fitur Utama
 
+- 🏛️ **Arsitektur Modern**: Menggunakan Next.js 14 App Router dengan pola desain yang bersih dan skalabel.
+- 💎 **Estetika Luxury**: UI berbasis Tailwind CSS murni dengan sistem variabel CSS, mendukung _smooth animations_ dan _glassmorphism_.
+- 📝 **Sistem Blog Dinamis**: CRUD penuh untuk artikel/case studies dengan optimasi SEO (Slug-based routing).
+- 🔐 **Autentikasi Aman**: Didukung oleh NextAuth.js v5 (Beta) dengan sistem peran (Role-based access control).
+- 📊 **Admin Control Center**: Dashboard khusus untuk manajemen user, konten blog, dan pesan masuk (inquiries).
+- 📩 **Inquiry Tracking**: Sistem pelacakan ide/proyek bagi klien dengan sinkronisasi akun real-time.
+- ☁️ **Cloud Image Storage**: Integrasi Cloudinary untuk manajemen aset visual yang cepat dan efisien.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+---
 
-## Getting Started
+## 🚀 Teknologi yang Digunakan
 
-First, run the development server:
+- **Frontend**: Next.js 14, React, Tailwind CSS, Framer Motion (Reveal system).
+- **Backend**: Next.js Server Actions, Route Handlers.
+- **Database**: MongoDB dengan Mongoose ODM.
+- **Auth**: NextAuth.js v5.
+- **Validation**: Zod (Schema validation).
+- **Media**: Cloudinary API.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Instalasi Lokal
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. **Clone Repository**:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   git clone https://github.com/Silaenn/nextJs.git
+   cd nextJs
+   ```
 
-## Learn More
+2. **Install Dependency**:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Konfigurasi Environment Variable**:
+   Buat file `.env` di root direktori dan isi dengan:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```env
+   MONGO=your_mongodb_connection_string
+   AUTH_SECRET=your_auth_secret
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
 
-## Deploy on Vercel
+   # Cloudinary (Opsional untuk fitur upload)
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_api_key
+   CLOUDINARY_API_SECRET=your_api_secret
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Jalankan Development Server**:
+   ```bash
+   npm run dev
+   ```
+   Aplikasi akan berjalan di `http://localhost:3000`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+## 🌐 Deployment (Vercel)
+
+Aplikasi ini dioptimalkan untuk dideploy di **Vercel**:
+
+1. Hubungkan repository GitHub ke Vercel.
+2. Masukkan semua variabel dari file `.env` ke bagian **Environment Variables** di dashboard Vercel.
+3. Untuk MongoDB, pastikan IP Vercel di-whitelist (atau gunakan `0.0.0.0/0` di MongoDB Atlas).
+4. Klik **Deploy**.
+
+---
+
+## 🎨 Konvensi Desain
+
+Proyek ini menggunakan sistem desain terpadu:
+
+- **Spacing**: Grid berbasis 4px/8px.
+- **Typography**: `Syne` untuk Heading dan `Plus Jakarta Sans` untuk Body.
+- **Colors**: Variabel CSS di `globals.css` (`--bg`, `--accent`, `--surface`).
+- **Components**: Utilitas khusus seperti `.input-luxury` untuk konsistensi form.
+
+---
+
+## 📜 Lisensi
+
+Proyek ini dibuat untuk tujuan pengembangan personal dan showcase agensi.
+
+---
+
+_“Transforming visionary concepts into digital masterworks.”_ — **IDEA REALITY.**
