@@ -9,11 +9,11 @@ const LoginPage = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(54,115,253,0.08)_0%,transparent_50%)] pointer-events-none" />
 
       <div className="container-custom max-w-6xl relative z-10 w-full">
-        <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] overflow-hidden border-white/5 shadow-2xl grid lg:grid-cols-2 min-h-[auto] lg:min-h-[700px]">
+        <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] overflow-hidden border-white/5 shadow-2xl grid lg:grid-cols-2">
 
           {/* Left: Cinematic Marketing — hidden on mobile */}
           <div className="hidden lg:flex flex-col p-12 xl:p-16 relative overflow-hidden bg-surface">
-            <div className="relative z-10 flex flex-col h-full">
+            <div className="relative z-10 flex flex-col h-full min-h-[600px]">
               <Link
                 href="/"
                 className="text-xl font-black italic tracking-tighter text-white mb-12 xl:mb-16 block"
@@ -67,36 +67,36 @@ const LoginPage = () => {
           </div>
 
           {/* Right: Form */}
-          <div className="p-6 sm:p-10 md:p-14 lg:p-12 xl:p-20 flex flex-col justify-center bg-white/[0.01]">
+          <div className="p-6 sm:p-10 md:p-14 lg:p-16 xl:p-24 flex flex-col justify-center bg-white/[0.01]">
 
             {/* Mobile-only logo */}
             <Link
               href="/"
-              className="lg:hidden text-xl font-black italic tracking-tighter text-white mb-8 block text-center"
+              className="lg:hidden text-lg sm:text-xl font-black italic tracking-tighter text-white mb-8 sm:mb-12 block text-center"
             >
               IDEA<span className="text-accent">REALITY.</span>
             </Link>
 
-            <div className="mb-8 sm:mb-10 lg:mb-12">
-              <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-accent mb-3 sm:mb-4 block">
-                Authentication
+            <div className="mb-8 sm:mb-10 lg:mb-12 text-center lg:text-left">
+              <span className="text-[9px] sm:text-[10px] lg:text-xs font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-accent mb-2 sm:mb-4 block">
+                Authentication Protocol
               </span>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tighter text-white mb-3 sm:mb-4 italic uppercase">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tighter text-white mb-2 sm:mb-4 italic uppercase">
                 Welcome Back.
               </h2>
-              <p className="text-sm sm:text-base text-textSoft font-medium">
+              <p className="text-xs sm:text-sm lg:text-base text-textSoft font-medium">
                 Verify your identity to proceed.
               </p>
             </div>
 
             <LoginForm />
 
-            <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/5 text-center">
+            <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/5 text-center">
               <p className="text-xs sm:text-sm text-textSoft font-medium">
                 New visionary?{" "}
                 <Link
                   href="/register"
-                  className="text-white hover:text-accent font-black italic uppercase tracking-widest text-xs transition-colors ml-2"
+                  className="text-white hover:text-accent font-black italic uppercase tracking-[0.2em] text-[10px] sm:text-xs transition-colors ml-2"
                 >
                   Create Account
                 </Link>

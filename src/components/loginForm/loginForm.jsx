@@ -71,7 +71,7 @@ export default function LoginForm() {
         {/* ... existing form fields ... */}
         <div className="space-y-6">
           <div className="space-y-2">
-              <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+              <label className="text-[9px] sm:text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
                   Access Identity
               </label>
               <input
@@ -79,27 +79,27 @@ export default function LoginForm() {
                   name="username"
                   required
                   minLength={3}
-                  className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                  className="w-full bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
                   placeholder="Username"
               />
           </div>
 
           <div className="space-y-2">
-              <label className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+              <label className="text-[9px] sm:text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
                   Security Key
               </label>
               <input
                   type="password"
                   name="password"
                   required
-                  className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                  className="w-full bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
                   placeholder="••••••••"
               />
           </div>
         </div>
 
         {error && (
-          <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest text-center">
+          <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 sm:px-5 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-[10px] sm:text-xs font-bold uppercase tracking-widest text-center">
             {error}
           </div>
         )}
@@ -109,7 +109,7 @@ export default function LoginForm() {
           disabled={isLoading}
           className="btn-primary w-full group"
         >
-          <span className="relative z-10 font-black uppercase tracking-[0.2em]">
+          <span className="relative z-10 font-black uppercase tracking-[0.2em] text-xs sm:text-sm">
               {isLoading ? "Verifying..." : "Authorize Access"}
           </span>
         </button>
@@ -119,7 +119,7 @@ export default function LoginForm() {
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-white/5"></div>
         </div>
-        <div className="relative flex justify-center text-[10px] font-black uppercase tracking-[0.2em]">
+        <div className="relative flex justify-center text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em]">
           <span className="bg-[#050505] px-4 text-muted">Or Explore</span>
         </div>
       </div>
@@ -128,10 +128,12 @@ export default function LoginForm() {
         type="button"
         onClick={handleGuestLogin}
         disabled={isLoading}
-        className="w-full py-4 rounded-2xl border border-accent/20 text-accent hover:bg-accent/5 transition-all text-[10px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 group"
+        className="w-full px-4 py-3 sm:py-4 rounded-xl sm:rounded-2xl border border-accent/20 text-accent hover:bg-accent/5 transition-all flex items-center justify-center gap-2 sm:gap-3 group"
       >
-        <div className="w-2 h-2 rounded-full bg-accent animate-pulse group-hover:scale-125 transition-transform" />
-        Explore Admin Dashboard (Guest)
+        <div className="hidden sm:block w-2 h-2 rounded-full bg-accent animate-pulse group-hover:scale-125 transition-transform flex-shrink-0" />
+        <span className="text-[9px] min-[360px]:text-[10px] sm:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-center leading-tight">
+          Explore Admin Dashboard (Guest)
+        </span>
       </button>
     </div>
   );
