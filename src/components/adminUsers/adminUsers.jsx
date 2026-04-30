@@ -84,7 +84,7 @@ const AdminUsers = () => {
           </p>
         </div>
       ) : (
-        <div className="space-y-3 sm:space-y-4 max-h-[400px] sm:max-h-[450px] lg:max-h-[500px] overflow-y-auto pr-2 sm:pr-4 custom-scrollbar">
+        <div className="flex-1 min-h-0 space-y-3 sm:space-y-4 overflow-y-auto pr-2 sm:pr-4 custom-scrollbar">
           {users.map((user) => (
             <div
               key={user._id}

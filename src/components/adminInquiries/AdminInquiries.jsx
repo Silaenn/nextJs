@@ -100,7 +100,7 @@ const AdminInquiries = () => {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 max-h-[400px] sm:max-h-[500px] lg:max-h-[600px] overflow-y-auto pr-2 sm:pr-4 custom-scrollbar">
+        <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 overflow-y-auto pr-2 sm:pr-4 custom-scrollbar">
           {inquiries.map((inquiry) => (
             <div
               key={inquiry._id}
