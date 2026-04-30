@@ -7,6 +7,10 @@
 
 **IDEA REALITY.** (Project Architect) adalah platform agensi digital modern yang dibangun dengan fokus pada estetika **Dark Luxury**, performa tinggi, dan pengalaman pengguna yang imersif. Platform ini dirancang untuk mengubah visi kreatif menjadi karya digital yang nyata.
 
+<img width="1920" height="1152" alt="ARCHITECT-Creative-Digital-Agency" src="https://github.com/user-attachments/assets/4cbc4078-f967-4fb6-83e6-c211c7ffd596" />
+<img width="1920" height="1712" alt="ARCHITECT-Creative-Digital-Agency(1)" src="https://github.com/user-attachments/assets/63c8e0c8-b6b3-44c7-b106-a1d5232d441c" />
+
+
 ---
 
 ## ✨ Fitur Utama
