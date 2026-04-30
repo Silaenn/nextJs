@@ -2,8 +2,6 @@ import { z } from "zod";
 
 const envSchema = z.object({
   MONGO: z.string().min(1, "MONGO environment variable is required"),
-  GITHUB_ID: z.string().min(1, "GITHUB_ID environment variable is required"),
-  GITHUB_SECRET: z.string().min(1, "GITHUB_SECRET environment variable is required"),
   AUTH_SECRET: z.string().min(1, "AUTH_SECRET environment variable is required"),
   NEXT_PUBLIC_BASE_URL: z.string().optional().default("http://localhost:3000"),
 });
