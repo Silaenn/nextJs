@@ -20,8 +20,8 @@ const AdminPage = async () => {
           <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-accent mb-3 sm:mb-4 block">
             Control Center
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-none tracking-tighter mb-3 sm:mb-4 italic uppercase">
-            Architecture{" "}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] sm:leading-none tracking-tighter mb-3 sm:mb-4 italic uppercase break-words">
+            Architecture <br className="block sm:hidden" />
             <span className="text-white">Admin.</span>
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-textSoft font-medium">
