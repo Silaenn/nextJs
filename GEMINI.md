@@ -60,7 +60,8 @@ npm run lint
 
 ### Styling
 - Use **Tailwind CSS** for layout and general styling.
-- Use **CSS Modules** (`*.module.css`) for component-specific styles where complex scoping is needed.
+- Use **CSS Variables** in `src/app/globals.css` for design tokens (colors, fonts).
+- Prefer **Utility Classes** (e.g., `.input-luxury`) for reusable UI patterns to maintain consistency.
 
 ### Database Models
 - **User:** Handles authentication, roles (Admin/User), and profile info.

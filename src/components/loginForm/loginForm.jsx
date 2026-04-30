@@ -71,7 +71,7 @@ export default function LoginForm() {
         {/* ... existing form fields ... */}
         <div className="space-y-6">
           <div className="space-y-2">
-              <label className="text-[9px] sm:text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+              <label className="label-luxury">
                   Access Identity
               </label>
               <input
@@ -79,20 +79,20 @@ export default function LoginForm() {
                   name="username"
                   required
                   minLength={3}
-                  className="w-full bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                  className="input-luxury"
                   placeholder="Username"
               />
           </div>
 
           <div className="space-y-2">
-              <label className="text-[9px] sm:text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+              <label className="label-luxury">
                   Security Key
               </label>
               <input
                   type="password"
                   name="password"
                   required
-                  className="w-full bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all"
+                  className="input-luxury"
                   placeholder="••••••••"
               />
           </div>

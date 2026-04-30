@@ -28,12 +28,6 @@ const AdminUserForm = () => {
 
   if (loading) return <AdminUserFormSkeleton />;
 
-  const inputClass =
-    "w-full bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all";
-
-  const labelClass =
-    "text-[9px] sm:text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1";
-
   return (
     <div className="space-y-6 sm:space-y-8 lg:space-y-10">
 
@@ -50,24 +44,24 @@ const AdminUserForm = () => {
         {/* Alias + Email — 2 col di md ke atas, stack di mobile */}
         <div className="grid md:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
           <div className="space-y-1.5 sm:space-y-2">
-            <label htmlFor="username" className={labelClass}>Alias</label>
+            <label htmlFor="username" className="label-luxury">Alias</label>
             <input
               type="text"
               id="username"
               name="username"
               placeholder="Username"
-              className={inputClass}
+              className="input-luxury"
               required
             />
           </div>
           <div className="space-y-1.5 sm:space-y-2">
-            <label htmlFor="email" className={labelClass}>Electronic Mail</label>
+            <label htmlFor="email" className="label-luxury">Electronic Mail</label>
             <input
               type="email"
               id="email"
               name="email"
               placeholder="Email Address"
-              className={inputClass}
+              className="input-luxury"
               required
             />
           </div>
@@ -75,13 +69,13 @@ const AdminUserForm = () => {
 
         {/* Password */}
         <div className="space-y-1.5 sm:space-y-2">
-          <label htmlFor="password" className={labelClass}>Secret Key</label>
+          <label htmlFor="password" className="label-luxury">Secret Key</label>
           <input
             type="password"
             id="password"
             name="password"
             placeholder="••••••••"
-            className={inputClass}
+            className="input-luxury"
             required
           />
         </div>

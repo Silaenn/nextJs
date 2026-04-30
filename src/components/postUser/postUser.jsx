@@ -1,36 +1,22 @@
 import React from "react";
-import styles from "./postUser.module.css";
 import { getUser } from "@/lib/data";
 import Image from "next/image";
 
-// const getData = async (userId) => {
-//   const res = await fetch(
-//     `https://jsonplaceholder.typicode.com/users/${userId}`,
-//     { cache: "no-store" }
-//   );
-
-//   if (!res.ok) {
-//     throw new Error("Something went wrong");
-//   }
-
-//   return res.json();
-// };
-
 const PostUser = async ({ userId }) => {
-  //   const user = await getData(userId);
   const user = await getUser(userId);
   return (
-    <div className={styles.container}>
-      <Image
-        src={user.img ? user.img : "/noavatar.png"}
-        className={styles.avatar}
-        alt=""
-        width={50}
-        height={50}
-      />
-      <div className={styles.texts}>
-        <span className={styles.title}>Author</span>
-        <span className={styles.username}>{user.username}</span>
+    <div className="flex items-center gap-5">
+      <div className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 glass">
+        <Image
+          src={user.img ? user.img : "/noavatar.png"}
+          className="object-cover"
+          alt={user.username}
+          fill
+        />
+      </div>
+      <div className="flex flex-col gap-1">
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted">Author</span>
+        <span className="text-sm font-bold text-white uppercase tracking-widest">{user.username}</span>
       </div>
     </div>
   );

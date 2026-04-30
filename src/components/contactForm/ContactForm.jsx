@@ -31,7 +31,7 @@ const ContactForm = ({ userId, initialName, initialEmail }) => {
         <div className="grid md:grid-cols-2 gap-8">
             {/* Name */}
             <div className="space-y-3">
-            <label htmlFor="name" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+            <label htmlFor="name" className="label-luxury">
                 Identity
             </label>
             <input
@@ -41,14 +41,14 @@ const ContactForm = ({ userId, initialName, initialEmail }) => {
                 defaultValue={initialName || ""}
                 readOnly={!!initialName}
                 placeholder="Name Surname"
-                className={`w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all ${initialName ? "opacity-60 cursor-not-allowed" : ""}`}
+                className={`input-luxury ${initialName ? "opacity-60 cursor-not-allowed" : ""}`}
                 required
             />
             </div>
 
             {/* Email */}
             <div className="space-y-3">
-            <label htmlFor="email" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+            <label htmlFor="email" className="label-luxury">
                 Channel
             </label>
             <input
@@ -58,7 +58,7 @@ const ContactForm = ({ userId, initialName, initialEmail }) => {
                 defaultValue={initialEmail || ""}
                 readOnly={!!initialEmail}
                 placeholder="Email Address"
-                className={`w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all ${initialEmail ? "opacity-60 cursor-not-allowed" : ""}`}
+                className={`input-luxury ${initialEmail ? "opacity-60 cursor-not-allowed" : ""}`}
                 required
             />
             </div>
@@ -66,14 +66,14 @@ const ContactForm = ({ userId, initialName, initialEmail }) => {
 
         {/* Message */}
         <div className="space-y-3">
-          <label htmlFor="message" className="text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1">
+          <label htmlFor="message" className="label-luxury">
             Brief
           </label>
           <textarea
             id="message"
             name="message"
             placeholder="Describe your project vision..."
-            className="w-full bg-white/[0.03] border border-white/10 rounded-3xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all min-h-[160px] resize-none"
+            className="textarea-luxury"
             required
           />
         </div>

@@ -51,61 +51,55 @@ export default function RegisterForm() {
     setPasswordsMatch(password === passwordRepeat);
   };
 
-  const inputClass =
-    "w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all";
-
-  const labelClass =
-    "text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1";
-
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
 
       <div className="space-y-2">
-        <label className={labelClass}>Alias</label>
+        <label className="label-luxury">Alias</label>
         <input
           type="text"
           name="username"
           required
           minLength={3}
           maxLength={20}
-          className={inputClass}
+          className="input-luxury"
           placeholder="Username"
         />
       </div>
 
       <div className="space-y-2">
-        <label className={labelClass}>Channel</label>
+        <label className="label-luxury">Channel</label>
         <input
           type="email"
           name="email"
           required
-          className={inputClass}
+          className="input-luxury"
           placeholder="Email Address"
         />
       </div>
 
       <div className="space-y-2">
-        <label className={labelClass}>Secret Key</label>
+        <label className="label-luxury">Secret Key</label>
         <input
           type="password"
           name="password"
           required
           minLength={6}
-          className={inputClass}
+          className="input-luxury"
           placeholder="••••••••"
         />
       </div>
 
       <div className="space-y-2">
-        <label className={labelClass}>Verify Key</label>
+        <label className="label-luxury">Verify Key</label>
         <input
           type="password"
           name="passwordRepeat"
           required
           minLength={6}
-          className={`w-full bg-white/[0.03] border ${
-            !passwordsMatch ? "border-red-500" : "border-white/10"
-          } rounded-2xl px-6 py-4 text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all`}
+          className={`input-luxury ${
+            !passwordsMatch ? "!border-red-500" : ""
+          }`}
           placeholder="••••••••"
           onChange={validatePassword}
           onBlur={validatePassword}

@@ -39,12 +39,6 @@ const AdminPostForm = ({ userId }) => {
 
   if (loading) return <AdminPostFormSkeleton />;
 
-  const inputClass =
-    "w-full bg-white/[0.03] border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all";
-
-  const labelClass =
-    "text-[9px] sm:text-[10px] font-black text-muted uppercase tracking-[0.2em] ml-1";
-
   return (
     <div className="space-y-6 sm:space-y-8 lg:space-y-10">
 
@@ -61,26 +55,26 @@ const AdminPostForm = ({ userId }) => {
 
         {/* Title */}
         <div className="space-y-1.5 sm:space-y-2">
-          <label htmlFor="title" className={labelClass}>Title</label>
+          <label htmlFor="title" className="label-luxury">Title</label>
           <input
             type="text"
             id="title"
             name="title"
             placeholder="e.g. Cinematic Platform"
-            className={inputClass}
+            className="input-luxury"
             required
           />
         </div>
 
         {/* Slug */}
         <div className="space-y-1.5 sm:space-y-2">
-          <label htmlFor="slug" className={labelClass}>URL Slug</label>
+          <label htmlFor="slug" className="label-luxury">URL Slug</label>
           <input
             type="text"
             id="slug"
             name="slug"
             placeholder="e.g. cinematic-platform"
-            className={inputClass}
+            className="input-luxury"
             required
           />
           <p className="text-[8px] text-muted uppercase tracking-widest ml-1">
@@ -90,7 +84,7 @@ const AdminPostForm = ({ userId }) => {
 
         {/* Image Upload */}
         <div className="space-y-1.5 sm:space-y-2">
-          <label className={labelClass}>Visual Asset</label>
+          <label className="label-luxury">Visual Asset</label>
           <div className="relative">
             <input
               type="file"
@@ -118,12 +112,12 @@ const AdminPostForm = ({ userId }) => {
 
         {/* Description */}
         <div className="space-y-1.5 sm:space-y-2">
-          <label htmlFor="desc" className={labelClass}>Brief Description</label>
+          <label htmlFor="desc" className="label-luxury">Brief Description</label>
           <textarea
             id="desc"
             name="desc"
             placeholder="Architecture breakdown..."
-            className="w-full bg-white/[0.03] border border-white/10 rounded-2xl sm:rounded-3xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder:text-muted focus:outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all min-h-[100px] sm:min-h-[120px] resize-none"
+            className="textarea-luxury"
             required
           />
         </div>
