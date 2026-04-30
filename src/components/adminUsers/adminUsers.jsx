@@ -16,9 +16,16 @@ const AdminUsers = () => {
     try {
       const res = await fetch("/api/admin/users");
       const data = await res.json();
-      setUsers(data);
+      
+      if (res.ok && Array.isArray(data)) {
+        setUsers(data);
+      } else {
+        console.error("Received non-array data or error from API:", data);
+        setUsers([]);
+      }
     } catch (err) {
       console.error("Failed to fetch users:", err);
+      setUsers([]);
     } finally {
       setLoading(false);
     }

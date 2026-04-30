@@ -16,9 +16,16 @@ const AdminInquiries = () => {
     try {
       const res = await fetch("/api/admin/inquiries");
       const data = await res.json();
-      setInquiries(data);
+      
+      if (res.ok && Array.isArray(data)) {
+        setInquiries(data);
+      } else {
+        console.error("Received non-array data or error from API:", data);
+        setInquiries([]);
+      }
     } catch (err) {
       console.error("Failed to fetch:", err);
+      setInquiries([]);
     } finally {
       setLoading(false);
     }

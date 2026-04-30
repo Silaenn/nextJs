@@ -16,9 +16,16 @@ const AdminPosts = () => {
     try {
       const res = await fetch("/api/admin/posts");
       const data = await res.json();
-      setPosts(data);
+      
+      if (res.ok && Array.isArray(data)) {
+        setPosts(data);
+      } else {
+        console.error("Received non-array data or error from API:", data);
+        setPosts([]);
+      }
     } catch (err) {
       console.error("Failed to fetch posts:", err);
+      setPosts([]);
     } finally {
       setLoading(false);
     }
