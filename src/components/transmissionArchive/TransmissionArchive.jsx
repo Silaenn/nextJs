@@ -60,7 +60,7 @@ const TransmissionArchive = ({ userId }) => {
 
   if (loading) {
     return (
-      <div className="lg:col-span-7 glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] border-white/5 bg-surface-2/20 h-[600px] sm:h-[800px] lg:h-[1130px] overflow-y-hidden">
+      <div className="lg:col-span-7 glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] border-white/5 bg-surface-2/20 h-[500px] sm:h-[700px] lg:h-[1120px] overflow-y-hidden">
         <TransmissionSkeleton />
       </div>
     );
@@ -75,10 +75,10 @@ const TransmissionArchive = ({ userId }) => {
         title="Abort Transmission"
         message="Are you sure you want to cancel this transmission? This log will be permanently removed from your archive."
       />
-      <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] border-white/5 min-h-[500px] sm:min-h-[700px] lg:min-h-[1020px] flex flex-col overflow-hidden bg-surface-2/20">
+      <div className="glass rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] border-white/5 h-[500px] sm:h-[700px] lg:h-[1120px] flex flex-col overflow-hidden bg-surface-2/20">
         
         {/* Archive Header */}
-        <div className="p-5 sm:p-7 lg:p-10 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
+        <div className="p-5 sm:p-7 lg:p-10 border-b border-white/5 flex items-center justify-between bg-white/[0.02] flex-shrink-0">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse flex-shrink-0" />
             <h2 className="text-base sm:text-lg lg:text-xl font-black italic uppercase tracking-widest text-white truncate">
@@ -91,7 +91,7 @@ const TransmissionArchive = ({ userId }) => {
         </div>
 
         {/* Archive Body */}
-        <div className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto max-h-[500px] sm:max-h-[700px] lg:max-h-[1020px] scrollbar-custom flex flex-col">
+        <div className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto scrollbar-custom flex flex-col">
           {inquiries.length === 0 ? (
             <div className="flex-1 flex flex-col items-center justify-center py-12 text-center">
               <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full bg-white/[0.02] border border-white/20 flex items-center justify-center mb-6 sm:mb-8 lg:mb-10">
